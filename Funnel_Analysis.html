@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jaipur Electronics Funnel Playbook — Interactive Analysis</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#f6f4ef;
+      --paper:#ffffff;
+      --ink:#13202d;
+      --muted:#6b7280;
+      --line:#dcd7cf;
+      --accent:#d97706;
+      --accent2:#0f766e;
+      --good:#15803d;
+      --warn:#b45309;
+      --bad:#b91c1c;
+      --blue:#2563eb;
+      --purple:#7c3aed;
+      --soft:#fbf7ef;
+      --shadow:0 8px 24px rgba(19,32,45,.08);
+      --shadow2:0 2px 10px rgba(19,32,45,.06);
+      --r:18px;
+      --r2:12px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(circle at top right, rgba(217,119,6,.10), transparent 25%),
+        radial-gradient(circle at top left, rgba(15,118,110,.10), transparent 22%),
+        var(--bg);
+      color:var(--ink);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .shell{display:flex; min-height:100vh}
+    .sidebar{
+      width:270px; position:sticky; top:0; align-self:flex-start; height:100vh;
+      overflow:auto; background:rgba(19,32,45,.98); color:#fff; padding:22px 16px;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    .brand{
+      padding:14px 14px 16px; border:1px solid rgba(255,255,255,.08); border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      margin-bottom:16px;
+    }
+    .brand .eyebrow{
+      color:#f9b24d; font-size:11px; text-transform:uppercase; letter-spacing:.14em; font-weight:700;
+      margin-bottom:8px;
+    }
+    .brand h1{margin:0; font-size:18px; line-height:1.2}
+    .brand p{margin:8px 0 0; color:rgba(255,255,255,.65); font-size:12px}
+    .navgrp{margin-top:14px}
+    .navlbl{
+      font-size:10px; text-transform:uppercase; letter-spacing:.14em; color:rgba(255,255,255,.35);
+      margin:12px 10px 8px;
+    }
+    .navbtn{
+      width:100%; text-align:left; border:0; cursor:pointer; background:transparent; color:rgba(255,255,255,.70);
+      padding:10px 11px; border-radius:12px; font:inherit; margin-bottom:4px; transition:.15s;
+      display:flex; align-items:center; gap:10px;
+    }
+    .navbtn:hover,.navbtn.active{background:rgba(255,255,255,.08); color:#fff}
+    .navbtn .dot{width:8px;height:8px;border-radius:50%; background:rgba(255,255,255,.28); flex:0 0 auto}
+    .navbtn.active .dot{background:#f59e0b}
+    .side-note{
+      margin-top:16px; padding:14px; border-radius:16px; background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.07); font-size:12px; color:rgba(255,255,255,.72)
+    }
+    .main{flex:1; padding:22px; max-width:calc(100vw - 270px)}
+    .hero{
+      background:linear-gradient(135deg, #13202d, #1f3142 60%, #13202d);
+      color:#fff; border-radius:28px; padding:30px 28px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .hero:after{
+      content:""; position:absolute; right:-80px; top:-80px; width:260px; height:260px; border-radius:50%;
+      background:radial-gradient(circle, rgba(245,158,11,.22), transparent 65%);
+    }
+    .hero-grid{display:grid; grid-template-columns: 1.35fr .95fr; gap:18px; position:relative; z-index:1}
+    .hero h2{
+      margin:0 0 10px; font-size:42px; line-height:1.05; letter-spacing:-.03em; max-width:950px;
+      font-family:var(--serif);
+    }
+    .hero h2 em{font-style:normal; color:#f7c66f}
+    .hero p{margin:0 0 16px; color:rgba(255,255,255,.74); max-width:820px; font-size:15px}
+    .pillrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+    .pill{
+      padding:7px 11px; border-radius:999px; font-size:11px; background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.08); color:#fff;
+    }
+    .stats{
+      display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px;
+    }
+    .stat{
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:14px;
+      backdrop-filter: blur(8px);
+    }
+    .stat .k{font-size:11px; color:rgba(255,255,255,.65); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px}
+    .stat .v{font-size:25px; font-weight:800; line-height:1.05}
+    .stat .s{font-size:12px; color:rgba(255,255,255,.66); margin-top:6px}
+    .section{margin-top:18px; background:rgba(255,255,255,.72); border:1px solid var(--line); border-radius:28px; box-shadow:var(--shadow2); overflow:hidden}
+    .section-inner{padding:24px}
+    .eyebrow{
+      font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:.14em; font-weight:700; margin-bottom:8px;
+    }
+    h3{
+      margin:0 0 8px; font-size:28px; line-height:1.15; letter-spacing:-.02em;
+      font-family:var(--serif);
+    }
+    .sub{margin:0 0 18px; color:var(--muted); max-width:980px}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+    .card{
+      background:var(--paper); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:0 1px 0 rgba(0,0,0,.02)
+    }
+    .card h4{margin:0 0 8px; font-size:17px}
+    .small{font-size:12px; color:var(--muted)}
+    .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{
+      font-size:11px; padding:5px 9px; border-radius:999px; border:1px solid var(--line); background:#fff;
+      color:#344054;
+    }
+    .tag.good{background:#ecfdf3; color:#166534; border-color:#bbf7d0}
+    .tag.warn{background:#fff7ed; color:#9a3412; border-color:#fed7aa}
+    .tag.bad{background:#fef2f2; color:#991b1b; border-color:#fecaca}
+    .tag.blue{background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe}
+    .tag.purple{background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe}
+    .compare-table{
+      width:100%; border-collapse:separate; border-spacing:0; overflow:hidden; border-radius:18px; border:1px solid var(--line);
+      background:#fff; font-size:13px;
+    }
+    .compare-table th,.compare-table td{padding:11px 12px; border-bottom:1px solid #ece8df; vertical-align:top}
+    .compare-table th{
+      background:#142230; color:#fff; font-size:11px; letter-spacing:.08em; text-transform:uppercase; text-align:left;
+    }
+    .compare-table tr:last-child td{border-bottom:none}
+    .compare-table td:first-child{font-weight:700; background:#faf7f0; white-space:nowrap}
+    .badge{
+      display:inline-block; padding:3px 8px; border-radius:999px; font-size:11px; font-weight:700;
+      background:#fff7ed; color:#9a3412; border:1px solid #fed7aa;
+    }
+    .badge.green{background:#ecfdf3; color:#166534; border-color:#bbf7d0}
+    .badge.blue{background:#eff6ff; color:#1d4ed8; border-color:#bfdbfe}
+    .badge.purple{background:#f5f3ff; color:#6d28d9; border-color:#ddd6fe}
+    .badgerow{display:flex; gap:8px; flex-wrap:wrap}
+    .note{
+      background:linear-gradient(180deg, #fff, #fffaf0); border:1px solid #f2dfb4; border-radius:18px; padding:14px 15px;
+      font-size:13px; color:#5b4630
+    }
+    .note strong{color:#8a4b08}
+    .tabs{display:flex; gap:8px; flex-wrap:wrap; margin:0 0 16px}
+    .tab{
+      border:1px solid var(--line); background:#fff; color:#334155; border-radius:999px; padding:10px 14px;
+      font-weight:700; font-size:12px; cursor:pointer; transition:.16s;
+    }
+    .tab.active{background:#142230; color:#fff; border-color:#142230}
+    .panel{display:none}
+    .panel.active{display:block}
+    .split{display:grid; grid-template-columns:1.2fr .8fr; gap:14px; align-items:start}
+    .chartbox{
+      height:320px; background:#fff; border:1px solid var(--line); border-radius:22px; padding:16px;
+    }
+    .chartbox.sm{height:270px}
+    .chartbox.md{height:340px}
+    .charttitle{font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin:0 0 8px; font-weight:700}
+    .funnelsteps{display:flex; flex-direction:column; gap:10px}
+    .step{
+      display:grid; grid-template-columns:180px 1fr; gap:12px; align-items:stretch;
+    }
+    .step .lhs{
+      background:#fff; border:1px solid var(--line); border-radius:18px; padding:12px;
+    }
+    .lhs .stitle{font-size:14px; font-weight:800; margin-bottom:4px}
+    .lhs .ssub{font-size:12px; color:var(--muted)}
+    .rhs{
+      position:relative; background:#fff; border:1px solid var(--line); border-radius:18px; min-height:70px;
+      overflow:hidden;
+    }
+    .fill{
+      position:absolute; inset:0 auto 0 0; width:50%; border-radius:18px; display:flex; align-items:center; justify-content:space-between;
+      padding:0 14px; color:#fff; font-weight:800;
+    }
+    .fill .pct{font-size:12px; opacity:.9}
+    .fill .val{font-size:13px}
+    .rhs .meta{
+      position:relative; z-index:1; padding:13px 14px 13px 14px; margin-left:auto; max-width:42%;
+      font-size:12px; color:#273244;
+    }
+    .kpi-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:12px}
+    .kpi{
+      background:#fff; border:1px solid var(--line); border-radius:18px; padding:14px;
+    }
+    .kpi .k{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px}
+    .kpi .v{font-size:24px; font-weight:900; line-height:1.05}
+    .kpi .s{font-size:12px; color:var(--muted); margin-top:6px}
+    .twocol{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+    }
+    .persona{
+      border:1px solid var(--line); background:#fff; border-radius:22px; overflow:hidden;
+    }
+    .persona .top{
+      padding:15px; color:#fff;
+      background:linear-gradient(135deg, #142230, #1d3b53);
+    }
+    .avatar{
+      width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center;
+      font-weight:900; margin-bottom:10px;
+    }
+    .persona .top h5{margin:0 0 3px; font-size:18px}
+    .persona .top p{margin:0; color:rgba(255,255,255,.72); font-size:12px}
+    .persona .body{padding:15px}
+    .bullets{margin:0; padding-left:18px; color:#2f3a4a}
+    .bullets li{margin:6px 0; font-size:13px}
+    .roadmap{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+    }
+    .phase{
+      background:#fff; border:1px solid var(--line); border-radius:18px; padding:15px;
+    }
+    .phase .ph{font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--accent); font-weight:800}
+    .phase h5{margin:6px 0 8px; font-size:17px}
+    .phase ul{margin:0; padding-left:18px}
+    .phase li{margin:6px 0; font-size:13px; color:#2f3a4a}
+    .footer{
+      margin:18px 0 6px; color:var(--muted); font-size:12px; text-align:center; padding:8px 0 20px;
+    }
+    .inputrow{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px;
+    }
+    select{
+      border:1px solid var(--line); background:#fff; border-radius:12px; padding:10px 12px; font:inherit;
+    }
+    .mini{
+      font-size:11px; color:var(--muted);
+    }
+    .flowgrid{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+    .flowcard{
+      background:#fff; border:1px solid var(--line); border-radius:18px; padding:14px;
+    }
+    .flowcard .a{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; margin-bottom:5px; font-weight:800}
+    .flowcard .b{font-size:20px; font-weight:900; line-height:1.05}
+    .flowcard .c{font-size:12px; color:var(--muted); margin-top:6px}
+    .pills{
+      display:flex; gap:8px; flex-wrap:wrap;
+    }
+    .pills button{
+      border:1px solid var(--line); border-radius:999px; padding:8px 11px; background:#fff; cursor:pointer; font:inherit; font-size:12px; font-weight:700;
+    }
+    .pills button.active{background:#142230; color:#fff; border-color:#142230}
+    .metriclist{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
+    }
+    .ml{
+      background:#fff; border:1px solid var(--line); border-radius:18px; padding:12px;
+    }
+    .ml .n{font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--muted); margin-bottom:4px; font-weight:800}
+    .ml .t{font-size:14px; font-weight:800; margin-bottom:4px}
+    .ml .d{font-size:12px; color:var(--muted)}
+    .check{
+      display:grid; grid-template-columns:repeat(2,1fr); gap:12px;
+    }
+    .check .item{
+      background:#fff; border:1px solid var(--line); border-radius:18px; padding:13px;
+    }
+    .check .item h6{margin:0 0 5px; font-size:14px}
+    .check .item p{margin:0; font-size:12px; color:var(--muted)}
+    @media (max-width: 1150px){
+      .sidebar{display:none}
+      .main{max-width:100vw; padding:16px}
+    }
+    @media (max-width: 980px){
+      .hero-grid,.split,.grid2,.grid3,.grid4,.kpi-grid,.roadmap,.twocol,.flowgrid,.check,.metriclist,.stats{grid-template-columns:1fr}
+      .step{grid-template-columns:1fr}
+      .rhs .meta{max-width:100%; margin-left:0}
+      .hero h2{font-size:32px}
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="eyebrow">Interactive report</div>
+      <h1>Jaipur Electronics Funnel Playbook</h1>
+      <p>Built from extensive consumer electronics research and your Jaipur store planning deck</p>
+    </div>
+    <div class="navgrp">
+      <div class="navlbl">Overview</div>
+      <button class="navbtn active" data-target="overview"><span class="dot"></span>Summary</button>
+      <button class="navbtn" data-target="funnel"><span class="dot"></span>Funnel map</button>
+      <button class="navbtn" data-target="benchmarks"><span class="dot"></span>Benchmarks</button>
+      <button class="navbtn" data-target="category"><span class="dot"></span>Category strategy</button>
+      <button class="navbtn" data-target="experiments"><span class="dot"></span>Experiment backlog</button>
+      <button class="navbtn" data-target="roadmap"><span class="dot"></span>90-day roadmap</button>
+      <button class="navbtn" data-target="measurement"><span class="dot"></span>Measurement plan</button>
+    </div>
+    <div class="side-note">
+      <strong>How to use this file:</strong><br>
+      1. Read the overview.<br>
+      2. Use the category switcher to compare AC/TV/WM/Fridge/Fan.<br>
+      3. Copy the experiment table into your deck.
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="hero" id="overview">
+      <div class="hero-grid">
+        <div>
+          <h2>Why <em>online conversion is lower</em> than offline — and how to fix it.</h2>
+          <p>
+            This report translates proven e-commerce funnel principles into a consumer electronics playbook for Jaipur.
+            It treats online not only as checkout, but as a <strong>lead engine</strong> that should move users to WhatsApp, call, store visit, demo, EMI approval, and final purchase.
+          </p>
+          <div class="pillrow">
+            <span class="pill">Direct online conversion: target 0.8%–1.5%</span>
+            <span class="pill">Assisted conversion: target 3%–8%</span>
+            <span class="pill">Store visit to sale: target 25%–35%</span>
+            <span class="pill">EMI + installation = critical</span>
+          </div>
+          <div class="pillrow">
+            <span class="pill">Product pages must answer trust</span>
+            <span class="pill">Comparison must answer choice</span>
+            <span class="pill">WhatsApp must answer hesitation</span>
+            <span class="pill">After-sale must create repeat</span>
+          </div>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="k">Offline conversion</div>
+            <div class="v">25–35%</div>
+            <div class="s">Your Jaipur store benchmark from the planning deck</div>
+          </div>
+          <div class="stat">
+            <div class="k">EMI dependency</div>
+            <div class="v">60–70%</div>
+            <div class="s">Consumer electronics sales often close on EMI</div>
+          </div>
+          <div class="stat">
+            <div class="k">Reference mWeb CVR</div>
+            <div class="v">0.52%</div>
+            <div class="s">Reference point for tough mobile funnels</div>
+          </div>
+          <div class="stat">
+            <div class="k">Reference App CVR</div>
+            <div class="v">1.10%</div>
+            <div class="s">Higher intent, better tool support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funnel">
+      <div class="section-inner">
+        <div class="eyebrow">1. Funnel map</div>
+        <h3>Build two funnels, not one</h3>
+        <p class="sub">
+          In consumer electronics, many users research online and buy offline. So the correct model is:
+          <strong>direct online checkout funnel</strong> plus <strong>assisted lead-to-store funnel</strong>.
+          Strong e-commerce funnel design shows how top-funnel quality, PDP intent, and bottom-funnel friction all matter; this project extends that logic to visits, demos, EMI, and installation.
+        </p>
+
+        <div class="flowgrid">
+          <div class="flowcard"><div class="a">Direct online order</div><div class="b">0.8%–1.5%</div><div class="c">Best for low-consideration SKUs, repeat buyers, and well-priced accessory bundles.</div></div>
+          <div class="flowcard"><div class="a">Assisted lead funnel</div><div class="b">3%–8%</div><div class="c">Best for AC, TV, WM, fridge — where trust and installation matter.</div></div>
+          <div class="flowcard"><div class="a">Store visit to sale</div><div class="b">25%–35%</div><div class="c">Your offline conversion target, driven by demos, EMI, and staff closure skill.</div></div>
+          <div class="flowcard"><div class="a">Repeat / referral</div><div class="b">8%–15%</div><div class="c">Built through post-install follow-up, reviews, service reminders, and referral codes.</div></div>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <div class="inputrow">
+            <strong>Select category:</strong>
+            <div class="pills" id="categoryButtons"></div>
+            <span class="mini">The funnel and recommendations change per product because buyer anxiety is different.</span>
+          </div>
+          <div class="split">
+            <div>
+              <div class="funnelsteps" id="funnelSteps"></div>
+            </div>
+            <div>
+              <div class="charttitle">Sample monthly funnel out of 100,000 sessions</div>
+              <div class="chartbox md"><canvas id="funnelChart"></canvas></div>
+              <div class="note" id="categoryNote" style="margin-top:12px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px">
+          <div class="card">
+            <h4>What modern e-commerce teaches you</h4>
+            <div class="small">
+              Modern e-commerce best practices show that real funnel work is about removing friction at each stage:
+              improve discovery, improve product-card CTR, improve PDP-to-ATC, simplify cart/checkout, and reduce post-order confusion.
+              In their deck, mWeb conversion is low, PDP-to-ATC varies strongly by device, and post-order reassurance matters because users still need confidence after payment.
+            </div>
+            <div class="tagrow">
+              <span class="tag blue">Friction removal</span>
+              <span class="tag blue">Device-specific journeys</span>
+              <span class="tag blue">Trust after purchase</span>
+              <span class="tag blue">Intent segmentation</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4>What electronics needs</h4>
+            <div class="small">
+              Electronics has a stronger need for price visibility, EMI clarity, installation confidence, warranty reassurance,
+              delivery date certainty, and human assistance. That means your funnel should expose those answers before the user reaches checkout or leaves to compare elsewhere.
+            </div>
+            <div class="tagrow">
+              <span class="tag good">EMI first</span>
+              <span class="tag good">Installation promise</span>
+              <span class="tag good">Clear comparison</span>
+              <span class="tag good">WhatsApp assistance</span>
+              <span class="tag good">Pincode / stock clarity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="benchmarks">
+      <div class="section-inner">
+        <div class="eyebrow">2. Benchmark</div>
+        <h3>What Amazon, Flipkart, Croma, and Vijay Sales do well</h3>
+        <p class="sub">
+          The goal is not to copy their scale. The goal is to copy the trust mechanisms that make conversion easier:
+          reviews, EMI, delivery certainty, installation clarity, support access, and demonstrations.
+        </p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Main conversion strength</th>
+              <th>What users get instantly</th>
+              <th>How you should copy it</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Amazon</td>
+              <td><span class="badge green">Convenience + logistics</span></td>
+              <td>No-cost EMI, fast delivery, rich product page structure, reviews/ratings, and service visibility.</td>
+              <td>Show EMI on the hero card, not only at payment; show expected install timing and warranty help on every high-ticket page.</td>
+            </tr>
+            <tr>
+              <td>Flipkart</td>
+              <td><span class="badge blue">Discovery + comparison</span></td>
+              <td>Reviews, ratings, comparison, EMI, pay-later, and installation/demo listings.</td>
+              <td>Add compare mode, image-based proof, and a dedicated installation/demo CTA to the PDP.</td>
+            </tr>
+            <tr>
+              <td>Croma</td>
+              <td><span class="badge purple">Support + store bridge</span></td>
+              <td>Store locator, pincode-aware buying, EMI options, support, returns, and demo/installation help.</td>
+              <td>Make your online channel a store bridge: “reserve online, visit offline, close in store, install next.”</td>
+            </tr>
+            <tr>
+              <td>Vijay Sales</td>
+              <td><span class="badge">Consultative selling</span></td>
+              <td>EMI options, bank offers, and product demonstrations.</td>
+              <td>Use consultative flows: “best for 2BHK”, “best for low electricity bill”, “best for hard water”, “best for family room”.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="grid2" style="margin-top:14px">
+          <div class="card">
+            <h4>Trust ingredients you need on every product page</h4>
+            <div class="badgerow" style="margin-bottom:10px">
+              <span class="badge green">Price + EMI calculator</span>
+              <span class="badge green">Delivery / install ETA</span>
+              <span class="badge green">Warranty summary</span>
+              <span class="badge green">Pincode stock check</span>
+              <span class="badge green">Return / cancellation policy</span>
+              <span class="badge green">Call / WhatsApp CTA</span>
+              <span class="badge green">Real review snippets</span>
+              <span class="badge green">Compare products</span>
+            </div>
+            <p class="small">
+              For high-ticket appliances, “can I trust this seller?” matters almost as much as price.
+              That is why local assistance and clear service guarantees often outperform a pure marketplace listing.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Why offline often wins</h4>
+            <p class="small">
+              Offline wins because it removes uncertainty in one conversation: the buyer sees the product, checks dimensions, hears the service promise, gets EMI approved, and leaves with a person to call.
+              Online often fails because each of those questions sits on a different page or is hidden until the user is already about to drop off.
+            </p>
+            <div class="tagrow">
+              <span class="tag warn">Fewer steps</span>
+              <span class="tag warn">Human reassurance</span>
+              <span class="tag warn">Instant negotiation</span>
+              <span class="tag warn">Demo + install</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="split" style="margin-top:14px">
+          <div class="chartbox sm"><div class="charttitle">Benchmark stack: what matters most</div><canvas id="benchmarkChart"></canvas></div>
+          <div class="card">
+            <h4>Translate benchmark features into your funnel</h4>
+            <div class="metriclist">
+              <div class="ml"><div class="n">Amazon style</div><div class="t">Reduce search friction</div><div class="d">Helpful sorting, fast filters, strong product detail, fewer steps.</div></div>
+              <div class="ml"><div class="n">Flipkart style</div><div class="t">Explain choices</div><div class="d">Compare specs, reviews, ratings, install demo, value cues.</div></div>
+              <div class="ml"><div class="n">Croma style</div><div class="t">Bridge online to store</div><div class="d">Pincode, support, store pickup, returns, EMI, installation.</div></div>
+              <div class="ml"><div class="n">Vijay Sales style</div><div class="t">Sell consultatively</div><div class="d">Staff-led comparison, bank offers, product demos, bundles.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="category">
+      <div class="section-inner">
+        <div class="eyebrow">3. Category strategy</div>
+        <h3>Each product has a different funnel</h3>
+        <p class="sub">
+          AC, TV, washing machine, fridge, and fan do not behave the same. A single funnel is misleading.
+          Use different landing copy, different trust blocks, and different CTA priority for each.
+        </p>
+
+        <div class="tabs" id="catTabs"></div>
+        <div class="panel active" id="catPanel">
+          <div class="grid2">
+            <div class="card">
+              <h4 id="catName">AC</h4>
+              <div id="catDesc" class="small"></div>
+              <div class="tagrow" id="catTags"></div>
+            </div>
+            <div class="card">
+              <h4>What to show above the fold</h4>
+              <div class="small" id="catShow"></div>
+            </div>
+          </div>
+          <div class="grid2" style="margin-top:14px">
+            <div class="chartbox"><div class="charttitle">Funnel emphasis by category</div><canvas id="catChart"></canvas></div>
+            <div class="card">
+              <h4>Winning message by category</h4>
+              <div class="metriclist" id="catMessages"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experiments">
+      <div class="section-inner">
+        <div class="eyebrow">4. Experiment backlog</div>
+        <h3>What to test first</h3>
+        <p class="sub">
+          Start with the experiments that most directly reduce uncertainty and increase lead capture.
+          A good funnel test should change one anxiety at a time, not everything at once.
+        </p>
+
+        <div class="grid3">
+          <div class="card">
+            <h4>Priority 1</h4>
+            <ul class="bullets">
+              <li>Sticky WhatsApp / call button on product pages.</li>
+              <li>EMI calculator shown on listing cards and PDP.</li>
+              <li>Delivery + installation ETA shown before checkout.</li>
+              <li>One-tap store reservation / callback.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Priority 2</h4>
+            <ul class="bullets">
+              <li>Compare products by 3–5 buyer-friendly attributes.</li>
+              <li>Trust blocks: warranty, service, exchange, and installation policy.</li>
+              <li>Photo reviews and “sold / installed in Jaipur” proof.</li>
+              <li>Price transparency with offer breakdown.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Priority 3</h4>
+            <ul class="bullets">
+              <li>Lead scoring and callback routing by category.</li>
+              <li>Post-install review request and referral trigger.</li>
+              <li>Access to extended warranty / AMC at checkout.</li>
+              <li>Personalized recommendations for accessories and upsells.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="split" style="margin-top:14px">
+          <div class="chartbox sm"><div class="charttitle">Impact vs effort</div><canvas id="experimentChart"></canvas></div>
+          <div class="card">
+            <h4>Experiment sheet</h4>
+            <table class="compare-table" style="font-size:12px">
+              <thead>
+                <tr>
+                  <th>Experiment</th>
+                  <th>Metric moved</th>
+                  <th>Expected effect</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>EMI visible on PDP</td><td>Lead rate</td><td>High impact, low effort</td></tr>
+                <tr><td>WhatsApp CTA sticky</td><td>Qualified lead rate</td><td>High impact, low effort</td></tr>
+                <tr><td>Compare tool</td><td>Return-to-page / choice confidence</td><td>High impact, medium effort</td></tr>
+                <tr><td>Installation ETA + policy</td><td>Checkout confidence</td><td>High impact, low effort</td></tr>
+                <tr><td>Review collection after install</td><td>Repeat + referral</td><td>Medium impact, medium effort</td></tr>
+                <tr><td>EMI approval helper</td><td>Conversion to sale</td><td>High impact, medium effort</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="roadmap">
+      <div class="section-inner">
+        <div class="eyebrow">5. 90-day roadmap</div>
+        <h3>Build the funnel before you scale traffic</h3>
+        <p class="sub">
+          The fastest way to waste ad spend is to drive traffic into a funnel that is not instrumented.
+          This roadmap prioritizes measurement, trust, and conversion before paid growth.
+        </p>
+
+        <div class="roadmap">
+          <div class="phase">
+            <div class="ph">Days 1–30</div>
+            <h5>Instrument and simplify</h5>
+            <ul>
+              <li>Define every funnel event.</li>
+              <li>Build dashboards for lead and sale stages.</li>
+              <li>Place EMI, delivery, install, and warranty above the fold.</li>
+              <li>Launch sticky call / WhatsApp.</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="ph">Days 31–60</div>
+            <h5>Optimize trust and choice</h5>
+            <ul>
+              <li>Add compare tool and product shortlist.</li>
+              <li>Create category-specific pages.</li>
+              <li>Test proof blocks and review snippets.</li>
+              <li>Add callback SLAs for leads.</li>
+            </ul>
+          </div>
+          <div class="phase">
+            <div class="ph">Days 61–90</div>
+            <h5>Scale what closes</h5>
+            <ul>
+              <li>Double down on winning categories.</li>
+              <li>Retarget lead non-closers.</li>
+              <li>Promote AMC, warranty, and accessories.</li>
+              <li>Build referral loops and post-install review flow.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="grid2" style="margin-top:14px">
+          <div class="card">
+            <h4>North star metrics</h4>
+            <div class="kpi-grid">
+              <div class="kpi"><div class="k">Qualified lead rate</div><div class="v">3%–8%</div><div class="s">Sessions that become WhatsApp / call / store lead</div></div>
+              <div class="kpi"><div class="k">Lead-to-visit</div><div class="v">30%–50%</div><div class="s">Assisted conversion quality</div></div>
+              <div class="kpi"><div class="k">Visit-to-sale</div><div class="v">25%–35%</div><div class="s">Offline closure strength</div></div>
+              <div class="kpi"><div class="k">Service attach</div><div class="v">20%+</div><div class="s">AMC / install / warranty attachment</div></div>
+              <div class="kpi"><div class="k">Repeat / referral</div><div class="v">8%–15%</div><div class="s">Post-purchase value creation</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <h4>What not to do in Year 1</h4>
+            <div class="check">
+              <div class="item"><h6>Do not hide the price story</h6><p>Users need the EMI, offer, and final payable amount early.</p></div>
+              <div class="item"><h6>Do not force too many steps</h6><p>One-click call or WhatsApp should be available everywhere.</p></div>
+              <div class="item"><h6>Do not launch broad traffic first</h6><p>Fix the funnel before spending on scale.</p></div>
+              <div class="item"><h6>Do not ignore post-sale</h6><p>Installation, warranty, and review loops drive future sales.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="measurement">
+      <div class="section-inner">
+        <div class="eyebrow">6. Measurement plan</div>
+        <h3>What every event should measure</h3>
+        <p class="sub">
+          This is the bare minimum event plan for a funnel-led commerce project. It lets you see where users lose confidence, where they hesitate, and where staff intervention is needed.
+        </p>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Why it matters</th>
+              <th>Owner</th>
+              <th>Target KPI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Landing page view</td><td>Shows source quality and message match.</td><td>Growth / analytics</td><td>Bounce rate below 45%</td></tr>
+            <tr><td>Category view</td><td>Shows browse intent.</td><td>Growth / merchandising</td><td>CTR to PDP above 30%</td></tr>
+            <tr><td>Product view</td><td>Core intent signal.</td><td>Merchandising</td><td>PDP engagement above 45s</td></tr>
+            <tr><td>Compare click</td><td>Choice anxiety signal.</td><td>Product</td><td>Compare usage above 12%</td></tr>
+            <tr><td>EMI click</td><td>Affordability check.</td><td>Product + finance</td><td>EMI interaction above 18%</td></tr>
+            <tr><td>WhatsApp / call click</td><td>Sales-ready lead.</td><td>Sales</td><td>Lead rate 3%–8%</td></tr>
+            <tr><td>Store visit</td><td>Assisted closure.</td><td>Sales / store</td><td>Lead-to-visit 30%–50%</td></tr>
+            <tr><td>Sale / order</td><td>Final conversion.</td><td>Store / ecommerce</td><td>Visit-to-sale 25%–35%</td></tr>
+            <tr><td>Installation done</td><td>Trust completion.</td><td>Operations</td><td>On-time install above 95%</td></tr>
+            <tr><td>Review / referral</td><td>Repeat flywheel.</td><td>Customer success</td><td>Review rate above 10%</td></tr>
+          </tbody>
+        </table>
+
+        <div class="footer">
+          Benchmark sources used for this playbook: consumer electronics market research, your Jaipur electronics store analysis, and official current pages from Amazon, Flipkart, Croma, and Vijay Sales.
+          Metrics marked as targets are suggested starting points and should be validated with your own traffic.
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+  const categories = [
+    {
+      id:'ac', name:'AC',
+      desc:'Highest-ticket, highest-anxiety category. Users care about cooling capacity, electricity bill, installation quality, warranty, and after-sales service.',
+      tags:['High ticket', 'Installation heavy', 'EMI critical', 'Service sensitive'],
+      show:'Show BEE rating, tonnage, room size fit, installation ETA, free installation/charge breakdown, warranty, and EMI in the first screen.',
+      note:'AC is usually the strongest lead generator, not the fastest direct checkout category. Your funnel should focus on lead capture, callback, and demo/visit closure.',
+      steps:[
+        ['Landing','100k sessions','Top-of-funnel traffic must match “I need cooling fast” intent.'],
+        ['Product page','12,000 views','Users compare capacity, brand, and monthly EMI.'],
+        ['Compare / EMI','3,400 interactions','The moment users decide whether the monthly outgo fits.'],
+        ['Lead / call / WhatsApp','1,800 leads','Most buyers want a human to confirm installation and offer.'],
+        ['Store visit / closure','640 visits','The store closes after demo, stock assurance, and EMI approval.'],
+      ],
+      funnel:[100, 12, 3.4, 1.8, 0.64, 0.22],
+      bars:[
+        ['Discovery → product page', '12%'],
+        ['Product page → compare / EMI', '28%'],
+        ['Compare / EMI → lead', '53%'],
+        ['Lead → store visit', '36%'],
+        ['Visit → sale', '34%']
+      ],
+      msgs:[
+        ['Best opener','“Best AC for your room size + budget.”'],
+        ['Best proof','Energy savings, installation promise, service SLA.'],
+        ['Best CTA','“Get a callback in 10 minutes.”'],
+        ['Best nudge','0% EMI + free installation + warranty.'],
+      ]
+    },
+    {
+      id:'tv', name:'TV',
+      desc:'Strong comparison category. Buyers judge picture quality, size, smart features, OTT app support, sound, and wall-mount convenience.',
+      tags:['Comparison heavy', 'Review driven', 'Bundle friendly', 'Mid-high ticket'],
+      show:'Show size guide, room fit, viewing distance, comparison table, ratings, sound/picture proof, wall-mount + installation pricing, and bank offers.',
+      note:'TV users often browse deeply and compare a lot before speaking to a salesperson. The funnel must make comparison effortless and give visual proof early.',
+      steps:[
+        ['Landing','100k sessions','Search and price-led discovery is common.'],
+        ['Product page','15,500 views','Specs must be simple, not buried in jargon.'],
+        ['Compare / reviews','4,900 interactions','This is where most choice anxiety gets resolved.'],
+        ['Lead / call / WhatsApp','1,400 leads','Users ask about wall mount, delivery, and offers.'],
+        ['Store visit / closure','520 visits','Store demo and picture-quality reassurance close the deal.'],
+      ],
+      funnel:[100, 15.5, 4.9, 1.4, 0.52, 0.18],
+      bars:[
+        ['Discovery → product page', '15.5%'],
+        ['Product page → compare / reviews', '32%'],
+        ['Compare / reviews → lead', '29%'],
+        ['Lead → store visit', '37%'],
+        ['Visit → sale', '35%']
+      ],
+      msgs:[
+        ['Best opener','“Best TV for your room + OTT habits.”'],
+        ['Best proof','Picture quality, size guide, sound, app support.'],
+        ['Best CTA','“Compare 3 models side-by-side.”'],
+        ['Best nudge','Bank offers + wall mount + easy install.'],
+      ]
+    },
+    {
+      id:'wm', name:'Washing Machine',
+      desc:'Users care about hard-water fit, load capacity, drum quality, service reliability, and whether the machine matches family size and usage patterns.',
+      tags:['Utility driven', 'Service sensitive', 'Compare capacity', 'Hard-water concern'],
+      show:'Show capacity, wash programs, hard-water suitability, spin speed, warranty, brand service, and installation availability.',
+      note:'WM often converts when you answer “will it work in my home?” more than “is it on discount?”',
+      steps:[
+        ['Landing','100k sessions','Users often search by capacity or price range.'],
+        ['Product page','14,000 views','Service and durability matter more than flashy features.'],
+        ['Compare / warranty','4,200 interactions','Hard-water and family-size concerns dominate.'],
+        ['Lead / call / WhatsApp','1,600 leads','Most ask about delivery, install, and brand service.'],
+        ['Store visit / closure','560 visits','Recommendation and demo help the final close.'],
+      ],
+      funnel:[100, 14, 4.2, 1.6, 0.56, 0.20],
+      bars:[
+        ['Discovery → product page', '14%'],
+        ['Product page → compare / warranty', '30%'],
+        ['Compare / warranty → lead', '38%'],
+        ['Lead → store visit', '35%'],
+        ['Visit → sale', '36%']
+      ],
+      msgs:[
+        ['Best opener','“Best washer for your water + family size.”'],
+        ['Best proof','Hard-water fit, load capacity, service network.'],
+        ['Best CTA','“Ask a technician what fits your water.”'],
+        ['Best nudge','Free installation + exchange + warranty.'],
+      ]
+    },
+    {
+      id:'fr', name:'Refrigerator',
+      desc:'A fridge is a family utility purchase. Buyers care about storage, energy efficiency, cooling retention, size, and long-term reliability.',
+      tags:['Family utility', 'Energy aware', 'Size fit', 'Reliability'],
+      show:'Show litre capacity, dimensions, energy rating, inverter tech, stabilizer need, and delivery / installation support.',
+      note:'Fridge conversion improves when you simplify size fit and energy cost rather than only shouting offers.',
+      steps:[
+        ['Landing','100k sessions','Search quality and size intent are important.'],
+        ['Product page','13,000 views','Capacity and fit drive interest.'],
+        ['Compare / rating','3,800 interactions','Energy and reliability are key.'],
+        ['Lead / call / WhatsApp','1,300 leads','Users ask about dimensions and delivery timing.'],
+        ['Store visit / closure','500 visits','Store assurance closes the purchase.'],
+      ],
+      funnel:[100, 13, 3.8, 1.3, 0.50, 0.17],
+      bars:[
+        ['Discovery → product page', '13%'],
+        ['Product page → compare / rating', '29%'],
+        ['Compare / rating → lead', '34%'],
+        ['Lead → store visit', '38%'],
+        ['Visit → sale', '34%']
+      ],
+      msgs:[
+        ['Best opener','“Best fridge for your family size.”'],
+        ['Best proof','Energy efficiency, storage, fit, service.'],
+        ['Best CTA','“Check size and electricity bill impact.”'],
+        ['Best nudge','Installation + stabilizer + exchange support.'],
+      ]
+    },
+    {
+      id:'fn', name:'Fan',
+      desc:'Low-ticket, high-volume, speed-led category. This one can be closer to direct online checkout, especially for repeat or price-sensitive buyers.',
+      tags:['Low ticket', 'Fast decision', 'Bundle friendly', 'Direct checkout'],
+      show:'Show price, wattage, airflow, noise level, colour, delivery timing, and bundle offers for room setup.',
+      note:'Fan is your easiest direct conversion category. Use it to build traffic, repeat orders, and accessory bundles.',
+      steps:[
+        ['Landing','100k sessions','Price and speed dominate.'],
+        ['Product page','18,500 views','Low consideration means faster clicks.'],
+        ['Compare / ratings','2,900 interactions','Users usually shortlist quickly.'],
+        ['Lead / call / WhatsApp','700 leads','More users can go straight to cart.'],
+        ['Store visit / closure','380 visits','Less need for demo; more need for availability.'],
+      ],
+      funnel:[100, 18.5, 2.9, 0.7, 0.38, 0.12],
+      bars:[
+        ['Discovery → product page', '18.5%'],
+        ['Product page → compare / ratings', '16%'],
+        ['Compare / ratings → lead', '24%'],
+        ['Lead → store visit', '54%'],
+        ['Visit → sale', '32%']
+      ],
+      msgs:[
+        ['Best opener','“Best fan for this room at this budget.”'],
+        ['Best proof','Airflow, wattage, noise, style.'],
+        ['Best CTA','“Buy now or reserve for pickup.”'],
+        ['Best nudge','Bundle with lights / accessories / installation.'],
+      ]
+    }
+  ];
+
+  const stageInfo = [
+    {name:'Discovery', fill:0.93, color:'#2563eb', meta:'Traffic quality. Are users arriving with a product intent or just browsing?'},
+    {name:'Product page', fill:0.72, color:'#0f766e', meta:'Can the product page answer price, fit, offer, and service questions in one glance?'},
+    {name:'Compare / trust', fill:0.56, color:'#d97706', meta:'Do users have a quick way to compare, read proof, and estimate monthly outgo?'},
+    {name:'Lead capture', fill:0.45, color:'#7c3aed', meta:'Can the page convert hesitation into a call, WhatsApp, or reservation?'},
+    {name:'Store visit / sale', fill:0.36, color:'#15803d', meta:'Can staff close with demo, stock reassurance, EMI approval, and final offer?'},
+  ];
+
+  const categoryMap = Object.fromEntries(categories.map(c => [c.id, c]));
+  let activeCategory = 'ac';
+  const categoryButtons = document.getElementById('categoryButtons');
+  const funnelSteps = document.getElementById('funnelSteps');
+  const categoryNote = document.getElementById('categoryNote');
+
+  function makeButton(c){
+    const b = document.createElement('button');
+    b.textContent = c.name;
+    b.dataset.id = c.id;
+    if(c.id===activeCategory) b.classList.add('active');
+    b.onclick = () => {
+      activeCategory = c.id;
+      document.querySelectorAll('#categoryButtons button').forEach(x => x.classList.toggle('active', x.dataset.id===c.id));
+      document.querySelectorAll('#catTabs .tab').forEach(x => x.classList.toggle('active', x.dataset.id===c.id));
+      renderCategory();
+      renderFunnel();
+    };
+    return b;
+  }
+
+  function makeTab(c){
+    const t = document.createElement('button');
+    t.className = 'tab' + (c.id===activeCategory ? ' active' : '');
+    t.textContent = c.name;
+    t.dataset.id = c.id;
+    t.onclick = () => {
+      activeCategory = c.id;
+      document.querySelectorAll('#catTabs .tab').forEach(x => x.classList.toggle('active', x.dataset.id===c.id));
+      document.querySelectorAll('#categoryButtons button').forEach(x => x.classList.toggle('active', x.dataset.id===c.id));
+      renderCategory();
+      renderFunnel();
+    };
+    return t;
+  }
+
+  categories.forEach(c => {
+    categoryButtons.appendChild(makeButton(c));
+  });
+  const catTabs = document.getElementById('catTabs');
+  categories.forEach(c => catTabs.appendChild(makeTab(c)));
+
+  const funnelCtx = document.getElementById('funnelChart');
+  const funnelChart = new Chart(funnelCtx, {
+    type:'bar',
+    data:{
+      labels:['Discovery','Product page','Compare / trust','Lead capture','Store visit / sale'],
+      datasets:[{
+        label:'Sessions per 100k',
+        data:[100,12,3.4,1.8,0.64],
+        backgroundColor:['#2563eb','#0f766e','#d97706','#7c3aed','#15803d'],
+        borderRadius:12
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}, tooltip:{callbacks:{label:(ctx)=>`${ctx.raw}k equivalent`}}},
+      scales:{
+        x:{grid:{display:false}, ticks:{color:'#475569'}},
+        y:{grid:{color:'rgba(0,0,0,.06)'}, ticks:{color:'#475569'}}
+      }
+    }
+  });
+
+  const benchmarkChart = new Chart(document.getElementById('benchmarkChart'), {
+    type:'radar',
+    data:{
+      labels:['Reviews','EMI','Installation','Support','Delivery','Comparison'],
+      datasets:[
+        {label:'Amazon', data:[9,9,7,8,10,7], borderColor:'#2563eb', backgroundColor:'rgba(37,99,235,.12)'},
+        {label:'Flipkart', data:[9,8,8,7,8,10], borderColor:'#7c3aed', backgroundColor:'rgba(124,58,237,.12)'},
+        {label:'Croma', data:[7,8,9,10,9,8], borderColor:'#0f766e', backgroundColor:'rgba(15,118,110,.12)'},
+        {label:'Vijay Sales', data:[7,9,9,9,7,8], borderColor:'#d97706', backgroundColor:'rgba(217,119,6,.12)'},
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom'}},
+      scales:{r:{angleLines:{color:'rgba(0,0,0,.08)'}, grid:{color:'rgba(0,0,0,.08)'}, suggestedMin:0, suggestedMax:10, ticks:{display:false}}}
+    }
+  });
+
+  const catChart = new Chart(document.getElementById('catChart'), {
+    type:'line',
+    data:{
+      labels:['Discovery','Product page','Compare / trust','Lead','Visit / sale'],
+      datasets:[{
+        label:'AC',
+        data:[100,12,3.4,1.8,0.64],
+        borderColor:'#d97706',
+        tension:.28,
+        fill:false,
+        pointRadius:4
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{grid:{color:'rgba(0,0,0,.06)'}, ticks:{color:'#475569'}},
+        x:{grid:{display:false}, ticks:{color:'#475569'}}
+      }
+    }
+  });
+
+  const experimentChart = new Chart(document.getElementById('experimentChart'), {
+    type:'bar',
+    data:{
+      labels:['WhatsApp CTA','EMI visible','Compare tool','Install ETA','Reviews','Lead routing'],
+      datasets:[{
+        label:'Impact score',
+        data:[9,9,8,8,7,7],
+        backgroundColor:['#15803d','#15803d','#d97706','#d97706','#2563eb','#7c3aed'],
+        borderRadius:12
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{display:false}, ticks:{color:'#475569'}},
+        y:{grid:{color:'rgba(0,0,0,.06)'}, ticks:{color:'#475569'}, suggestedMax:10}
+      }
+    }
+  });
+
+  function renderFunnel(){
+    const c = categoryMap[activeCategory];
+    const values = c.funnel;
+    funnelChart.data.datasets[0].data = values;
+    funnelChart.update();
+    funnelSteps.innerHTML = '';
+    stageInfo.forEach((s, i) => {
+      const step = document.createElement('div');
+      step.className = 'step';
+      step.innerHTML = `
+        <div class="lhs">
+          <div class="stitle">${s.name}</div>
+          <div class="ssub">${c.bars[i] ? c.bars[i][0] : ''}</div>
+        </div>
+        <div class="rhs">
+          <div class="fill" style="width:${Math.max(16, s.fill*100)}%; background:${s.color}">
+            <span class="val">${c.bars[i] ? c.bars[i][1] : ''}</span>
+            <span class="pct">${Math.round(s.fill*100)}%</span>
+          </div>
+          <div class="meta">${s.meta}</div>
+        </div>
+      `;
+      funnelSteps.appendChild(step);
+    });
+    categoryNote.innerHTML = `<strong>${c.name} funnel thesis:</strong> ${c.note}`;
+    document.getElementById('catName').textContent = c.name;
+    document.getElementById('catDesc').textContent = c.desc;
+    document.getElementById('catShow').textContent = c.show;
+    const tagBox = document.getElementById('catTags');
+    tagBox.innerHTML = '';
+    c.tags.forEach(t => {
+      const sp = document.createElement('span');
+      sp.className = 'tag good';
+      sp.textContent = t;
+      tagBox.appendChild(sp);
+    });
+    const msgBox = document.getElementById('catMessages');
+    msgBox.innerHTML = '';
+    c.msgs.forEach(([n, d]) => {
+      const el = document.createElement('div');
+      el.className = 'ml';
+      el.innerHTML = `<div class="n">${n}</div><div class="t">${d}</div>`;
+      msgBox.appendChild(el);
+    });
+    catChart.data.datasets[0].label = c.name;
+    catChart.data.datasets[0].data = c.funnel;
+    catChart.data.datasets[0].borderColor = c.id==='ac' ? '#d97706' : c.id==='tv' ? '#2563eb' : c.id==='wm' ? '#0f766e' : c.id==='fr' ? '#7c3aed' : '#15803d';
+    catChart.data.datasets[0].pointBackgroundColor = catChart.data.datasets[0].borderColor;
+    catChart.update();
+  }
+
+  function renderCategory(){
+    renderFunnel();
+  }
+
+  renderCategory();
+
+  // Sidebar nav interactions
+  const navButtons = document.querySelectorAll('.navbtn');
+  const sections = ['overview','funnel','benchmarks','category','experiments','roadmap','measurement'].map(id => document.getElementById(id));
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        navButtons.forEach(b => b.classList.toggle('active', b.dataset.target===entry.target.id));
+      }
+    });
+  }, {root:null, threshold:0.4});
+  sections.forEach(s => obs.observe(s));
+  navButtons.forEach(btn => btn.addEventListener('click', ()=>{
+    document.getElementById(btn.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+  }));
+</script>
+</body>
+</html>

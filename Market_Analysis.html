@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaipur Electronics — Full Market Analysis 2026</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  :root {
+    --green: #1D9E75;
+    --green-light: #EAF3DE;
+    --green-dark: #27500A;
+    --blue: #378ADD;
+    --blue-light: #E6F1FB;
+    --blue-dark: #0C447C;
+    --amber: #BA7517;
+    --amber-light: #FAEEDA;
+    --amber-dark: #633806;
+    --red: #E24B4A;
+    --red-light: #FCEBEB;
+    --red-dark: #791F1F;
+    --purple: #7F77DD;
+    --purple-light: #EEEDFE;
+    --purple-dark: #3C3489;
+    --teal-light: #E1F5EE;
+    --teal-dark: #085041;
+    --bg: #FAFAF9;
+    --bg2: #F3F3F1;
+    --border: #E2E2DF;
+    --border2: #EBEBEA;
+    --text: #1A1A18;
+    --text2: #6B6B69;
+    --white: #ffffff;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --radius-xs: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  /* ── Header ── */
+  .page-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header-title { font-size: 15px; font-weight: 600; color: var(--text); }
+  .header-sub { font-size: 12px; color: var(--text2); margin-top: 1px; }
+  .header-badge {
+    font-size: 11px; padding: 3px 9px; border-radius: 20px;
+    background: var(--green-light); color: var(--green-dark); font-weight: 500;
+  }
+
+  /* ── Nav tabs ── */
+  .nav-tabs {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    padding: 11px 16px;
+    font-size: 13px;
+    color: var(--text2);
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ── Layout ── */
+  .page-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 24px 60px;
+  }
+
+  .section-page { display: none; }
+  .section-page.active { display: block; }
+
+  .section-header {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border2);
+  }
+  .section-header h2 { font-size: 20px; font-weight: 600; margin-bottom: 3px; }
+  .section-header p { font-size: 13px; color: var(--text2); }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .card h3 {
+    font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text);
+  }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .grid5 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+
+  @media (max-width: 700px) {
+    .grid2, .grid3, .grid4, .grid5 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .grid3, .grid4, .grid5 { grid-template-columns: 1fr 1fr; }
+    .page-body { padding: 16px 14px 60px; }
+    .header-inner { padding: 12px 14px; }
+    .nav-tabs { padding: 0 14px; }
+  }
+
+  /* ── Metric card ── */
+  .mc {
+    background: var(--bg2);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+  .mc .lb { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .mc .vl { font-size: 20px; font-weight: 600; color: var(--text); }
+  .mc .sb { font-size: 11px; color: var(--text2); margin-top: 3px; }
+  .mc .vl.green { color: var(--green); }
+  .mc .vl.blue { color: var(--blue); }
+  .mc .vl.amber { color: var(--amber); }
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    font-weight: 500; text-align: left; padding: 8px 10px;
+    border-bottom: 1px solid var(--border); color: var(--text2); font-size: 11px;
+    background: var(--bg2);
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border2); vertical-align: top; }
+  td:first-child { font-weight: 500; }
+  .row-total { background: var(--bg2); font-weight: 600; }
+  .row-total td { border-top: 1px solid var(--border); }
+  .table-wrap { overflow-x: auto; border-radius: var(--radius-sm); border: 1px solid var(--border2); }
+
+  /* ── Tags / badges ── */
+  .tag {
+    font-size: 11px; padding: 2px 7px; border-radius: 4px;
+    display: inline-block; font-weight: 500; white-space: nowrap;
+  }
+  .tag-green  { background: var(--green-light);  color: var(--green-dark); }
+  .tag-blue   { background: var(--blue-light);   color: var(--blue-dark); }
+  .tag-amber  { background: var(--amber-light);  color: var(--amber-dark); }
+  .tag-red    { background: var(--red-light);    color: var(--red-dark); }
+  .tag-purple { background: var(--purple-light); color: var(--purple-dark); }
+  .tag-teal   { background: var(--teal-light);   color: var(--teal-dark); }
+
+  /* ── Segment bar ── */
+  .seg-bar {
+    display: flex; height: 22px; border-radius: 6px;
+    overflow: hidden; margin: 10px 0;
+  }
+  .seg-bar div {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: #fff; font-weight: 600;
+  }
+
+  /* ── Note ── */
+  .note {
+    font-size: 12px; color: var(--text2); margin-top: 10px; line-height: 1.6;
+  }
+
+  /* ── Chart containers ── */
+  .chart-box {
+    position: relative; width: 100%;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+  }
+  .chart-box.h-260 { height: 280px; }
+  .chart-box.h-320 { height: 340px; }
+  .chart-box.h-360 { height: 380px; }
+
+  /* ── Chart legend ── */
+  .chart-legend {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    font-size: 12px; color: var(--text2); margin-top: 10px;
+  }
+  .chart-legend span {
+    display: flex; align-items: center; gap: 5px;
+  }
+  .leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .leg-line { width: 16px; height: 2px; flex-shrink: 0; }
+  .leg-dash { width: 16px; height: 2px; flex-shrink: 0;
+    background: repeating-linear-gradient(to right, #378ADD 0 4px, transparent 4px 7px); }
+
+  /* ── Scenario buttons ── */
+  .scen-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .scen-btn {
+    padding: 7px 14px; font-size: 12px; font-weight: 500;
+    border-radius: var(--radius-xs); border: 1px solid var(--border);
+    cursor: pointer; background: var(--white); color: var(--text2);
+    font-family: inherit; transition: all 0.15s;
+  }
+  .scen-btn:hover { border-color: #bbb; color: var(--text); }
+  .scen-btn.active-b { background: var(--green); color: #fff; border-color: var(--green); }
+  .scen-btn.active-a { background: var(--amber); color: #fff; border-color: var(--amber); }
+  .scen-btn.active-r { background: var(--red); color: #fff; border-color: var(--red); }
+
+  .scen-desc {
+    font-size: 12px; color: var(--text2); padding: 10px 12px;
+    background: var(--bg2); border-radius: var(--radius-xs);
+    margin-bottom: 14px; line-height: 1.7;
+  }
+
+  /* ── Location cards ── */
+  .loc-card {
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 10px;
+  }
+  .loc-card.best { border: 2px solid var(--green); }
+  .loc-name { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+  .loc-meta { font-size: 12px; color: var(--text2); margin-bottom: 8px; }
+
+  /* ── Brand cards ── */
+  .brand-card {
+    border: 1px solid var(--border2); border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 10px;
+  }
+  .brand-name { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  .brand-meta { font-size: 12px; color: var(--text2); line-height: 1.7; }
+  .priority {
+    font-size: 10px; padding: 2px 7px; border-radius: 4px;
+    font-weight: 500; margin-left: 6px; vertical-align: middle;
+  }
+  .p1 { background: var(--green-light); color: var(--green-dark); }
+  .p2 { background: var(--amber-light); color: var(--amber-dark); }
+  .p3 { background: var(--blue-light); color: var(--blue-dark); }
+
+  /* ── Timeline ── */
+  .timeline { padding-left: 6px; }
+  .tl-item {
+    position: relative; margin-bottom: 18px;
+    padding-left: 22px;
+    border-left: 2px solid var(--border2);
+  }
+  .tl-dot {
+    position: absolute; left: -6px; top: 4px;
+    width: 10px; height: 10px; border-radius: 50%;
+  }
+  .tl-dot.pre { background: var(--amber); }
+  .tl-dot.launch { background: var(--green); }
+  .tl-dot.festive { background: var(--red); }
+  .tl-dot.review { background: var(--purple); }
+  .tl-month { font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .tl-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  .tl-items { font-size: 12px; color: var(--text2); line-height: 1.9; }
+
+  /* ── KPI rows ── */
+  .kpi-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 7px 0; border-bottom: 1px solid var(--border2); font-size: 13px;
+  }
+  .kpi-row:last-child { border: none; }
+  .kpi-val { font-weight: 600; color: var(--text); }
+
+  /* ── Investment row ── */
+  .inv-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--border2); font-size: 13px;
+  }
+  .inv-row:last-child { border-bottom: none; font-weight: 600; font-size: 14px; }
+
+  /* ── Highlight row in tables ── */
+  .hl td { background: var(--bg2); }
+
+  /* ── Summary stat strip ── */
+  .stat-strip {
+    display: flex; gap: 0; background: var(--white);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .stat-strip-item {
+    flex: 1; min-width: 120px; padding: 14px 18px;
+    border-right: 1px solid var(--border2);
+  }
+  .stat-strip-item:last-child { border-right: none; }
+  .stat-strip-item .lb { font-size: 11px; color: var(--text2); margin-bottom: 3px; }
+  .stat-strip-item .vl { font-size: 22px; font-weight: 700; }
+  .stat-strip-item .sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+  /* ── Action buttons ── */
+  .action-btn {
+    padding: 8px 16px; font-size: 12px; font-weight: 500;
+    border-radius: var(--radius-xs); border: 1px solid var(--border);
+    cursor: pointer; background: var(--white); color: var(--text2);
+    font-family: inherit; transition: all 0.15s; margin-right: 8px; margin-top: 6px;
+  }
+  .action-btn:hover { border-color: var(--green); color: var(--green); }
+
+  /* ── Tab content title ── */
+  .tab-eyebrow {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--green); margin-bottom: 6px;
+  }
+
+  /* ── Callout box ── */
+  .callout {
+    border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 14px;
+    font-size: 13px; line-height: 1.7;
+  }
+  .callout.green { background: var(--green-light); color: var(--green-dark); }
+  .callout.amber { background: var(--amber-light); color: var(--amber-dark); }
+  .callout.blue  { background: var(--blue-light);  color: var(--blue-dark); }
+
+  /* ── Comparison grid ── */
+  .compare-strip {
+    display: flex; gap: 0; border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden; margin-bottom: 16px;
+  }
+  .compare-item {
+    flex: 1; padding: 16px 18px; text-align: center;
+    border-right: 1px solid var(--border2);
+  }
+  .compare-item:last-child { border-right: none; }
+  .compare-item .lbl { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .compare-item .val { font-size: 20px; font-weight: 700; }
+  .compare-item .sub { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+  /* ── Rev bar ── */
+  .rev-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .rev-bar-label { font-size: 11px; color: var(--text2); min-width: 58px; text-align: right; line-height: 1.3; }
+  .rev-bar-track { flex: 1; height: 24px; background: var(--bg2); border-radius: 5px; overflow: hidden; }
+  .rev-bar-fill { height: 100%; border-radius: 5px; display: flex; align-items: center; padding-left: 10px; }
+  .rev-bar-fill span { font-size: 11px; font-weight: 600; color: #fff; }
+
+  /* ── Doughnut container ── */
+  .donut-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
+  .donut-box { flex: 1; min-width: 160px; text-align: center; }
+  .donut-box canvas { max-width: 160px; max-height: 160px; }
+  .donut-legend { margin-top: 10px; font-size: 11px; color: var(--text2); text-align: left; }
+  .donut-legend div { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .donut-legend .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-inner">
+    <div>
+      <div class="header-title">Jaipur Consumer Electronics — Full Market Analysis</div>
+      <div class="header-sub">2026 projections · Urban households · AC · TV · WM · Fridge · Fan</div>
+    </div>
+    <span class="header-badge">2026 Updated</span>
+  </div>
+  <div class="nav-tabs" role="tablist">
+    <button class="nav-tab active" onclick="showTab('market')" role="tab">Market Analysis</button>
+    <button class="nav-tab" onclick="showTab('growth')" role="tab">Growth Projection</button>
+    <button class="nav-tab" onclick="showTab('gtm')" role="tab">Go-to-Market Plan</button>
+  </div>
+</div>
+
+<div class="page-body">
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  TAB 1: MARKET ANALYSIS                               -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="tab-market" class="section-page active">
+
+  <div class="section-header">
+    <div class="tab-eyebrow">Section 1</div>
+    <h2>Jaipur Consumer Electronics — 2026 Updated Analysis</h2>
+    <p>Based on projected 2026 district population & household estimates · Urban focus · AC, TV, WM, Fridge, Fan</p>
+  </div>
+
+  <!-- Summary strip -->
+  <div class="stat-strip">
+    <div class="stat-strip-item"><div class="lb">Total market size 2026</div><div class="vl" style="color:var(--green)">₹1,196 Cr</div><div class="sub">↑ from ₹685 Cr in 2011</div></div>
+    <div class="stat-strip-item"><div class="lb">Urban households</div><div class="vl">9.35 L</div><div class="sub">57% of 16.4L total</div></div>
+    <div class="stat-strip-item"><div class="lb">Total annual demand</div><div class="vl">9.42 L</div><div class="sub">units across 5 products</div></div>
+    <div class="stat-strip-item"><div class="lb">Organised sector</div><div class="vl">~598 Cr</div><div class="sub">50% of total market</div></div>
+  </div>
+
+  <!-- Step 1: Base parameters -->
+  <div class="card">
+    <h3>Step 1 — Base Parameters (2011 → 2026)</h3>
+    <div class="grid3" style="margin-bottom:14px">
+      <div class="mc"><div class="lb">District population 2026</div><div class="vl">80.5 L</div><div class="sb">↑ from 66.3L in 2011 (+21.5%)</div></div>
+      <div class="mc"><div class="lb">Total households 2026</div><div class="vl">16.4 L</div><div class="sb">↑ from 11.77L · avg HH size ~4.9</div></div>
+      <div class="mc"><div class="lb">Urban / rural split</div><div class="vl">57% / 43%</div><div class="sb">↑ from 52.4% urban in 2011</div></div>
+    </div>
+    <div class="grid2" style="margin-bottom:14px">
+      <div class="mc"><div class="lb">Urban households</div><div class="vl green">9.35 L</div><div class="sb">16.4L × 57% = 9,35,000</div></div>
+      <div class="mc"><div class="lb">Rural households</div><div class="vl">7.05 L</div><div class="sb">16.4L × 43% = 7,05,000</div></div>
+    </div>
+    <!-- Population chart -->
+    <div style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:16px; flex-wrap:wrap;">
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Population growth 2011 → 2026</div>
+        <div class="chart-box h-260"><canvas id="popChart"></canvas></div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Urban vs rural HH split 2026</div>
+        <div style="display:flex;align-items:center;gap:16px;padding:16px 0">
+          <div style="flex:1;max-width:180px;margin:0 auto"><canvas id="hhSplitChart"></canvas></div>
+          <div style="font-size:12px;color:var(--text2)">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="width:12px;height:12px;border-radius:3px;background:#1D9E75;display:inline-block"></span>Urban: 9.35 L (57%)</div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:3px;background:#E2E2DF;display:inline-block"></span>Rural: 7.05 L (43%)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Household growth: ~2.1% CAGR (2011–2026). HH size shrinking from 5.63→4.9 due to nuclearisation. Urban split rising ~0.3% p.a. from 52.4% in 2011 → ~57% in 2026. Analysis focuses on urban households (9.35L) as per original framework.</p>
+  </div>
+
+  <!-- Step 2: Segmentation -->
+  <div class="card">
+    <h3>Step 2 — Household Segmentation (Urban 9.35L)</h3>
+    <div class="seg-bar">
+      <div style="width:8%;background:#7F77DD">8%</div>
+      <div style="width:22%;background:#1D9E75">22%</div>
+      <div style="width:45%;background:#EF9F27">45% Mass</div>
+      <div style="width:25%;background:#E24B4A">25%</div>
+    </div>
+    <div class="grid4" style="margin-bottom:14px">
+      <div class="mc"><div class="lb"><span class="tag tag-purple">Premium 8%</span></div><div class="vl">74,800</div><div class="sb">≥2 AC, 2 TV, 1 WM, 1 fridge, 3 fans</div></div>
+      <div class="mc"><div class="lb"><span class="tag tag-teal">Upper Middle 22%</span></div><div class="vl">2,05,700</div><div class="sb">3 fans, fridge & TV, adopting AC & WM</div></div>
+      <div class="mc"><div class="lb"><span class="tag tag-amber">Mass 45%</span></div><div class="vl">4,20,750</div><div class="sb">2 fans, fridge many, TV, limited AC & WM</div></div>
+      <div class="mc"><div class="lb"><span class="tag tag-red">Value 25%</span></div><div class="vl">2,33,750</div><div class="sb">2 fans, no AC, limited fridge, basic</div></div>
+    </div>
+    <!-- Segment chart -->
+    <div style="margin-top:8px">
+      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Household count by segment (urban)</div>
+      <div class="chart-box h-260"><canvas id="segChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Step 3: Penetration -->
+  <div class="card">
+    <h3>Step 3 — Product Penetration by Segment</h3>
+    <div class="table-wrap" style="margin-bottom:14px">
+      <table>
+        <tr><th></th><th>TV</th><th>Fridge</th><th>AC</th><th>WM</th><th>Fan</th></tr>
+        <tr><td><span class="tag tag-purple">Premium</span></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td></tr>
+        <tr><td><span class="tag tag-teal">Upp. Mid</span></td><td>98%</td><td>95%</td><td>85%</td><td>80%</td><td>100%</td></tr>
+        <tr><td><span class="tag tag-amber">Mass</span></td><td>95%</td><td>75%</td><td>40%</td><td>35%</td><td>100%</td></tr>
+        <tr><td><span class="tag tag-red">Value</span></td><td>80%</td><td>35%</td><td>5%</td><td>8%</td><td>100%</td></tr>
+      </table>
+    </div>
+    <!-- Penetration radar / grouped bar -->
+    <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Penetration rates by segment & product</div>
+    <div class="chart-box h-320"><canvas id="penChart"></canvas></div>
+    <div class="chart-legend">
+      <span><span class="leg-dot" style="background:#7F77DD"></span>Premium</span>
+      <span><span class="leg-dot" style="background:#1D9E75"></span>Upper Middle</span>
+      <span><span class="leg-dot" style="background:#EF9F27"></span>Mass</span>
+      <span><span class="leg-dot" style="background:#E24B4A"></span>Value</span>
+    </div>
+    <p class="note">Avg units per HH — AC: Premium 2, others 1 | TV: Premium 2, others 1 | Fan: Premium 3, Upp.Mid 3, Mass 2, Value 2</p>
+  </div>
+
+  <!-- Step 4 & 5: Installed stock + replacement cycles -->
+  <div class="grid2">
+    <div class="card">
+      <h3>Step 4 — Installed Stock 2026 (units)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th></th><th>Premium</th><th>Upp.Mid</th><th>Mass</th><th>Value</th><th>Total</th></tr>
+          <tr><td>AC</td><td>1,49,600</td><td>1,74,845</td><td>1,68,300</td><td>11,688</td><td><strong>5,04,433</strong></td></tr>
+          <tr><td>TV</td><td>1,49,600</td><td>2,01,586</td><td>3,99,713</td><td>1,87,000</td><td><strong>9,37,899</strong></td></tr>
+          <tr><td>WM</td><td>74,800</td><td>1,64,560</td><td>1,47,263</td><td>18,700</td><td><strong>4,05,323</strong></td></tr>
+          <tr><td>Fridge</td><td>74,800</td><td>1,95,415</td><td>3,15,563</td><td>81,813</td><td><strong>6,67,591</strong></td></tr>
+          <tr><td>Fan</td><td>2,24,400</td><td>6,17,100</td><td>8,41,500</td><td>4,67,500</td><td><strong>21,50,500</strong></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Step 5 — Replacement Cycle by Segment (years)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Segment</th><th>AC</th><th>TV</th><th>WM</th><th>Fridge</th><th>Fan</th></tr>
+          <tr><td><span class="tag tag-purple">Premium</span></td><td>6</td><td>5</td><td>7</td><td>8</td><td>5</td></tr>
+          <tr><td><span class="tag tag-teal">Upp.Mid</span></td><td>9</td><td>7</td><td>10</td><td>11</td><td>6</td></tr>
+          <tr><td><span class="tag tag-amber">Mass</span></td><td>11</td><td>9</td><td>12</td><td>13</td><td>7</td></tr>
+          <tr><td><span class="tag tag-red">Value</span></td><td>12</td><td>10</td><td>13</td><td>14</td><td>8</td></tr>
+        </table>
+      </div>
+      <p class="note">Premium → faster replacement · Value → stretching appliance life</p>
+    </div>
+  </div>
+
+  <!-- Installed stock chart -->
+  <div class="card">
+    <h3>Installed Stock Breakdown by Product (2026)</h3>
+    <div class="chart-box h-320"><canvas id="stockChart"></canvas></div>
+    <div class="chart-legend" style="margin-top:10px">
+      <span><span class="leg-dot" style="background:#7F77DD"></span>Premium</span>
+      <span><span class="leg-dot" style="background:#1D9E75"></span>Upper Middle</span>
+      <span><span class="leg-dot" style="background:#EF9F27"></span>Mass</span>
+      <span><span class="leg-dot" style="background:#E24B4A"></span>Value</span>
+    </div>
+  </div>
+
+  <!-- Step 6: Replacement demand -->
+  <div class="card">
+    <h3>Step 6 — Annual Replacement Demand (units)</h3>
+    <div class="grid2" style="gap:16px;align-items:start">
+      <div class="table-wrap">
+        <table>
+          <tr><th></th><th>Premium</th><th>Upp.Mid</th><th>Mass</th><th>Value</th><th>Total</th></tr>
+          <tr><td>AC</td><td>24,933</td><td>19,427</td><td>15,300</td><td>974</td><td><strong>60,634</strong></td></tr>
+          <tr><td>TV</td><td>29,920</td><td>28,798</td><td>44,412</td><td>18,700</td><td><strong>1,21,830</strong></td></tr>
+          <tr><td>WM</td><td>10,686</td><td>16,456</td><td>12,272</td><td>1,438</td><td><strong>40,852</strong></td></tr>
+          <tr><td>Fridge</td><td>9,350</td><td>17,765</td><td>24,274</td><td>5,844</td><td><strong>57,233</strong></td></tr>
+          <tr><td>Fan</td><td>44,880</td><td>1,02,850</td><td>1,20,214</td><td>58,438</td><td><strong>3,26,382</strong></td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Replacement demand distribution</div>
+        <div style="height:240px"><canvas id="replChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 7: Total demand -->
+  <div class="card">
+    <h3>Step 7 — Total Annual Demand (Replacement + 1st Purchase + New HH)</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Growth assumptions: AC/WM penetration in mass growing ~2.5–3% p.a. · Fridge/TV ~0.5–1.5% p.a. · New household demand ~1.8% p.a.</p>
+    <div class="grid2" style="gap:16px;align-items:start">
+      <div class="table-wrap">
+        <table>
+          <tr><th></th><th>Replacement</th><th>1st Purchase</th><th>New HH</th><th>Total Units</th></tr>
+          <tr><td>AC</td><td>60,634</td><td>19,100</td><td>9,072</td><td><strong>88,806</strong></td></tr>
+          <tr><td>TV</td><td>1,21,830</td><td>4,838</td><td>16,848</td><td><strong>1,43,516</strong></td></tr>
+          <tr><td>WM</td><td>40,852</td><td>16,932</td><td>7,296</td><td><strong>65,080</strong></td></tr>
+          <tr><td>Fridge</td><td>57,233</td><td>10,814</td><td>12,005</td><td><strong>80,052</strong></td></tr>
+          <tr><td>Fan</td><td>3,26,382</td><td>0</td><td>38,657</td><td><strong>3,65,039</strong></td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Demand composition by product</div>
+        <div style="height:240px"><canvas id="demandChart"></canvas></div>
+      </div>
+    </div>
+    <p class="note">1st purchase = households without product now buying; New HH = 9,35,000 × 1.8% growth × product penetration rate</p>
+  </div>
+
+  <!-- Step 8: Market size -->
+  <div class="card">
+    <h3>Step 8 — Market Size 2026</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">Avg prices updated to 2026 levels (inflation-adjusted)</p>
+    <div class="grid2" style="gap:16px;align-items:start">
+      <div class="table-wrap">
+        <table>
+          <tr><th>Product</th><th>Avg Price (₹)</th><th>Total Units</th><th>Market Value</th></tr>
+          <tr><td>AC</td><td>40,000</td><td>88,806</td><td><strong>355 Cr</strong></td></tr>
+          <tr><td>TV</td><td>28,000</td><td>1,43,516</td><td><strong>402 Cr</strong></td></tr>
+          <tr><td>WM</td><td>24,000</td><td>65,080</td><td><strong>156 Cr</strong></td></tr>
+          <tr><td>Fridge</td><td>24,000</td><td>80,052</td><td><strong>192 Cr</strong></td></tr>
+          <tr><td>Fan</td><td>2,500</td><td>3,65,039</td><td><strong>91 Cr</strong></td></tr>
+          <tr class="row-total"><td>TOTAL</td><td>—</td><td>~9,42,493</td><td style="font-size:16px;color:var(--green)">≈ 1,196 Cr</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Market value split by product</div>
+        <div style="height:240px"><canvas id="mktChart"></canvas></div>
+        <div style="font-size:11px;color:var(--text2);margin-top:8px;display:flex;flex-wrap:wrap;gap:8px" id="mktLegend"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 9: Channels -->
+  <div class="card">
+    <h3>Step 9 — Organised vs Unorganised (50/50 Split)</h3>
+    <div class="grid2" style="margin-bottom:14px">
+      <div class="mc"><div class="lb">Organised sector (50%)</div><div class="vl green">~598 Cr</div></div>
+      <div class="mc"><div class="lb">Unorganised sector (50%)</div><div class="vl">~598 Cr</div></div>
+    </div>
+    <div class="grid2" style="gap:16px;align-items:start">
+      <div class="table-wrap">
+        <table>
+          <tr><th>Channel</th><th>Share</th><th>Value (approx)</th></tr>
+          <tr><td>Brand exclusive stores</td><td>11%</td><td>~132 Cr</td></tr>
+          <tr><td>Online</td><td>13%</td><td>~155 Cr</td></tr>
+          <tr><td>Reliance Digital</td><td>11%</td><td>~132 Cr</td></tr>
+          <tr><td>Croma</td><td>6%</td><td>~72 Cr</td></tr>
+          <tr><td>Vijay Sales</td><td>1%</td><td>~12 Cr</td></tr>
+          <tr><td>Other organised</td><td>8%</td><td>~96 Cr</td></tr>
+          <tr class="row-total"><td>Unorganised (kirana/local)</td><td>50%</td><td>~598 Cr</td></tr>
+        </table>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Channel market share</div>
+        <div style="height:240px"><canvas id="channelChart"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2011 vs 2026 -->
+  <div class="card" style="background:var(--bg2)">
+    <h3>2011 vs 2026 — Comparison</h3>
+    <div class="grid4">
+      <div class="mc" style="background:var(--white)"><div class="lb">Market size 2011</div><div class="vl">685 Cr</div><div class="sb">Historical estimate</div></div>
+      <div class="mc" style="background:var(--white)"><div class="lb">Market size 2026</div><div class="vl green">~1,196 Cr</div><div class="sb">+74.6% growth</div></div>
+      <div class="mc" style="background:var(--white)"><div class="lb">Urban HH 2011</div><div class="vl">6.1 L</div></div>
+      <div class="mc" style="background:var(--white)"><div class="lb">Urban HH 2026</div><div class="vl green">9.35 L</div><div class="sb">+53% growth</div></div>
+    </div>
+    <p class="note" style="margin-top:12px">~1.75× market growth driven by: +53% urban households · higher AC/WM penetration in mass segment · price inflation on hardware</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  TAB 2: GROWTH PROJECTION                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="tab-growth" class="section-page">
+
+  <div class="section-header">
+    <div class="tab-eyebrow">Section 2</div>
+    <h2>Market Share & Growth Projection — New Jaipur Store</h2>
+    <p>Local multi-brand dealer · Upper middle + mass + value segments · Conservative expansion · All figures in ₹ Cr</p>
+  </div>
+
+  <!-- Opening investment -->
+  <div class="card">
+    <h3>Opening Investment Estimate</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">For a mid-segment multi-brand consumer electronics store in Jaipur — 1,200–1,800 sq ft</p>
+    <div class="inv-row"><span>Shop fit-out (flooring, display units, AC, lighting, signage)</span><span style="font-weight:600">₹8–12L</span></div>
+    <div class="inv-row"><span>Opening inventory stock (demo units + live stock across 5 categories)</span><span style="font-weight:600">₹30–40L</span></div>
+    <div class="inv-row"><span>Security deposit / advance rent (6 months)</span><span style="font-weight:600">₹6–10L</span></div>
+    <div class="inv-row"><span>POS system, billing software, CCTV, internet setup</span><span style="font-weight:600">₹1–2L</span></div>
+    <div class="inv-row"><span>Brand dealership deposits (4–5 brands)</span><span style="font-weight:600">₹5–8L</span></div>
+    <div class="inv-row"><span>Working capital buffer (salaries, utilities, first 3 months)</span><span style="font-weight:600">₹8–12L</span></div>
+    <div class="inv-row" style="border-top:1px solid var(--border);margin-top:4px;padding-top:12px">
+      <span style="font-size:14px">Total opening investment</span>
+      <span style="font-size:18px;font-weight:700;color:var(--green)">₹58–84L</span>
+    </div>
+    <!-- Investment breakdown chart -->
+    <div style="margin-top:16px">
+      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Investment breakdown (midpoints)</div>
+      <div class="chart-box h-260"><canvas id="invChart"></canvas></div>
+    </div>
+    <p class="note">Aim for ₹65–70L as a realistic mid-point. Keep 6 months of fixed costs as a separate cash reserve. Inventory is your biggest lever — start lean (₹30L), rotate fast, expand stock as cashflow permits.</p>
+  </div>
+
+  <!-- Market sizing -->
+  <div class="card">
+    <h3>Market Sizing — Your Addressable Slice</h3>
+    <div class="grid3" style="margin-bottom:12px">
+      <div class="mc"><div class="lb">Total Jaipur market (2026)</div><div class="vl">~1,196 Cr</div><div class="sb">AC+TV+WM+Fridge+Fan</div></div>
+      <div class="mc"><div class="lb">Organised market (50%)</div><div class="vl">~598 Cr</div><div class="sb">Where you compete</div></div>
+      <div class="mc"><div class="lb">Local multi-brand share</div><div class="vl">~8–10%</div><div class="sb">~50–60 Cr total segment</div></div>
+    </div>
+    <p class="note">The organised local multi-brand dealer segment commands roughly 8–10% of the total market, or ~₹96–120 Cr across all dealers in Jaipur. Roughly 25–35 serious dealers operate city-wide. A single new store realistically targets ₹2–5 Cr in year 1, growing to ₹8–15 Cr by year 5 with stable execution.</p>
+  </div>
+
+  <!-- 10-year projection -->
+  <div class="card">
+    <h3>10-Year Revenue & Market Share Projection</h3>
+    <div class="scen-btns">
+      <button class="scen-btn active-b" id="btn-b" onclick="setScen('base')">Base case</button>
+      <button class="scen-btn" id="btn-a" onclick="setScen('agg')">Aggressive</button>
+      <button class="scen-btn" id="btn-r" onclick="setScen('cons')">Conservative</button>
+    </div>
+    <div class="scen-desc" id="scen-desc"></div>
+    <div class="chart-box h-360"><canvas id="revChart" role="img" aria-label="Revenue projection over 10 years"></canvas></div>
+    <div class="chart-legend" style="margin:10px 0">
+      <span><span class="leg-dot" style="background:#1D9E75"></span>Revenue (₹ Cr)</span>
+      <span><span class="leg-dash"></span>Market share %</span>
+    </div>
+    <div id="yr-table" style="margin-top:14px"></div>
+    <p class="note" id="scen-note"></p>
+  </div>
+
+  <!-- Investment, breakeven & returns -->
+  <div class="card">
+    <h3>Investment, Breakeven & Returns</h3>
+    <div class="grid4" style="margin-bottom:14px">
+      <div class="mc"><div class="lb">Opening investment</div><div class="vl">~₹65L</div><div class="sb">Mid-point estimate</div></div>
+      <div class="mc"><div class="lb">Gross margin (blended)</div><div class="vl">8–12%</div><div class="sb">Consumer electronics</div></div>
+      <div class="mc"><div class="lb">Breakeven revenue</div><div class="vl">~₹2.8 Cr</div><div class="sb">At 10% margin, ₹28L covers fixed costs</div></div>
+      <div class="mc"><div class="lb">Payback period</div><div class="vl">3–4 yrs</div><div class="sb">Base case trajectory</div></div>
+    </div>
+    <div class="table-wrap" style="margin-bottom:14px">
+      <table>
+        <tr><th>Cost Item</th><th>Monthly (₹)</th><th>Annual (₹)</th></tr>
+        <tr><td>Rent (1,500 sq ft, mid-location)</td><td>60,000–90,000</td><td>7.2–10.8L</td></tr>
+        <tr><td>Staff (3–4 people)</td><td>80,000–1,10,000</td><td>9.6–13.2L</td></tr>
+        <tr><td>Utilities + internet + misc</td><td>15,000–25,000</td><td>1.8–3L</td></tr>
+        <tr class="hl"><td>Total fixed costs</td><td>~1.6–2.3L/mo</td><td>~19–27L/yr</td></tr>
+        <tr class="hl"><td>Revenue needed to break even</td><td colspan="2">₹2.2–2.8 Cr/yr (at 10% gross margin)</td></tr>
+      </table>
+    </div>
+    <!-- Breakeven waterfall chart -->
+    <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Fixed cost structure (annual)</div>
+    <div class="chart-box h-260"><canvas id="costChart"></canvas></div>
+    <p class="note">Consumer electronics is a thin-margin, high-volume business. Blended gross margin is typically 8–12% on MRP across brands. Service revenue (installation, AMC, extended warranty) can add 2–3% effectively — build this from Day 1.</p>
+  </div>
+
+  <!-- Phase expansion -->
+  <div class="card">
+    <h3>Phase-wise Store & City Expansion Plan</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Phase</th><th>Timeline</th><th>Action</th><th>Revenue Target</th><th>Market Share</th></tr>
+        <tr><td style="font-weight:600">1 — Launch</td><td>Yr 0–1</td><td>1 store, 4–5 brands, mass+upper mid focus</td><td>₹2–3 Cr</td><td>~0.17–0.25%</td></tr>
+        <tr><td style="font-weight:600">2 — Stabilise</td><td>Yr 2–3</td><td>Add premium brands, build service revenue, loyalty base</td><td>₹4–6 Cr</td><td>~0.33–0.50%</td></tr>
+        <tr><td style="font-weight:600">3 — Expand</td><td>Yr 4–5</td><td>2nd store (different locality), add online presence</td><td>₹7–10 Cr</td><td>~0.58–0.84%</td></tr>
+        <tr><td style="font-weight:600">4 — Scale</td><td>Yr 6–7</td><td>3rd store or expand to Ajmer/Jodhpur</td><td>₹12–16 Cr</td><td>~1.0–1.3%</td></tr>
+        <tr class="hl"><td style="font-weight:600">5 — Regional</td><td>Yr 8–10</td><td>4–5 stores, possible sub-dealership network</td><td>₹20–30 Cr</td><td>~1.5–2.5%</td></tr>
+      </table>
+    </div>
+    <p class="note">Market share % is of total Jaipur consumer electronics market (~1,196 Cr in 2026, growing ~6–7% annually). Even 1% share = ~12 Cr — a strong single-dealer business. 2–3% = a regional chain.</p>
+  </div>
+
+  <!-- Risks & levers -->
+  <div class="card">
+    <h3>Key Risks & Success Levers</h3>
+    <div class="grid2">
+      <div>
+        <p style="font-size:12px;font-weight:600;color:var(--green-dark);margin-bottom:10px">Growth levers</p>
+        <div style="font-size:13px;line-height:2">
+          <div>→ After-sales service & AMC (high margin)</div>
+          <div>→ EMI tie-ups with Bajaj/HDB/HDFC</div>
+          <div>→ Festive season stocking (Oct–Dec = 40% of annual revenue)</div>
+          <div>→ B2B sales (offices, hotels, builders)</div>
+          <div>→ Add premium brands as trust builds</div>
+          <div>→ WhatsApp-first local marketing</div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:600;color:var(--red-dark);margin-bottom:10px">Key risks</p>
+        <div style="font-size:13px;line-height:2">
+          <div>→ Online price competition (Amazon/Flipkart)</div>
+          <div>→ Reliance Digital / Croma expansion</div>
+          <div>→ Inventory pile-up on slow models</div>
+          <div>→ Brand distributor margin squeeze</div>
+          <div>→ Working capital crunch in off-season</div>
+          <div>→ Staff attrition / knowledge loss</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!--  TAB 3: GO-TO-MARKET PLAN                             -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<div id="tab-gtm" class="section-page">
+
+  <div class="section-header">
+    <div class="tab-eyebrow">Section 3</div>
+    <h2>Year 1 Go-to-Market Plan — Jaipur Electronics Store</h2>
+    <p>Location · Brand dealerships · Pre-launch · Launch · Month-by-month milestones · Revenue targets</p>
+  </div>
+
+  <!-- Location -->
+  <div class="card">
+    <h3>Where to Open — Locality Recommendation</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:14px">Criteria: high residential density (upper middle + mass households), moderate rent, limited organised competition, good road access</p>
+
+    <div class="loc-card best">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <span class="loc-name">Vaishali Nagar / Shyam Nagar</span>
+        <span class="tag tag-green">Top pick</span>
+      </div>
+      <div class="loc-meta">West Jaipur · Dense upper-middle residential belt · Metro connectivity · Ajmer Road access</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="tag tag-green">High footfall</span>
+        <span class="tag tag-blue">Upper middle + mass HHs</span>
+        <span class="tag tag-teal">No Croma / Reliance Digital nearby</span>
+      </div>
+      <div style="font-size:12px;line-height:1.7">
+        Vaishali Nagar is one of Jaipur's most densely populated upper-middle residential colonies. Shyam Nagar sits adjacent with strong mass-segment housing. Together they represent ~1.2–1.5 lakh households within 3 km radius — your core target. Rent on a main-road 1,200–1,500 sq ft shop: ₹50,000–75,000/month. Avoid the main road itself (too expensive) — a 50m set-back lane cuts rent by 30% with minimal footfall loss.
+      </div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-name">Mansarovar Extension / Jagatpura <span style="font-size:12px;font-weight:400;color:var(--text2)">— strong 2nd pick</span></div>
+      <div class="loc-meta">South-East Jaipur · Fast-growing new residential areas · Lower rent · Higher growth trajectory</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="tag tag-amber">Emerging, lower current density</span>
+        <span class="tag tag-green">Rent 20–30% cheaper</span>
+        <span class="tag tag-blue">Mass + value HHs dominant</span>
+      </div>
+      <div style="font-size:12px;line-height:1.7">Mansarovar Extension and Jagatpura are popular commercial zones with significant retail investment activity. Good if you want lower entry cost and are willing to build over 2–3 years. Better for your 2nd store.</div>
+    </div>
+
+    <div class="loc-card">
+      <div class="loc-name">Jhotwara / Murlipura <span style="font-size:12px;font-weight:400;color:var(--text2)">— niche pick</span></div>
+      <div class="loc-meta">North Jaipur · Mass + value segment · Industrial / government worker households · Very low organised competition</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+        <span class="tag tag-amber">Lower average ticket size</span>
+        <span class="tag tag-green">Very low rent</span>
+        <span class="tag tag-red">Harder to build brand equity</span>
+      </div>
+      <div style="font-size:12px;line-height:1.7">Works if you want to dominate a low-competition pocket. Volume-driven, lower margins. Consider only if Vaishali Nagar rents exceed budget.</div>
+    </div>
+
+    <p class="note">Verdict: Start in Vaishali Nagar. It gives you the right customer profile (upper middle + mass), manageable rent, and no Croma/Reliance Digital within walking distance. Your 2nd store (Year 4–5) can go to Jagatpura or Mansarovar as those areas mature.</p>
+  </div>
+
+  <!-- Brand dealerships -->
+  <div class="card">
+    <h3>Brand Dealership Strategy — Which to Chase First</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:14px">Priority 1 = get before opening · Priority 2 = get within 3 months · Priority 3 = add in Year 2</p>
+    <div class="grid2">
+      <div>
+        <div class="brand-card">
+          <div class="brand-name">LG <span class="priority p1">Priority 1</span></div>
+          <div class="brand-meta">
+            <b>Why:</b> Strongest brand recall in Jaipur for fridge + WM + AC. Mass + upper mid sweet spot.<br>
+            <b>Products:</b> AC, TV, WM, Fridge<br>
+            <b>How:</b> Contact LG's Rajasthan ASM directly via LG India website → Dealer Enquiry. Alternatively approach the Jaipur regional distributor — Connaught Electronics or equivalent Rajasthan distributor.<br>
+            <b>Deposit:</b> ₹2–4L depending on categories<br>
+            <b>Margin:</b> 6–9% on MRP
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">Voltas <span class="priority p1">Priority 1</span></div>
+          <div class="brand-meta">
+            <b>Why:</b> #1 AC brand in India by volume. Must-have for any serious electronics store. Jaipur's hot climate = AC is your highest-revenue SKU.<br>
+            <b>Products:</b> AC (split + window)<br>
+            <b>How:</b> Contact Voltas Rajasthan office via Voltas.com → dealer registration. Very dealer-friendly in Tier 2.<br>
+            <b>Deposit:</b> ₹1–2L<br>
+            <b>Margin:</b> 5–8% + installation revenue
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">Haier <span class="priority p1">Priority 1</span></div>
+          <div class="brand-meta">
+            <b>Why:</b> Extremely dealer-friendly. Lowest deposit requirements. Good mass-segment fridge + WM + AC. Easy approval for new dealers.<br>
+            <b>Products:</b> AC, WM, Fridge<br>
+            <b>How:</b> haier.com/in → become a dealer. Or call their Rajasthan distributor directly.<br>
+            <b>Deposit:</b> ₹1–1.5L<br>
+            <b>Margin:</b> 7–10%
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="brand-card">
+          <div class="brand-name">Samsung <span class="priority p2">Priority 2</span></div>
+          <div class="brand-meta">
+            <b>Why:</b> Strong TV + fridge brand. More competitive approval process.<br>
+            <b>Products:</b> TV, AC, Fridge, WM<br>
+            <b>How:</b> Go through Samsung's regional distributor, not directly. Takes 2–3 months.<br>
+            <b>Deposit:</b> ₹3–5L<br>
+            <b>Margin:</b> 6–8%
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">Whirlpool <span class="priority p2">Priority 2</span></div>
+          <div class="brand-meta">
+            <b>Why:</b> Premium WM + fridge. Upper-middle customer trust. Good for upselling.<br>
+            <b>Products:</b> WM, Fridge, AC<br>
+            <b>How:</b> whirlpoolindia.com → dealer enquiry form. Rajasthan ASM approval needed.<br>
+            <b>Deposit:</b> ₹2–3L<br>
+            <b>Margin:</b> 7–10%
+          </div>
+        </div>
+        <div class="brand-card">
+          <div class="brand-name">Orient / Havells / Usha <span class="priority p3">Priority 3</span></div>
+          <div class="brand-meta">
+            <b>Why:</b> Fan category — high volume, easy stocking. These three cover the full fan price range from value to premium.<br>
+            <b>Products:</b> Fans (ceiling, pedestal, exhaust)<br>
+            <b>How:</b> Through local Jaipur distributors — very easy to get. No formal approval needed beyond GST registration.<br>
+            <b>Deposit:</b> ₹25,000–50,000 each<br>
+            <b>Margin:</b> 10–15% on fans
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note">Opening stack: LG + Voltas + Haier covers all 5 product categories with realistic approval timelines. Samsung and Whirlpool take longer — chase them in parallel, target getting them within 60–90 days of opening.</p>
+  </div>
+
+  <!-- Timeline -->
+  <div class="card">
+    <h3>Month-by-Month Plan — Pre-launch to Month 12</h3>
+    <div class="timeline" style="margin-top:8px">
+
+      <div class="tl-item">
+        <div class="tl-dot pre"></div>
+        <div class="tl-month">Month −4 to −3 (Pre-launch)</div>
+        <div class="tl-title">Foundation — legal, location, brands</div>
+        <div class="tl-items">
+          → Register firm (GST, Shops & Establishment Act, trade licence in Jaipur MC)<br>
+          → Finalise shop in Vaishali Nagar — negotiate 3-yr lock-in, 2-month rent-free fit-out period<br>
+          → Apply for LG, Voltas, Haier dealerships simultaneously<br>
+          → Open current account; arrange working capital credit line (CC limit ₹15–20L)<br>
+          → Hire 1 senior sales person (experienced in electronics) + 1 floor staff
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot pre"></div>
+        <div class="tl-month">Month −2 (Pre-launch)</div>
+        <div class="tl-title">Store setup + initial stock</div>
+        <div class="tl-items">
+          → Shop fit-out: display wall, product demo units, LED signage, POS, CCTV<br>
+          → Place opening stock order: ~10 AC models (Voltas + LG + Haier), 8 TV models (LG), 6 WM, 6 fridge, 15 fan SKUs<br>
+          → Tie up with Bajaj Finance + HDB Financial for in-store EMI (critical — 60–70% of CE sales happen on EMI)<br>
+          → Build WhatsApp Business profile + Google My Business listing<br>
+          → Get 2–3 installation technicians on retainer (AC + WM)
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot pre"></div>
+        <div class="tl-month">Month −1 (Pre-launch)</div>
+        <div class="tl-title">Soft marketing + community seeding</div>
+        <div class="tl-items">
+          → Drop 5,000 physical leaflets in Vaishali Nagar / Shyam Nagar housing societies<br>
+          → Create local Facebook + Instagram page; post store setup progress (builds anticipation)<br>
+          → Join 3–5 Vaishali Nagar resident WhatsApp groups — introduce yourself as a local dealer<br>
+          → Approach 2–3 local housing societies for their resident directories<br>
+          → Visit local builders / developers — offer "new flat package" deals (fridge + WM + fan combo)
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot launch"></div>
+        <div class="tl-month">Month 1 — Launch (target: July/August or February/March)</div>
+        <div class="tl-title">Grand opening + first sales push</div>
+        <div class="tl-items">
+          → Inaugural offer: 0% EMI + free installation + 5-yr AMC at 50% off for first 50 customers<br>
+          → Invite 1–2 local politicians / RWA heads for ribbon-cutting (visibility + local legitimacy)<br>
+          → Run Facebook/Instagram ads in 5km radius: ₹5,000–8,000/month budget<br>
+          → List on JustDial and IndiaMART with Jaipur dealer tag<br>
+          → <b>Target: ₹8–12L revenue in Month 1</b><br>
+          → Metrics to track: daily footfall, conversion rate, avg ticket size, EMI uptake %
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot launch"></div>
+        <div class="tl-month">Months 2–3</div>
+        <div class="tl-title">Stabilise operations + build service revenue</div>
+        <div class="tl-items">
+          → Follow up every sale with WhatsApp message: installation confirmation, warranty registration<br>
+          → Start pushing AMC (annual maintenance contracts) — target 20% of customers buying AMC<br>
+          → Chase Samsung + Whirlpool dealership approvals<br>
+          → Add 1 more sales staff if footfall justifies<br>
+          → Begin B2B outreach: small offices, hotels, paying-guest accommodations in area<br>
+          → <b>Target: ₹12–16L/month revenue by Month 3</b>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot launch"></div>
+        <div class="tl-month">Months 4–6</div>
+        <div class="tl-title">Inventory optimisation + brand expansion</div>
+        <div class="tl-items">
+          → Analyse which SKUs sell fast vs. sit dead — cut slow models, double-down on winners<br>
+          → Samsung + Whirlpool should be live by Month 4–5<br>
+          → Launch referral programme: ₹500 cashback for every customer referred who buys<br>
+          → Explore tie-up with 1–2 local interior designers / contractors<br>
+          → <b>Target: ₹14–18L/month; cumulative H1 revenue ~₹80–90L</b>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot launch"></div>
+        <div class="tl-month">Months 7–8</div>
+        <div class="tl-title">Pre-festive stocking + team prep</div>
+        <div class="tl-items">
+          → Order 40–50% extra stock for Navratri–Diwali window (Oct–Nov)<br>
+          → Negotiate better brand credit terms (30-day → 45-day payment cycle)<br>
+          → Hire 1–2 temporary sales staff for festive season<br>
+          → Plan festive offers: exchange schemes, extended EMI, bundled deals (AC + stabiliser, TV + wall mount)<br>
+          → Start pre-festive WhatsApp campaign to your customer database
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot festive"></div>
+        <div class="tl-month">Months 9–10 — Festive season (Navratri + Dussehra + Diwali)</div>
+        <div class="tl-title">Peak revenue window — your make-or-break 8 weeks</div>
+        <div class="tl-items">
+          → Run daily Facebook/Instagram ads; increase budget to ₹15,000–20,000/month<br>
+          → In-store festive display: lucky draw, gift hampers on purchases above ₹25,000<br>
+          → Ensure Bajaj Finance EMI desk is staffed (they often send their own executive during festive)<br>
+          → Extended store hours (9am–10pm)<br>
+          → <b>Target: ₹35–45L in these 2 months alone (30–35% of annual revenue)</b><br>
+          → Track: daily sales vs. target, stock levels, EMI approval rate
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot review"></div>
+        <div class="tl-month">Months 11–12</div>
+        <div class="tl-title">Year-end review + Year 2 planning</div>
+        <div class="tl-items">
+          → Clear festive season slow-moving stock with December end-of-year offers<br>
+          → Compile full P&L: revenue, margin, top-selling SKUs, customer acquisition cost<br>
+          → Review brand performance — drop any brand with &lt;5 units sold in 6 months<br>
+          → Assess whether Year 2 budget allows adding a service centre / expanding floor space<br>
+          → <b>Target: close Year 1 at ₹2–2.5 Cr total revenue</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Monthly revenue targets -->
+  <div class="card">
+    <h3>Monthly Revenue Targets — Year 1</h3>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:14px">Base case · Launch in Month 1 ideally Feb–Mar or July–Aug to catch the first AC season or pre-festive ramp</p>
+    <div id="rev-bars"></div>
+    <div style="margin-top:14px">
+      <div style="font-size:12px;font-weight:600;color:var(--text2);margin-bottom:8px">Monthly revenue (₹ L) — interactive chart</div>
+      <div class="chart-box h-260"><canvas id="monthlyRevChart"></canvas></div>
+    </div>
+    <p class="note">Festive spike (Oct–Nov) = 30–35% of annual revenue. Year 1 target: ₹2–2.5 Cr. Breakeven crosses at ~Month 14–18 (when cumulative gross profit covers opening investment).</p>
+  </div>
+
+  <!-- KPIs -->
+  <div class="card">
+    <h3>Year 1 KPIs to Track Monthly</h3>
+    <div class="grid2">
+      <div>
+        <div class="kpi-row"><span>Daily footfall</span><span class="kpi-val">Target: 15–25/day</span></div>
+        <div class="kpi-row"><span>Conversion rate</span><span class="kpi-val">Target: 25–35%</span></div>
+        <div class="kpi-row"><span>Avg ticket size</span><span class="kpi-val">₹18,000–25,000</span></div>
+        <div class="kpi-row"><span>EMI uptake</span><span class="kpi-val">&gt;60% of transactions</span></div>
+        <div class="kpi-row"><span>AMC contracts sold</span><span class="kpi-val">20% of buyers</span></div>
+      </div>
+      <div>
+        <div class="kpi-row"><span>Monthly revenue</span><span class="kpi-val">₹12–18L (non-festive)</span></div>
+        <div class="kpi-row"><span>Gross margin</span><span class="kpi-val">9–11% blended</span></div>
+        <div class="kpi-row"><span>Stock turnover</span><span class="kpi-val">Every 35–45 days</span></div>
+        <div class="kpi-row"><span>Customer WhatsApp DB</span><span class="kpi-val">500+ by Month 6</span></div>
+        <div class="kpi-row"><span>Google rating</span><span class="kpi-val">4.2+ by Month 6</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marketing playbook -->
+  <div class="card">
+    <h3>Marketing Playbook — Year 1 on a Tight Budget</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Channel</th><th>What to do</th><th>Monthly budget</th><th>Expected impact</th></tr>
+        <tr><td style="font-weight:600">WhatsApp</td><td>Broadcast offers to customer DB; share product videos; festive deals</td><td>Free</td><td>Highest ROI channel — repeat + referral sales</td></tr>
+        <tr><td style="font-weight:600">Google My Business</td><td>Post weekly; collect 5-star reviews actively after every sale</td><td>Free</td><td>Drives local search discovery</td></tr>
+        <tr><td style="font-weight:600">Facebook/Instagram ads</td><td>5km radius targeting; product offer creatives; festive campaigns</td><td>₹5–8K (₹15–20K festive)</td><td>20–30 leads/month from cold audience</td></tr>
+        <tr><td style="font-weight:600">Society leaflets</td><td>Monthly drops in top-10 RWA areas within 3km</td><td>₹2–3K printing</td><td>Direct neighbourhood recall</td></tr>
+        <tr><td style="font-weight:600">JustDial / IndiaMart</td><td>Paid listing + prompt response to enquiries</td><td>₹1.5–3K/month</td><td>B2B + out-of-area buyers</td></tr>
+        <tr class="hl"><td style="font-weight:600">Total marketing spend</td><td colspan="2">₹10–15K/month · ₹25–30K festive months</td><td>~₹1.5–2L for full year</td></tr>
+      </table>
+    </div>
+    <p class="note">Do not spend on newspaper ads, hoardings, or radio in Year 1 — ROI is poor for a single store. WhatsApp + Google + Facebook is the right stack. Every rupee saved on marketing goes into working capital.</p>
+  </div>
+
+  <!-- 3 things -->
+  <div class="card" style="background:var(--bg2)">
+    <h3>The 3 Things That Will Make or Break Year 1</h3>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-top:4px">
+      <div class="callout green">
+        <span class="tag tag-green" style="margin-right:10px">1</span>
+        <b>Festive season execution.</b> If you nail Oct–Nov, you will hit your year target regardless of how slow other months are. Prepare 3 months early.
+      </div>
+      <div class="callout blue">
+        <span class="tag tag-blue" style="margin-right:10px">2</span>
+        <b>EMI tie-up on Day 1.</b> 60–70% of consumer electronics in India is sold on EMI. Without Bajaj Finance or HDFC on the floor, you lose half your customers to stores that offer it.
+      </div>
+      <div class="callout" style="background:var(--purple-light);color:var(--purple-dark)">
+        <span class="tag tag-purple" style="margin-right:10px">3</span>
+        <b>Service as a revenue line, not an afterthought.</b> Installation + AMC + extended warranty add ₹500–2,000 per transaction at 40–60% margin. A store doing ₹2 Cr in product sales can earn ₹15–20L additionally from service. Build the service team before you open.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div><!-- end page-body -->
+
+<script>
+// ─── Tab navigation ───────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.section-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+  // Re-render charts in newly-visible tab
+  setTimeout(() => { window.dispatchEvent(new Event('resize')); }, 50);
+}
+
+// ─── Colour palette ───────────────────────────────────
+const C = {
+  green: '#1D9E75', greenA: '#1D9E7522',
+  blue: '#378ADD',  blueA: '#378ADD22',
+  amber: '#BA7517', amberA: '#BA751722',
+  red: '#E24B4A',   redA: '#E24B4A22',
+  purple: '#7F77DD',
+  teal: '#1D9E75',
+  orange: '#EF9F27',
+  border: 'rgba(0,0,0,0.06)',
+  text2: '#6B6B69'
+};
+
+const segColors = [C.purple, C.green, C.orange, C.red];
+const prodColors = ['#378ADD','#1D9E75','#EF9F27','#E24B4A','#7F77DD'];
+
+const defaultFont = { family: "-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif", size: 11 };
+
+Chart.defaults.font = defaultFont;
+Chart.defaults.color = C.text2;
+Chart.defaults.plugins.legend.display = false;
+
+// ─── 1. Population chart ──────────────────────────────
+new Chart(document.getElementById('popChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Population (L)','Total HH (L)','Urban HH (L)'],
+    datasets: [
+      { label: '2011', data: [66.3, 11.77, 6.1], backgroundColor: '#E2E2DF', borderRadius: 4 },
+      { label: '2026', data: [80.5, 16.4, 9.35], backgroundColor: C.green, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + 'L' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: defaultFont } },
+      y: { grid: { color: C.border }, ticks: { font: defaultFont, callback: v => v+'L' } }
+    }
+  }
+});
+
+// ─── 2. HH split doughnut ─────────────────────────────
+new Chart(document.getElementById('hhSplitChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Urban (57%)', 'Rural (43%)'],
+    datasets: [{ data: [9.35, 7.05], backgroundColor: [C.green, '#E2E2DF'], borderWidth: 0 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true, cutout: '65%',
+    plugins: { tooltip: { callbacks: { label: ctx => ctx.label + ': ' + ctx.raw + 'L HH' } } }
+  }
+});
+
+// ─── 3. Segment bar chart ─────────────────────────────
+new Chart(document.getElementById('segChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Premium (8%)', 'Upper Middle (22%)', 'Mass (45%)', 'Value (25%)'],
+    datasets: [{
+      data: [74800, 205700, 420750, 233750],
+      backgroundColor: segColors,
+      borderRadius: 5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      tooltip: { callbacks: { label: ctx => 'HH: ' + ctx.raw.toLocaleString('en-IN') } }
+    },
+    scales: {
+      x: { grid: { color: C.border }, ticks: { font: defaultFont, callback: v => (v/100000).toFixed(1)+'L' } },
+      y: { grid: { display: false }, ticks: { font: defaultFont } }
+    }
+  }
+});
+
+// ─── 4. Penetration grouped bar ───────────────────────
+new Chart(document.getElementById('penChart'), {
+  type: 'bar',
+  data: {
+    labels: ['TV', 'Fridge', 'AC', 'WM', 'Fan'],
+    datasets: [
+      { label: 'Premium', data: [100,100,100,100,100], backgroundColor: C.purple, borderRadius: 3 },
+      { label: 'Upper Middle', data: [98,95,85,80,100], backgroundColor: C.green, borderRadius: 3 },
+      { label: 'Mass', data: [95,75,40,35,100], backgroundColor: C.orange, borderRadius: 3 },
+      { label: 'Value', data: [80,35,5,8,100], backgroundColor: C.red, borderRadius: 3 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: true, position: 'top', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw + '%' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: defaultFont } },
+      y: { max: 110, grid: { color: C.border }, ticks: { font: defaultFont, callback: v => v+'%' } }
+    }
+  }
+});
+
+// ─── 5. Installed stock stacked bar ───────────────────
+new Chart(document.getElementById('stockChart'), {
+  type: 'bar',
+  data: {
+    labels: ['AC', 'TV', 'WM', 'Fridge', 'Fan'],
+    datasets: [
+      { label: 'Premium', data: [149600,149600,74800,74800,224400], backgroundColor: C.purple, borderRadius: 0 },
+      { label: 'Upper Mid', data: [174845,201586,164560,195415,617100], backgroundColor: C.green, borderRadius: 0 },
+      { label: 'Mass', data: [168300,399713,147263,315563,841500], backgroundColor: C.orange, borderRadius: 0 },
+      { label: 'Value', data: [11688,187000,18700,81813,467500], backgroundColor: C.red, borderRadius: [3,3,0,0] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw.toLocaleString('en-IN') } }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: defaultFont } },
+      y: { stacked: true, grid: { color: C.border }, ticks: { font: defaultFont, callback: v => (v/100000).toFixed(1)+'L' } }
+    }
+  }
+});
+
+// ─── 6. Replacement demand pie ────────────────────────
+new Chart(document.getElementById('replChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['AC (60,634)', 'TV (1,21,830)', 'WM (40,852)', 'Fridge (57,233)', 'Fan (3,26,382)'],
+    datasets: [{ data: [60634, 121830, 40852, 57233, 326382], backgroundColor: prodColors, borderWidth: 0 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '55%',
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.label } }
+    }
+  }
+});
+
+// ─── 7. Demand stacked bar ────────────────────────────
+new Chart(document.getElementById('demandChart'), {
+  type: 'bar',
+  data: {
+    labels: ['AC', 'TV', 'WM', 'Fridge', 'Fan'],
+    datasets: [
+      { label: 'Replacement', data: [60634,121830,40852,57233,326382], backgroundColor: C.green, borderRadius: 0 },
+      { label: '1st Purchase', data: [19100,4838,16932,10814,0], backgroundColor: C.blue, borderRadius: 0 },
+      { label: 'New HH', data: [9072,16848,7296,12005,38657], backgroundColor: C.orange, borderRadius: [3,3,0,0] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw.toLocaleString('en-IN') } }
+    },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { font: defaultFont } },
+      y: { stacked: true, grid: { color: C.border }, ticks: { font: defaultFont, callback: v => (v/1000).toFixed(0)+'K' } }
+    }
+  }
+});
+
+// ─── 8. Market value doughnut ─────────────────────────
+const mktCtx = document.getElementById('mktChart');
+const mktColors = [C.blue, C.green, C.orange, C.purple, C.red];
+const mktLabels = ['AC – ₹355 Cr', 'TV – ₹402 Cr', 'WM – ₹156 Cr', 'Fridge – ₹192 Cr', 'Fan – ₹91 Cr'];
+new Chart(mktCtx, {
+  type: 'doughnut',
+  data: {
+    labels: mktLabels,
+    datasets: [{ data: [355, 402, 156, 192, 91], backgroundColor: mktColors, borderWidth: 0 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '58%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.label } }
+    }
+  }
+});
+// Build custom legend
+const mktLeg = document.getElementById('mktLegend');
+mktLabels.forEach((l, i) => {
+  const d = document.createElement('div');
+  d.style.cssText = 'display:flex;align-items:center;gap:5px;margin-right:4px;';
+  d.innerHTML = `<span style="width:10px;height:10px;border-radius:2px;background:${mktColors[i]};display:inline-block;flex-shrink:0"></span>${l}`;
+  mktLeg.appendChild(d);
+});
+
+// ─── 9. Channel share doughnut ────────────────────────
+new Chart(document.getElementById('channelChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Brand exclusive (11%)', 'Online (13%)', 'Reliance Digital (11%)', 'Croma (6%)', 'Vijay Sales (1%)', 'Other organised (8%)', 'Unorganised (50%)'],
+    datasets: [{
+      data: [11, 13, 11, 6, 1, 8, 50],
+      backgroundColor: [C.purple, C.blue, C.green, C.orange, '#8B9467', '#9B7DB4', '#E2E2DF'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '52%',
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.label } }
+    }
+  }
+});
+
+// ─── 10. Investment breakdown ─────────────────────────
+new Chart(document.getElementById('invChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Shop fit-out', 'Opening inventory', 'Security deposit', 'POS/tech setup', 'Brand deposits', 'Working capital'],
+    datasets: [{
+      data: [10, 35, 8, 1.5, 6.5, 10],
+      backgroundColor: [C.blue, C.green, C.orange, C.purple, C.red, '#8B9467'],
+      borderRadius: 5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      tooltip: { callbacks: { label: ctx => '₹' + ctx.raw + 'L (midpoint)' } }
+    },
+    scales: {
+      x: { grid: { color: C.border }, ticks: { font: defaultFont, callback: v => '₹'+v+'L' } },
+      y: { grid: { display: false }, ticks: { font: defaultFont } }
+    }
+  }
+});
+
+// ─── 11. Fixed cost breakdown ─────────────────────────
+new Chart(document.getElementById('costChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Rent', 'Staff', 'Utilities + misc', 'Total fixed costs'],
+    datasets: [
+      { label: 'Min', data: [7.2, 9.6, 1.8, 19], backgroundColor: C.greenA.replace('22','44'), borderRadius: 4 },
+      { label: 'Max', data: [10.8, 13.2, 3, 27], backgroundColor: C.green, borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { font: defaultFont, usePointStyle: true, pointStyleWidth: 10, boxHeight: 8 } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ₹' + ctx.raw + 'L/yr' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: defaultFont } },
+      y: { grid: { color: C.border }, ticks: { font: defaultFont, callback: v => '₹'+v+'L' } }
+    }
+  }
+});
+
+// ─── 12. Monthly revenue bars ─────────────────────────
+const monthLabels = ['M1\nLaunch','M2','M3','M4','M5','M6','M7','M8','M9\nFestive','M10\nFestive','M11','M12'];
+const monthRevs   = [10, 13, 15, 14, 13, 16, 14, 16, 38, 42, 18, 14];
+const maxRev = 42;
+const festiveIdx = [8, 9];
+
+const revBars = document.getElementById('rev-bars');
+let barsHtml = '';
+monthLabels.forEach((m, i) => {
+  const pct = Math.round((monthRevs[i]/maxRev)*100);
+  const isFest = festiveIdx.includes(i);
+  const label = m.replace('\n','<br>');
+  barsHtml += `<div class="rev-bar-wrap">
+    <div class="rev-bar-label">${label}</div>
+    <div class="rev-bar-track">
+      <div class="rev-bar-fill" style="width:${pct}%;background:${isFest?C.red:C.green}">
+        <span>₹${monthRevs[i]}L</span>
+      </div>
+    </div>
+    ${isFest ? '<span class="tag tag-red" style="font-size:10px">Festive</span>' : ''}
+  </div>`;
+});
+barsHtml += `<div style="display:flex;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border2)">
+  <div style="font-size:13px;color:var(--text2);min-width:58px;text-align:right">Year 1</div>
+  <div style="font-size:16px;font-weight:700">₹2.23 Cr total</div>
+  <span class="tag tag-green">On track for breakeven by Month 16–18</span>
+</div>`;
+revBars.innerHTML = barsHtml;
+
+// ─── 13. Monthly revenue chart ────────────────────────
+new Chart(document.getElementById('monthlyRevChart'), {
+  type: 'bar',
+  data: {
+    labels: ['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'],
+    datasets: [{
+      label: 'Revenue (₹L)',
+      data: monthRevs,
+      backgroundColor: monthRevs.map((v,i) => festiveIdx.includes(i) ? C.red : C.green),
+      borderRadius: 5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { tooltip: { callbacks: { label: ctx => '₹' + ctx.raw + 'L' + (festiveIdx.includes(ctx.dataIndex) ? ' 🎉 Festive' : '') } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: defaultFont } },
+      y: { grid: { color: C.border }, ticks: { font: defaultFont, callback: v => '₹'+v+'L' } }
+    }
+  }
+});
+
+// ─── 14. 10-year revenue projection ──────────────────
+const projYears = [1,2,3,5,7,10];
+const projLabels = ['Yr 1','Yr 2','Yr 3','Yr 5','Yr 7','Yr 10'];
+const scenarios = {
+  base: {
+    rev: [2.2, 3.5, 5.0, 8.5, 12.0, 18.0],
+    ms:  [0.18, 0.28, 0.39, 0.63, 0.84, 1.18],
+    stores: [1,1,1,2,3,4],
+    desc: 'Base case: Steady ramp-up, 1 store for 3 years, 2nd store in Year 4, 3rd in Year 6. Market growing ~6% p.a. You grow faster than market in early years as you build reputation.',
+    note: 'Breakeven in ~Month 14–18. Payback of opening investment by Year 3–4. By Year 10 you are a credible 4-store regional dealer.'
+  },
+  agg: {
+    rev: [2.8, 5.0, 8.0, 14.0, 22.0, 35.0],
+    ms:  [0.23, 0.40, 0.61, 1.00, 1.48, 2.20],
+    stores: [1,2,2,3,4,6],
+    desc: 'Aggressive: 2nd store in Year 2, add premium brands fast, pursue B2B, add neighbouring city by Year 5. Requires additional ₹40–60L capital injection in Year 2.',
+    note: 'Higher reward but higher working capital risk. Only viable if Year 1 shows strong sell-through and you have access to additional funding in Year 2.'
+  },
+  cons: {
+    rev: [1.8, 2.8, 3.8, 5.5, 7.5, 11.0],
+    ms:  [0.15, 0.22, 0.29, 0.40, 0.52, 0.72],
+    stores: [1,1,1,1,2,3],
+    desc: 'Conservative: Slower ramp, tight inventory, no 2nd store until Year 5. Focus on profitability and cashflow over growth. Lower risk, lower ceiling.',
+    note: 'Suitable if you want minimal debt and maximum operational control. Breakeven by Month 20–24. Payback by Year 4–5.'
+  }
+};
+
+let revChart = null;
+let currentScen = 'base';
+
+function buildYrTable(s) {
+  const sc = scenarios[s];
+  const stages = ['Launch','Ramp','Stabilise','Stabilise','Expand','Scale','Scale','Regional','Regional','Regional'];
+  const tagMap = { Launch:'tag-amber', Ramp:'tag-purple', Stabilise:'tag-purple', Expand:'tag-blue', Scale:'tag-blue', Regional:'tag-green' };
+  let html = '<div class="table-wrap"><table><tr><th>Year</th><th>Revenue (₹ Cr)</th><th>Gross profit (~10%)</th><th>Market share</th><th>Stores</th><th>Stage</th></tr>';
+  for (let i = 0; i < 6; i++) {
+    const yr = projYears[i];
+    const rev = sc.rev[i];
+    const gp = (rev*0.10).toFixed(2);
+    const ms = sc.ms[i].toFixed(2);
+    const st = sc.stores[i];
+    const stg = stages[yr-1] || 'Regional';
+    html += `<tr${i===5?' class="hl"':''}><td style="font-weight:600">Year ${yr}</td><td>₹${rev.toFixed(2)} Cr</td><td>₹${gp} Cr</td><td>${ms}%</td><td>${st}</td><td><span class="tag ${tagMap[stg]||'tag-green'}">${stg}</span></td></tr>`;
+  }
+  html += '</table></div>';
+  document.getElementById('yr-table').innerHTML = html;
+}
+
+function setScen(s) {
+  currentScen = s;
+  document.getElementById('btn-b').className = 'scen-btn' + (s==='base'?' active-b':'');
+  document.getElementById('btn-a').className = 'scen-btn' + (s==='agg'?' active-a':'');
+  document.getElementById('btn-r').className = 'scen-btn' + (s==='cons'?' active-r':'');
+  document.getElementById('scen-desc').textContent = scenarios[s].desc;
+  document.getElementById('scen-note').textContent = scenarios[s].note;
+  buildYrTable(s);
+  const sc = scenarios[s];
+  const col = s==='base' ? C.green : s==='agg' ? C.amber : C.red;
+  const colA = col + '22';
+  if (revChart) {
+    revChart.data.datasets[0].data = sc.rev;
+    revChart.data.datasets[0].borderColor = col;
+    revChart.data.datasets[0].backgroundColor = colA;
+    revChart.data.datasets[0].pointBackgroundColor = col;
+    revChart.data.datasets[1].data = sc.ms;
+    revChart.update();
+  }
+}
+
+window.addEventListener('load', () => {
+  const ctx = document.getElementById('revChart').getContext('2d');
+  revChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: projLabels,
+      datasets: [
+        {
+          label: 'Revenue (₹ Cr)',
+          data: scenarios.base.rev,
+          borderColor: C.green,
+          backgroundColor: C.greenA,
+          pointBackgroundColor: C.green,
+          pointRadius: 5, tension: 0.35, fill: true, yAxisID: 'y'
+        },
+        {
+          label: 'Market share %',
+          data: scenarios.base.ms,
+          borderColor: C.blue,
+          backgroundColor: 'transparent',
+          pointBackgroundColor: C.blue,
+          pointStyle: 'triangle',
+          pointRadius: 6, tension: 0.35, fill: false, yAxisID: 'y2',
+          borderDash: [5, 4]
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: {
+          position: 'left',
+          title: { display: true, text: 'Revenue (₹ Cr)', font: { size: 11 }, color: C.text2 },
+          grid: { color: C.border },
+          ticks: { font: defaultFont, callback: v => '₹'+v }
+        },
+        y2: {
+          position: 'right',
+          title: { display: true, text: 'Market share %', font: { size: 11 }, color: C.blue },
+          grid: { display: false },
+          ticks: { font: defaultFont, color: C.blue, callback: v => v+'%' }
+        },
+        x: { grid: { color: C.border }, ticks: { font: defaultFont, autoSkip: false } }
+      }
+    }
+  });
+  setScen('base');
+});
+</script>
+</body>
+</html>

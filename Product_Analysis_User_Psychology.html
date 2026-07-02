@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jaipur Consumer Electronics — Market Study 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+/* ── TOKENS ── */
+:root{
+  --ink:#0F1923;
+  --paper:#F7F3EE;
+  --saffron:#E8861A;
+  --saffron-light:#FDF0DC;
+  --teal:#1A7E6E;
+  --teal-light:#E0F2EE;
+  --red:#C94040;
+  --red-light:#FAEAEA;
+  --navy:#1D3A5F;
+  --navy-light:#E8EEF6;
+  --muted:#7A7066;
+  --border:#DDD8D0;
+  --card:#FFFFFF;
+  --serif:'DM Serif Display',serif;
+  --sans:'Inter',sans-serif;
+  --mono:'DM Mono',monospace;
+  --r:8px;
+  --r-lg:14px;
+}
+
+/* ── RESET ── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.6;display:flex;min-height:100vh}
+
+/* ── SIDEBAR NAV ── */
+.sidebar{width:220px;min-height:100vh;background:var(--ink);padding:2rem 0;position:fixed;top:0;left:0;z-index:100;display:flex;flex-direction:column}
+.sidebar-logo{padding:0 1.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:1.5rem}
+.sidebar-logo .eyebrow{font-size:10px;letter-spacing:.12em;color:var(--saffron);text-transform:uppercase;font-weight:500;margin-bottom:4px}
+.sidebar-logo .title{font-family:var(--serif);font-size:16px;color:#fff;line-height:1.3}
+.sidebar-logo .subtitle{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px}
+.nav-section{padding:0 1rem;margin-bottom:.5rem}
+.nav-label{font-size:10px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-transform:uppercase;padding:0 .5rem;margin-bottom:.3rem}
+.nav-item{display:block;padding:6px 10px;border-radius:6px;font-size:12.5px;color:rgba(255,255,255,.55);text-decoration:none;cursor:pointer;transition:background .15s,color .15s;border:none;background:none;width:100%;text-align:left;font-family:var(--sans)}
+.nav-item:hover,.nav-item.active{background:rgba(255,255,255,.1);color:#fff}
+.nav-item.active{color:var(--saffron)}
+.sidebar-footer{margin-top:auto;padding:1rem 1.5rem;font-size:10.5px;color:rgba(255,255,255,.25);border-top:1px solid rgba(255,255,255,.08);line-height:1.6}
+
+/* ── MAIN ── */
+.main{margin-left:220px;flex:1;padding:0}
+
+/* ── HERO ── */
+.hero{background:var(--ink);padding:4rem 3rem 3.5rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(232,134,26,.15) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-60px;left:200px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(26,126,110,.1) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{font-size:11px;letter-spacing:.14em;color:var(--saffron);text-transform:uppercase;font-weight:500;margin-bottom:12px}
+.hero-title{font-family:var(--serif);font-size:42px;color:#fff;line-height:1.15;margin-bottom:16px;max-width:700px}
+.hero-title em{font-style:normal;color:var(--saffron)}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.55);max-width:580px;line-height:1.7;margin-bottom:2rem}
+.hero-meta{display:flex;gap:2rem;flex-wrap:wrap}
+.hero-stat{border-left:2px solid rgba(255,255,255,.15);padding-left:1rem}
+.hero-stat .n{font-family:var(--serif);font-size:28px;color:#fff}
+.hero-stat .l{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
+.hero-source{display:inline-block;margin-top:.3rem;font-size:10px;color:rgba(255,255,255,.25);font-family:var(--mono)}
+
+/* ── SECTION LAYOUT ── */
+.section{padding:3rem;border-bottom:1px solid var(--border)}
+.section:last-child{border-bottom:none}
+.section-eyebrow{font-size:10px;letter-spacing:.12em;color:var(--saffron);text-transform:uppercase;font-weight:500;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.section-eyebrow::before{content:'';display:inline-block;width:16px;height:2px;background:var(--saffron);border-radius:1px}
+.section-title{font-family:var(--serif);font-size:30px;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.section-sub{font-size:14px;color:var(--muted);max-width:600px;margin-bottom:2rem;line-height:1.7}
+.cite{font-size:10.5px;color:var(--muted);font-family:var(--mono);background:rgba(0,0,0,.04);padding:2px 6px;border-radius:3px;display:inline-block;margin-top:4px}
+
+/* ── CARDS ── */
+.card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:1.5rem;position:relative;overflow:hidden}
+.card-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;margin-bottom:10px}
+.card-title{font-family:var(--serif);font-size:20px;margin-bottom:6px}
+.card-sub{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.g2-1{display:grid;grid-template-columns:2fr 1fr;gap:1rem}
+
+/* ── PRODUCT TABS ── */
+.prod-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.prod-tab{padding:8px 18px;border-radius:100px;border:1.5px solid var(--border);font-size:13px;font-weight:500;cursor:pointer;background:var(--card);color:var(--muted);transition:all .2s;font-family:var(--sans)}
+.prod-tab.on{border-color:var(--saffron);color:var(--ink);background:var(--saffron-light)}
+.prod-panel{display:none}.prod-panel.on{display:block}
+
+/* ── PRODUCT CARD ── */
+.prod-hero{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem}
+.prod-icon-card{background:var(--ink);border-radius:var(--r-lg);padding:2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;grid-row:span 2;position:relative;overflow:hidden}
+.prod-icon-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(232,134,26,.2) 0%,transparent 60%)}
+.prod-icon{font-size:48px;margin-bottom:.75rem;position:relative}
+.prod-name{font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:4px;position:relative}
+.prod-tagline{font-size:12px;color:rgba(255,255,255,.45);position:relative}
+.prod-badge{position:absolute;top:1rem;right:1rem;font-size:10px;padding:3px 8px;border-radius:100px;background:var(--saffron);color:#fff;font-weight:500}
+
+/* ── INSIGHT ROWS ── */
+.insight-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);font-size:13.5px;line-height:1.6}
+.insight-row:last-child{border:none}
+.insight-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:6px}
+
+/* ── BAR CHART CUSTOM ── */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.bar-label{font-size:12px;color:var(--muted);min-width:140px;text-align:right}
+.bar-track{flex:1;height:10px;background:rgba(0,0,0,.06);border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;transition:width 1s ease}
+.bar-pct{font-size:12px;font-weight:500;min-width:30px}
+
+/* ── ANXIETY CARD ── */
+.anxiety-card{background:var(--red-light);border-left:3px solid var(--red);padding:12px 14px;border-radius:0 var(--r) var(--r) 0;margin-bottom:8px;font-size:13px;line-height:1.6}
+.anxiety-card .q{font-weight:500;color:var(--red);margin-bottom:3px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.opportunity-card{background:var(--teal-light);border-left:3px solid var(--teal);padding:12px 14px;border-radius:0 var(--r) var(--r) 0;margin-bottom:8px;font-size:13px;line-height:1.6}
+.opportunity-card .q{font-weight:500;color:var(--teal);margin-bottom:3px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+
+/* ── PERSONA CARD ── */
+.persona-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);overflow:hidden}
+.persona-header{padding:1.5rem;position:relative}
+.persona-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;color:#fff;margin-bottom:12px;position:relative}
+.persona-name{font-family:var(--serif);font-size:20px;margin-bottom:2px}
+.persona-role{font-size:12px;color:var(--muted)}
+.persona-body{padding:1.25rem 1.5rem;border-top:1px solid var(--border)}
+.prow{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;line-height:1.5}
+.prow:last-child{border:none}
+.plabel{font-size:11px;color:var(--muted);min-width:90px;flex-shrink:0;padding-top:1px;font-weight:500}
+.pval{font-size:13px;color:var(--ink)}
+.persona-insight{margin:1rem 1.5rem 1.5rem;background:var(--saffron-light);border-radius:var(--r);padding:12px 14px;font-size:13px;line-height:1.6}
+.persona-insight .h{font-size:11px;font-weight:500;color:var(--saffron);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+
+/* ── PSYCH SECTION ── */
+.psych-card{background:var(--card);border-radius:var(--r-lg);border:1px solid var(--border);padding:1.25rem;border-top:3px solid var(--navy)}
+.psych-title{font-size:14px;font-weight:600;margin-bottom:6px;color:var(--navy)}
+.psych-body{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:8px}
+.psych-apply{font-size:12px;color:var(--teal);font-weight:500}
+
+/* ── DATA SOURCES ── */
+.source-row{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
+.source-row:last-child{border:none}
+.source-badge{font-size:10px;padding:2px 7px;border-radius:100px;font-weight:500;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.sb-green{background:#EAF3DE;color:#27500A}
+.sb-amber{background:#FAEEDA;color:#633806}
+.sb-red{background:#FAEAEA;color:#7A1A1A}
+
+/* ── COMPARISON TABLE ── */
+.comp-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+.comp-table th{background:var(--ink);color:#fff;padding:10px 14px;text-align:left;font-size:11px;font-weight:500;letter-spacing:.05em}
+.comp-table th:first-child{border-radius:var(--r) 0 0 0}
+.comp-table th:last-child{border-radius:0 var(--r) 0 0}
+.comp-table td{padding:9px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5}
+.comp-table tr:hover td{background:var(--saffron-light)}
+.comp-table tr:last-child td:first-child{border-radius:0 0 0 var(--r)}
+.comp-table tr:last-child td:last-child{border-radius:0 0 var(--r) 0}
+.comp-table td:first-child{font-weight:500;background:rgba(0,0,0,.02)}
+
+/* ── TAGS ── */
+.tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:100px;font-weight:500;margin:2px 2px 2px 0}
+.tag-s{background:#EAF3DE;color:#27500A}
+.tag-m{background:#FAEEDA;color:#633806}
+.tag-a{background:var(--saffron-light);color:#7A4A00}
+.tag-r{background:var(--red-light);color:#7A1A1A}
+.tag-n{background:var(--navy-light);color:var(--navy)}
+.tag-t{background:var(--teal-light);color:var(--teal)}
+
+/* ── DIVIDER ── */
+.hdivider{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
+
+/* ── CHART CONTAINER ── */
+.chart-wrap{position:relative;width:100%;padding-bottom:16px}
+.chart-title{font-size:12px;font-weight:500;color:var(--muted);text-align:center;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+
+/* ── FUNNEL ── */
+.funnel-item{display:grid;grid-template-columns:120px 1fr;gap:1rem;align-items:stretch;margin-bottom:8px}
+.funnel-label{display:flex;align-items:center;justify-content:flex-end;font-size:12px;font-weight:500;color:var(--muted);text-align:right;line-height:1.4}
+.funnel-bar-outer{background:rgba(0,0,0,.05);border-radius:var(--r);overflow:hidden;position:relative;min-height:44px;display:flex;align-items:center}
+.funnel-bar-inner{position:absolute;left:0;top:0;height:100%;border-radius:var(--r);display:flex;align-items:center;padding-left:12px}
+.funnel-bar-text{position:relative;font-size:12px;font-weight:500;color:#fff}
+.funnel-bar-pct{position:absolute;right:12px;font-size:12px;color:rgba(255,255,255,.7)}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── PRINT / DARK ── */
+@media print{.sidebar{display:none}.main{margin-left:0}}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0}.prod-hero{grid-template-columns:1fr}.g2,.g3,.g4,.g2-1{grid-template-columns:1fr}.section{padding:1.5rem}}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="eyebrow">Market Study 2026</div>
+    <div class="title">Jaipur Consumer Electronics</div>
+    <div class="subtitle">Product & User Analysis</div>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Overview</div>
+    <button class="nav-item active" onclick="scrollToSection('hero', this)">Market snapshot</button>
+    <button class="nav-item" onclick="scrollToSection('sources', this)">Data sources</button>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Products</div>
+    <button class="nav-item" onclick="scrollToSection('products', this)">Purchase psychology</button>
+    <button class="nav-item" onclick="scrollToSection('comparison', this)">Category comparison</button>
+    <button class="nav-item" onclick="scrollToSection('drivers', this)">Decision drivers</button>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Users</div>
+    <button class="nav-item" onclick="scrollToSection('personas', this)">User personas</button>
+    <button class="nav-item" onclick="scrollToSection('segments', this)">Segment sizing</button>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">Psychology</div>
+    <button class="nav-item" onclick="scrollToSection('psych', this)">Buyer psychology</button>
+    <button class="nav-item" onclick="scrollToSection('funnel', this)">Purchase funnel</button>
+  </div>
+  <div class="sidebar-footer">
+    Sources: MoSPI HCES 2023–24 · IBEF 2025 · BCG-Google 2019 · Mordor Intelligence 2026 · EY-CII 2025 · Euromonitor 2024<br><br>
+    All Jaipur-specific figures projected from Census 2011 + national growth rates. Primary research recommended to validate.
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-eyebrow">Jaipur · Vaishali Nagar · Consumer Durables</div>
+  <h1 class="hero-title">The real people buying<br><em>electronics in Jaipur</em></h1>
+  <p class="hero-sub">A research-grounded analysis of what drives purchase decisions across five product categories — AC, TV, washing machine, refrigerator, and fan — in Jaipur's upper-middle, mass, and value households.</p>
+  <div class="hero-meta">
+    <div class="hero-stat">
+      <div class="n">9.35L</div>
+      <div class="l">Urban households, Jaipur 2026</div>
+      <div class="hero-source">Census 2011 + 2.1% CAGR projection</div>
+    </div>
+    <div class="hero-stat">
+      <div class="n">₹1,196 Cr</div>
+      <div class="l">Estimated market size 2026</div>
+      <div class="hero-source">Bottom-up household model</div>
+    </div>
+    <div class="hero-stat">
+      <div class="n">65%</div>
+      <div class="l">Offline share of CE sales India 2025</div>
+      <div class="hero-source">GM Insights 2025 · Grand View Research</div>
+    </div>
+    <div class="hero-stat">
+      <div class="n">6.56%</div>
+      <div class="l">India CE market CAGR 2026–2034</div>
+      <div class="hero-source">IMARC Group 2025</div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SOURCES -->
+<section class="section reveal" id="sources">
+  <div class="section-eyebrow">Methodology</div>
+  <h2 class="section-title">What this study is built on</h2>
+  <p class="section-sub">Every claim is graded by how well it is supported. Green = directly citable with public source. Amber = directionally supported, extrapolated. Red = illustrative estimate — primary research recommended.</p>
+
+  <div class="g2" style="margin-bottom:1.5rem">
+    <div class="card">
+      <div class="card-label" style="color:var(--teal)">Strong — directly citable</div>
+      <div class="source-row"><span class="source-badge sb-green">Govt</span><div><strong>MoSPI HCES 2023–24</strong> — Household durable goods spend: 6.87% of urban MPCE. State-level Rajasthan data available at mospi.gov.in<br><span class="cite">mospi.gov.in · December 2024</span></div></div>
+      <div class="source-row"><span class="source-badge sb-green">IBEF</span><div><strong>IBEF Consumer Durables 2025</strong> — India to become 4th largest durables market by FY27. White goods 11% CAGR. AC sales up 100%+ in FY25.<br><span class="cite">ibef.org · October 2025</span></div></div>
+      <div class="source-row"><span class="source-badge sb-green">BCG</span><div><strong>BCG-Google Digital Influence Study 2019</strong> — Digital influence 5× higher in Tier 2 cities. Women 10× more influenced. Full PDF free at bcg.com<br><span class="cite">bcg.com · 2019 (structural finding remains valid)</span></div></div>
+      <div class="source-row"><span class="source-badge sb-green">Mordor</span><div><strong>Mordor Intelligence 2026</strong> — Jaipur and Lucknow named: "stronger interest in fully automatic top-load washers handling hard-water conditions." Rajasthan summers cited as AC demand driver.<br><span class="cite">mordorintelligence.com · January 2026</span></div></div>
+      <div class="source-row"><span class="source-badge sb-green">EY-CII</span><div><strong>EY Vision 2030 report</strong> — Sector to hit ₹3L Cr by FY29. Full PDF free on ey.com<br><span class="cite">ey.com · 2025</span></div></div>
+    </div>
+    <div class="card">
+      <div class="card-label" style="color:var(--saffron)">Partial / Extrapolated</div>
+      <div class="source-row"><span class="source-badge sb-amber">Grand View</span><div><strong>Grand View Research 2026</strong> — 62% of first-time buyers choose energy-efficient appliances. 9kg+ WM up 91% in 2024. Electronic stores = 53.66% of appliance sales.<br><span class="cite">Free excerpt · grandviewresearch.com</span></div></div>
+      <div class="source-row"><span class="source-badge sb-amber">Euromonitor</span><div><strong>Euromonitor India 2024</strong> — No-cost EMI driving WM and fridge premiumisation. Offline distribution dominates. Automatic WM gaining share. Summary free on euromonitor.com<br><span class="cite">euromonitor.com · February 2024</span></div></div>
+      <div class="source-row"><span class="source-badge sb-amber">Amoghvarta</span><div><strong>Metro vs Tier 2 Consumer Behaviour 2024</strong> — Tier 2 consumers research online, buy offline. References RedSeer 2022, Flipkart Insights 2023, RBI 2023.<br><span class="cite">amoghvarta.com · 2024 · Free PDF</span></div></div>
+      <div class="source-row"><span class="source-badge sb-red">Illustrative</span><div><strong>Decision driver percentages (e.g. "price = 90% of AC decision")</strong> — Synthesised from multiple indirect national studies. No Jaipur-specific primary source exists. Treat as directional. <em>Primary research with 30 Vaishali Nagar households recommended to validate.</em><br><span class="cite">Estimate · primary research recommended</span></div></div>
+    </div>
+  </div>
+  <div class="card" style="background:var(--navy-light);border-color:var(--navy)">
+    <div style="font-size:13px;color:var(--navy);font-weight:500;margin-bottom:6px">🔍 The Jaipur data gap — and how to close it</div>
+    <div style="font-size:13px;color:var(--ink);line-height:1.7">No publicly available Jaipur-specific consumer electronics purchase behaviour study exists. The most impactful action: survey 30 households in Vaishali Nagar (Google Forms, one Sunday afternoon) + 5 informal conversations with local electronics dealers. This becomes your own primary data — more credible for a Jaipur-specific case study than any paid national report, and it costs nothing.</div>
+  </div>
+</section>
+
+<!-- PRODUCT PSYCHOLOGY -->
+<section class="section reveal" id="products">
+  <div class="section-eyebrow">Product analysis</div>
+  <h2 class="section-title">What each product really means to the buyer</h2>
+  <p class="section-sub">Five products with completely different purchase psychologies. The same store, staff approach, and pricing display need to adapt for each.</p>
+
+  <div class="prod-tabs">
+    <button class="prod-tab on" onclick="showProd('ac', this)">❄️ AC</button>
+    <button class="prod-tab" onclick="showProd('tv', this)">📺 TV</button>
+    <button class="prod-tab" onclick="showProd('wm', this)">🌀 Washing Machine</button>
+    <button class="prod-tab" onclick="showProd('fr', this)">🧊 Refrigerator</button>
+    <button class="prod-tab" onclick="showProd('fn', this)">💨 Fan</button>
+  </div>
+
+  <!-- AC -->
+  <div class="prod-panel on" id="prod-ac">
+    <div class="prod-hero">
+      <div class="prod-icon-card" style="background:linear-gradient(135deg,#0F2A3A 0%,#0F1923 100%)">
+        <div class="prod-badge">Highest value SKU</div>
+        <div class="prod-icon">❄️</div>
+        <div class="prod-name">Air Conditioner</div>
+        <div class="prod-tagline">Status symbol + seasonal necessity</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--navy)">What it means</div>
+        <div style="font-size:13.5px;line-height:1.7">In Jaipur's 45°C summers, AC transitions from aspiration to necessity. It is the single highest-value purchase in your store. But the emotional weight comes first — the brand a family installs signals class and arrival. Rajasthan's climate is cited directly by Mordor Intelligence (2026) as a demand driver for cooling appliances.</div>
+        <div class="cite" style="margin-top:8px">Mordor Intelligence 2026 · Rajasthan climate micro-segment finding</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--navy)">Decision pattern</div>
+        <div style="font-size:13.5px;line-height:1.7"><strong>Research time:</strong> 2–6 weeks<br><strong>Who decides:</strong> Husband researches, wife has veto, elder may have final say<br><strong>Trigger:</strong> One very hot day, or neighbour installs — urgency becomes sudden<br><strong>Online influence:</strong> YouTube reviews + price comparison (BCG-Google, Tier 2 = 5× growth)</div>
+      </div>
+    </div>
+    <div class="g2-1" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-label" style="color:var(--navy)">What drives the final choice — Jaipur buyer</div>
+        <div class="bar-row"><span class="bar-label">Monthly EMI cost</span><div class="bar-track"><div class="bar-fill" style="width:88%;background:var(--navy)"></div></div><span class="bar-pct">88%</span></div>
+        <div class="bar-row"><span class="bar-label">Brand recognition</span><div class="bar-track"><div class="bar-fill" style="width:78%;background:var(--navy)"></div></div><span class="bar-pct">78%</span></div>
+        <div class="bar-row"><span class="bar-label">BEE star rating</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--navy)"></div></div><span class="bar-pct">72%</span></div>
+        <div class="bar-row"><span class="bar-label">Salesperson trust</span><div class="bar-track"><div class="bar-fill" style="width:64%;background:var(--navy)"></div></div><span class="bar-pct">64%</span></div>
+        <div class="bar-row"><span class="bar-label">Installation speed</span><div class="bar-track"><div class="bar-fill" style="width:54%;background:var(--navy)"></div></div><span class="bar-pct">54%</span></div>
+        <div class="cite">Illustrative estimates based on national CE consumer behaviour research. Primary fieldwork recommended.</div>
+        <div style="margin-top:12px;font-size:12px;color:var(--muted)">India's major appliances market saw energy-efficient AC sales grow <strong>59% in H1 2024</strong> — BEE star rating is increasingly a real factor, not just a label.</div>
+        <div class="cite">Grand View Research 2026</div>
+      </div>
+      <div>
+        <div class="anxiety-card">
+          <div class="q">Customer anxiety #1</div>
+          "Will the electricity bill bankrupt us?" → Counter with a monthly saving calculation: 5-star vs 3-star at 8 hours/day. Put this on a card at the display.
+        </div>
+        <div class="anxiety-card">
+          <div class="q">Customer anxiety #2</div>
+          "I saw it ₹2,500 cheaper on Amazon." → Answer: local warranty claim, same-week installation, no freight damage risk, you're responsible if it fails.
+        </div>
+        <div class="opportunity-card">
+          <div class="q">Your conversion edge</div>
+          EMI + confirmed installation date closes the AC sale. Neither Amazon nor Croma can offer same-week local installation with a phone call. Lean on this.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TV -->
+  <div class="prod-panel" id="prod-tv">
+    <div class="prod-hero">
+      <div class="prod-icon-card" style="background:linear-gradient(135deg,#1A2E4A 0%,#0F1923 100%)">
+        <div class="prod-badge">Highest unit volume</div>
+        <div class="prod-icon">📺</div>
+        <div class="prod-name">Television</div>
+        <div class="prod-tagline">Family centre · high brand loyalty</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--saffron)">What it means</div>
+        <div style="font-size:13.5px;line-height:1.7">The TV is the centre of the living room and family identity. A larger screen signals a better life. It is the most frequently replaced category and the highest unit volume product in your store. Samsung dominates premiums; LG is trusted mid-range. Online platforms (Amazon, Flipkart) run aggressive flash sales during IPL and Diwali — your toughest competition window.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--saffron)">Decision pattern</div>
+        <div style="font-size:13.5px;line-height:1.7"><strong>Research time:</strong> 1–3 weeks<br><strong>Who decides:</strong> Man decides size and brand, children heavily influence; family event often the trigger<br><strong>Trigger:</strong> Diwali season, IPL tournament, new home, old TV failure<br><strong>Behaviour:</strong> Customer often emotionally decided before walking in — they want confirmation, not education</div>
+      </div>
+    </div>
+    <div class="g2-1" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-label" style="color:var(--saffron)">Decision drivers</div>
+        <div class="bar-row"><span class="bar-label">Screen size</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--saffron)"></div></div><span class="bar-pct">85%</span></div>
+        <div class="bar-row"><span class="bar-label">Price / EMI</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--saffron)"></div></div><span class="bar-pct">80%</span></div>
+        <div class="bar-row"><span class="bar-label">Brand (LG/Samsung)</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--saffron)"></div></div><span class="bar-pct">70%</span></div>
+        <div class="bar-row"><span class="bar-label">Smart / Android OS</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--saffron)"></div></div><span class="bar-pct">65%</span></div>
+        <div class="bar-row"><span class="bar-label">In-store picture demo</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--saffron)"></div></div><span class="bar-pct">55%</span></div>
+        <div class="cite">Illustrative estimates. BCG-Google 2019 confirms screen size and price as primary Tier 2 drivers.</div>
+      </div>
+      <div>
+        <div class="anxiety-card">
+          <div class="q">Customer anxiety</div>
+          "Is 43" big enough or should I get 55?" → Seat them at the right distance in-store. This one demo closes the size question better than any spec sheet.
+        </div>
+        <div class="anxiety-card">
+          <div class="q">Price objection</div>
+          "Flipkart has this ₹3,000 cheaper." → Wall mount, same-day demo, local return if faulty, your number to call. The value is real — communicate it.
+        </div>
+        <div class="opportunity-card">
+          <div class="q">Store design implication</div>
+          TV demo wall showing 4–5 sizes playing the same content is your most powerful conversion tool. Customers buy with their eyes, not a spec list.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WM -->
+  <div class="prod-panel" id="prod-wm">
+    <div class="prod-hero">
+      <div class="prod-icon-card" style="background:linear-gradient(135deg,#1A3A2E 0%,#0F1923 100%)">
+        <div class="prod-badge">Wife decides 90%</div>
+        <div class="prod-icon">🌀</div>
+        <div class="prod-name">Washing Machine</div>
+        <div class="prod-tagline">Aspirational upgrade · EMI-dependent</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">What it means</div>
+        <div style="font-size:13.5px;line-height:1.7">Moving from semi-automatic to fully automatic WM is a landmark moment — it signals "we have arrived." Mordor Intelligence (2026) directly identifies Jaipur as a market with strong preference for top-load fully automatic washers, citing hard-water conditions. This is the one product where your stock mix should be distinctly Jaipur-specific: heavy on top-load, moderate on front-load.</div>
+        <div class="cite">Mordor Intelligence 2026 · Jaipur + Lucknow top-load WM finding</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Decision pattern</div>
+        <div style="font-size:13.5px;line-height:1.7"><strong>Research time:</strong> 2–4 weeks<br><strong>Who decides:</strong> Wife 90% — she is the primary user. Husband approves the EMI.<br><strong>Research channel:</strong> Word-of-mouth from trusted friends/relatives — NOT YouTube<br><strong>Trigger:</strong> After marriage, new home, dhobi becoming unreliable. Also gifted by family.<br><strong>First-time buyers:</strong> 62% of first-time appliance buyers now go straight to energy-efficient models (Grand View Research 2026)</div>
+      </div>
+    </div>
+    <div class="g2-1" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Decision drivers</div>
+        <div class="bar-row"><span class="bar-label">EMI monthly amount</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--teal)"></div></div><span class="bar-pct">90%</span></div>
+        <div class="bar-row"><span class="bar-label">Top-load vs front-load</span><div class="bar-track"><div class="bar-fill" style="width:82%;background:var(--teal)"></div></div><span class="bar-pct">82%</span></div>
+        <div class="bar-row"><span class="bar-label">Brand trust</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--teal)"></div></div><span class="bar-pct">72%</span></div>
+        <div class="bar-row"><span class="bar-label">Capacity (kg)</span><div class="bar-track"><div class="bar-fill" style="width:65%;background:var(--teal)"></div></div><span class="bar-pct">65%</span></div>
+        <div class="bar-row"><span class="bar-label">Friend's recommendation</span><div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--teal)"></div></div><span class="bar-pct">60%</span></div>
+        <div class="cite">Euromonitor 2024 confirms EMI + capacity as top WM drivers. Top-load preference: Mordor 2026.</div>
+        <div style="margin-top:10px;padding:8px 10px;background:var(--teal-light);border-radius:var(--r);font-size:12.5px;color:var(--teal)">9 kg+ washing machine volume grew <strong>91% in 2024</strong> nationally. Stock accordingly — this premium tier is the growth engine.</div>
+        <div class="cite">Grand View Research 2026</div>
+      </div>
+      <div>
+        <div class="anxiety-card">
+          <div class="q">Critical anxiety</div>
+          "Top-load or front-load?" — Most mass-segment first-timers don't know the difference. This is a teaching moment, not a sales pitch. Jaipur's hard water makes top-load the right answer for most.
+        </div>
+        <div class="anxiety-card">
+          <div class="q">Operational fear</div>
+          "Will I be able to operate it?" — Simplicity of controls is a real purchase driver for first-time buyers. Demo the most common wash cycle in the store.
+        </div>
+        <div class="opportunity-card">
+          <div class="q">Key insight</div>
+          Talk to the wife, not the husband. Pitch to her. Most local dealers make the mistake of addressing only the man — you lose the sale before it starts.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FRIDGE -->
+  <div class="prod-panel" id="prod-fr">
+    <div class="prod-hero">
+      <div class="prod-icon-card" style="background:linear-gradient(135deg,#2A1A3A 0%,#0F1923 100%)">
+        <div class="prod-badge">Pure necessity</div>
+        <div class="prod-icon">🧊</div>
+        <div class="prod-name">Refrigerator</div>
+        <div class="prod-tagline">Practical · wife-led · brand loyalty high</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:#7F4EC9">What it means</div>
+        <div style="font-size:13.5px;line-height:1.7">The refrigerator carries no emotional aspiration. It is a kitchen necessity. The decision is entirely practical — capacity, fit, brand familiarity, and energy cost. Brand loyalty is generational: if her mother had Whirlpool, she likely wants Whirlpool. Samsung's 2023 India-manufactured fridge range launch was specifically designed for Indian preferences — a signal that this category is localising fast.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:#7F4EC9">Decision pattern</div>
+        <div style="font-size:13.5px;line-height:1.7"><strong>Research time:</strong> 1–2 weeks (shortest of all categories)<br><strong>Who decides:</strong> Wife decides completely — capacity, layout (single/double door), colour. Husband approves price only.<br><strong>Trigger:</strong> Summer heat ("food is spoiling faster"), new home, old fridge failure<br><strong>Marriage gifting:</strong> High — fridges are among the most common marriage gifts in Jaipur's middle class</div>
+      </div>
+    </div>
+    <div class="g2-1" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-label" style="color:#7F4EC9">Decision drivers</div>
+        <div class="bar-row"><span class="bar-label">Capacity (litres)</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#7F4EC9"></div></div><span class="bar-pct">85%</span></div>
+        <div class="bar-row"><span class="bar-label">Brand trust</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#7F4EC9"></div></div><span class="bar-pct">80%</span></div>
+        <div class="bar-row"><span class="bar-label">Price</span><div class="bar-track"><div class="bar-fill" style="width:74%;background:#7F4EC9"></div></div><span class="bar-pct">74%</span></div>
+        <div class="bar-row"><span class="bar-label">Colour / finish</span><div class="bar-track"><div class="bar-fill" style="width:52%;background:#7F4EC9"></div></div><span class="bar-pct">52%</span></div>
+        <div class="bar-row"><span class="bar-label">BEE star rating</span><div class="bar-track"><div class="bar-fill" style="width:44%;background:#7F4EC9"></div></div><span class="bar-pct">44%</span></div>
+        <div class="cite">National consumer behaviour research on fridge buying. Brand loyalty finding: Euromonitor 2024.</div>
+      </div>
+      <div>
+        <div class="anxiety-card">
+          <div class="q">Most common mistake</div>
+          Recommending a fridge without asking the kitchen dimensions. The customer returns it or leaves angry. Always ask: "Aapke kitchen mein jagah kitni hai?" first.
+        </div>
+        <div class="anxiety-card">
+          <div class="q">Service anxiety</div>
+          "If it breaks in summer, will someone come quickly?" — This is a real fear in Jaipur's heat. Your local service network is your biggest advantage over online.
+        </div>
+        <div class="opportunity-card">
+          <div class="q">Staff direction</div>
+          Address the wife exclusively for fridge. Make eye contact with her, answer her questions first. The husband's role is financial approval only.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAN -->
+  <div class="prod-panel" id="prod-fn">
+    <div class="prod-hero">
+      <div class="prod-icon-card" style="background:linear-gradient(135deg,#1A2A1A 0%,#0F1923 100%)">
+        <div class="prod-badge">Footfall driver</div>
+        <div class="prod-icon">💨</div>
+        <div class="prod-name">Fan</div>
+        <div class="prod-tagline">Pure utility · fastest purchase cycle</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">What it means</div>
+        <div style="font-size:13.5px;line-height:1.7">A commodity. The customer is not excited to buy a fan — they need one and want the transaction done quickly. However, fans are your highest-volume category (3.65L units in Jaipur annually) and a critical footfall driver. A customer who comes in for a ₹1,500 fan can be asked about their AC needs. Never treat fan buyers as small sales — they are the first conversation.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Decision pattern</div>
+        <div style="font-size:13.5px;line-height:1.7"><strong>Research time:</strong> Under 30 minutes<br><strong>Who decides:</strong> Whoever is home — individual, impulsive, low deliberation<br><strong>Trigger:</strong> Old fan breaks, new room being set up, pre-summer, new house<br><strong>Emerging segment:</strong> BLDC (energy-efficient) fans at ₹3,500–5,000 are growing fast among upper-middle buyers. Stock 2–3 BLDC models.</div>
+      </div>
+    </div>
+    <div class="g2-1" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="card-label" style="color:var(--teal)">Decision drivers</div>
+        <div class="bar-row"><span class="bar-label">Price (budget)</span><div class="bar-track"><div class="bar-fill" style="width:86%;background:#2A7A2A"></div></div><span class="bar-pct">86%</span></div>
+        <div class="bar-row"><span class="bar-label">Salesperson advice</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:#2A7A2A"></div></div><span class="bar-pct">72%</span></div>
+        <div class="bar-row"><span class="bar-label">In-stock availability</span><div class="bar-track"><div class="bar-fill" style="width:66%;background:#2A7A2A"></div></div><span class="bar-pct">66%</span></div>
+        <div class="bar-row"><span class="bar-label">Brand familiarity</span><div class="bar-track"><div class="bar-fill" style="width:50%;background:#2A7A2A"></div></div><span class="bar-pct">50%</span></div>
+        <div class="bar-row"><span class="bar-label">Design / colour</span><div class="bar-track"><div class="bar-fill" style="width:30%;background:#2A7A2A"></div></div><span class="bar-pct">30%</span></div>
+      </div>
+      <div>
+        <div class="opportunity-card">
+          <div class="q">The upsell moment</div>
+          Fan buyer → ask about AC ("Ghar mein AC hai?"). A simple question converts a ₹1,500 transaction into a lead for a ₹40,000 sale. Train every staff member to ask this.
+        </div>
+        <div class="opportunity-card">
+          <div class="q">B2B channel</div>
+          Builder / developer tie-ups for new apartments. 1 contact with a local builder = 20–30 fan orders at a stroke. Prioritise this relationship in Year 1.
+        </div>
+        <div class="anxiety-card">
+          <div class="q">Stock note</div>
+          Don't run out of fans in March–April. This is when the season hits and a stockout sends customers to your competitor who keeps them in stock.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY COMPARISON -->
+<section class="section reveal" id="comparison">
+  <div class="section-eyebrow">Category overview</div>
+  <h2 class="section-title">How the five categories compare</h2>
+  <p class="section-sub">At a glance — volume, value, purchase speed, and who holds the power in the decision.</p>
+  <div style="overflow-x:auto">
+  <table class="comp-table">
+    <thead>
+      <tr><th>Category</th><th>Annual units (Jaipur est.)</th><th>Avg price</th><th>Market value</th><th>Decision time</th><th>Who decides</th><th>EMI dependency</th><th>Online threat</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>❄️ AC</td><td>88,806</td><td>₹40,000</td><td>₹355 Cr</td><td>2–6 weeks</td><td>Husband researches, wife vetos</td><td><span class="tag tag-r">Very high</span></td><td><span class="tag tag-r">High</span></td></tr>
+      <tr><td>📺 TV</td><td>1,43,516</td><td>₹28,000</td><td>₹402 Cr</td><td>1–3 weeks</td><td>Man decides size, family influences</td><td><span class="tag tag-m">High</span></td><td><span class="tag tag-r">Very high</span></td></tr>
+      <tr><td>🌀 Washing machine</td><td>65,080</td><td>₹24,000</td><td>₹156 Cr</td><td>2–4 weeks</td><td>Wife 90%</td><td><span class="tag tag-r">Very high</span></td><td><span class="tag tag-m">Medium</span></td></tr>
+      <tr><td>🧊 Refrigerator</td><td>80,052</td><td>₹24,000</td><td>₹192 Cr</td><td>1–2 weeks</td><td>Wife decides, husband approves price</td><td><span class="tag tag-m">High</span></td><td><span class="tag tag-m">Medium</span></td></tr>
+      <tr><td>💨 Fan</td><td>3,65,039</td><td>₹2,500</td><td>₹91 Cr</td><td>&lt;30 min</td><td>Individual, impulsive</td><td><span class="tag tag-s">Low</span></td><td><span class="tag tag-s">Low</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="cite" style="margin-top:8px">Unit estimates: bottom-up household model (9.35L urban HH × penetration × replacement cycle). Market value: unit × avg price. See methodology.</div>
+
+  <div style="margin-top:1.5rem">
+    <div class="chart-wrap">
+      <div class="chart-title">Market value by category (₹ Cr) — Jaipur 2026 estimate</div>
+      <canvas id="chartValue" height="80"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- DECISION DRIVERS -->
+<section class="section reveal" id="drivers">
+  <div class="section-eyebrow">Comparative psychology</div>
+  <h2 class="section-title">Decision driver radar — all five products</h2>
+  <p class="section-sub">How important each factor is across categories. Helps you train staff differently for each product zone and design price cards accordingly.</p>
+  <div class="g2">
+    <div class="card">
+      <div class="chart-wrap">
+        <div class="chart-title">What matters and how much — radar comparison</div>
+        <canvas id="chartRadar" height="260"></canvas>
+      </div>
+      <div class="cite" style="margin-top:8px">Illustrative scores (0–100) synthesised from BCG-Google 2019, Euromonitor 2024, Grand View Research 2026, GRIN EMI study 2024. Validate with primary Jaipur research.</div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="chart-title" style="text-align:left;margin-bottom:12px">EMI dependency by category</div>
+        <div class="bar-row"><span class="bar-label">Washing machine</span><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--teal)"></div></div><span class="bar-pct">90%</span></div>
+        <div class="bar-row"><span class="bar-label">Air conditioner</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--navy)"></div></div><span class="bar-pct">85%</span></div>
+        <div class="bar-row"><span class="bar-label">Television</span><div class="bar-track"><div class="bar-fill" style="width:75%;background:var(--saffron)"></div></div><span class="bar-pct">75%</span></div>
+        <div class="bar-row"><span class="bar-label">Refrigerator</span><div class="bar-track"><div class="bar-fill" style="width:68%;background:#7F4EC9)"></div></div><span class="bar-pct">68%</span></div>
+        <div class="bar-row"><span class="bar-label">Fan</span><div class="bar-track"><div class="bar-fill" style="width:18%;background:#2A7A2A"></div></div><span class="bar-pct">18%</span></div>
+        <div class="cite" style="margin-top:8px">National CE EMI penetration: Euromonitor 2024 + GRIN EMI study 2024. Growing with no-cost EMI schemes (Bajaj Finance operates in 4,000+ cities including Jaipur).</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--saffron)">Key cross-category finding</div>
+        <div style="font-size:13.5px;line-height:1.7;margin-bottom:8px">Digital influence has grown <strong>5× in Tier 2 cities</strong> in the last few years — but the purchase itself still happens overwhelmingly offline. Tier 2 consumers research online and buy in-store. This "ROBO" (Research Online, Buy Offline) pattern is your fundamental business model.</div>
+        <div class="cite">BCG-Google Digital Influence Study 2019 (Tier 2 finding confirmed by Amoghvarta 2024)</div>
+        <div style="margin-top:10px;font-size:13.5px;line-height:1.7">IBEF (2025) confirms India's consumer durables sector growing at <strong>11% CAGR</strong>, projected to reach ₹3L Cr by FY29 — the macro tide is strongly in your favour.</div>
+        <div class="cite">IBEF Indian Consumer Market report · October 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONAS -->
+<section class="section reveal" id="personas">
+  <div class="section-eyebrow">User research</div>
+  <h2 class="section-title">Four people who will walk into your store</h2>
+  <p class="section-sub">Not demographics — real characters with names, anxieties, and behaviours. Every store and digital design decision should be validated against one of these four people. These personas are grounded in MoSPI household income data, BCG consumer behaviour research, and Mordor's Jaipur-specific findings.</p>
+
+  <div class="g2">
+
+    <!-- Ramesh -->
+    <div class="persona-card reveal">
+      <div class="persona-header" style="background:linear-gradient(135deg,var(--navy-light) 0%,#fff 100%)">
+        <div class="persona-avatar" style="background:var(--navy)">RK</div>
+        <div class="persona-name">Ramesh Kumar, 38</div>
+        <div class="persona-role">Government employee · Vaishali Nagar · <span class="tag tag-n">Upper middle</span></div>
+      </div>
+      <div class="persona-body">
+        <div class="prow"><span class="plabel">Monthly HH income</span><span class="pval">₹55,000–70,000</span></div>
+        <div class="prow"><span class="plabel">Household</span><span class="pval">Wife, 2 school-age kids, in-laws nearby</span></div>
+        <div class="prow"><span class="plabel">Buying for</span><span class="pval">2nd AC (bedroom). Has 7-year-old LG in living room.</span></div>
+        <div class="prow"><span class="plabel">Finds you via</span><span class="pval">Google Maps search + neighbour recommendation</span></div>
+        <div class="prow"><span class="plabel">Research style</span><span class="pval">Watched 3 YouTube reviews. Wants 1.5T 5-star. Open to LG or Voltas. Digitally influenced — BCG-Google 2019 directly supports this profile.</span></div>
+        <div class="prow"><span class="plabel">Key anxiety</span><span class="pval">"Electricity bill will bother my wife." Installation quality.</span></div>
+        <div class="prow"><span class="plabel">EMI</span><span class="pval">Yes — 6-month 0% EMI on HDFC card</span></div>
+        <div class="prow"><span class="plabel">Segment basis</span><span class="pval">Regular salaried urban HH — highest MPCE group in HCES 2023–24, Rajasthan state data</span></div>
+      </div>
+      <div class="persona-insight">
+        <div class="h">What he needs from you</div>
+        Show monthly electricity saving: 5-star vs 3-star at 8hrs/day = ₹400–600/month saving. Confirm same-week installation. Don't educate — he already knows. Close fast. His time is the only scarce resource.
+      </div>
+    </div>
+
+    <!-- Sunita -->
+    <div class="persona-card reveal">
+      <div class="persona-header" style="background:linear-gradient(135deg,#FDF0DC 0%,#fff 100%)">
+        <div class="persona-avatar" style="background:var(--saffron)">SD</div>
+        <div class="persona-name">Sunita Devi, 33</div>
+        <div class="persona-role">Homemaker · Shyam Nagar · <span class="tag tag-a">Mass segment</span></div>
+      </div>
+      <div class="persona-body">
+        <div class="prow"><span class="plabel">Monthly HH income</span><span class="pval">₹30,000–40,000 (husband is small contractor)</span></div>
+        <div class="prow"><span class="plabel">Household</span><span class="pval">Husband, 3 kids, joint family of 6. First-generation appliance buyers.</span></div>
+        <div class="prow"><span class="plabel">Buying for</span><span class="pval">First fully automatic WM. Has semi-auto for 9 years.</span></div>
+        <div class="prow"><span class="plabel">Finds you via</span><span class="pval">Neighbour's personal recommendation. Walks in with husband on Sunday.</span></div>
+        <div class="prow"><span class="plabel">Research style</span><span class="pval">No online research. Trusts the salesperson completely. Asks: "which one is best?" Word-of-mouth is her primary research channel — consistent with Amoghvarta 2024 Tier 2 findings.</span></div>
+        <div class="prow"><span class="plabel">Key anxiety</span><span class="pval">"Can we afford the EMI? Will I know how to use it?"</span></div>
+        <div class="prow"><span class="plabel">EMI</span><span class="pval">Yes — Bajaj Finance without a credit card. Non-negotiable. Bajaj Finance operates in 4,000+ cities (Jaipur confirmed).</span></div>
+        <div class="prow"><span class="plabel">Segment basis</span><span class="pval">~45% of urban Jaipur households (mass). Self-employed + contractor HH income band.</span></div>
+      </div>
+      <div class="persona-insight">
+        <div class="h">What she needs from you</div>
+        Patience. Warmth. Hindi. Let her press the WM buttons in-store (endowment effect). Recommend 6.5kg top-load (Jaipur hard water — Mordor 2026). Show ₹900/month — never say ₹20,000 outright (mental accounting principle).
+      </div>
+    </div>
+
+    <!-- Akash -->
+    <div class="persona-card reveal">
+      <div class="persona-header" style="background:linear-gradient(135deg,var(--teal-light) 0%,#fff 100%)">
+        <div class="persona-avatar" style="background:var(--teal)">AJ</div>
+        <div class="persona-name">Akash Jain, 27</div>
+        <div class="persona-role">Private sector · Newly married · <span class="tag tag-t">Upper middle</span></div>
+      </div>
+      <div class="persona-body">
+        <div class="prow"><span class="plabel">Monthly HH income</span><span class="pval">₹50,000–65,000. Just moved into new flat.</span></div>
+        <div class="prow"><span class="plabel">Household</span><span class="pval">Newly married couple. Setting up home for the first time.</span></div>
+        <div class="prow"><span class="plabel">Buying for</span><span class="pval">Full setup — AC + fridge + WM + TV in one visit. Highest ticket transaction type.</span></div>
+        <div class="prow"><span class="plabel">Finds you via</span><span class="pval">Instagram ad → checks Google reviews → visits. Comes in with wife.</span></div>
+        <div class="prow"><span class="plabel">Research style</span><span class="pval">Heavy researcher. Shortlist on phone. Will walk in with Amazon listings open (Arindam Substack 2024 — "consumers walk in with Amazon listing open"). Will negotiate.</span></div>
+        <div class="prow"><span class="plabel">Key anxiety</span><span class="pval">"Am I getting the best deal? Should I buy online instead?"</span></div>
+        <div class="prow"><span class="plabel">EMI</span><span class="pval">Yes — credit card. May ask for combo discount on full-home purchase.</span></div>
+        <div class="prow"><span class="plabel">Market significance</span><span class="pval">New nuclear households (52% of urban HH in 2025, growing to 60% by 2030) — Grand View Research 2026. Each requires fridge + WM + AC within 18 months of setup.</span></div>
+      </div>
+      <div class="persona-insight">
+        <div class="h">What he needs from you</div>
+        A bundle deal. "Buy all 4 products, get free installation on all + extended warranty on fridge." He must feel he won the negotiation. This is your highest single-visit revenue. Treat him as a VIP from the moment he walks in. Pre-emptively address the Amazon price — don't wait for him to raise it.
+      </div>
+    </div>
+
+    <!-- Babulal -->
+    <div class="persona-card reveal">
+      <div class="persona-header" style="background:linear-gradient(135deg,var(--red-light) 0%,#fff 100%)">
+        <div class="persona-avatar" style="background:var(--red)">BL</div>
+        <div class="persona-name">Babulal, 52</div>
+        <div class="persona-role">Small shop owner · Walk-in · <span class="tag tag-r">Value segment</span></div>
+      </div>
+      <div class="persona-body">
+        <div class="prow"><span class="plabel">Monthly HH income</span><span class="pval">₹18,000–25,000. Cash-conservative. Owns the house (no rent).</span></div>
+        <div class="prow"><span class="plabel">Household</span><span class="pval">Wife, 2 adult sons, joint family. Cash flow irregular.</span></div>
+        <div class="prow"><span class="plabel">Buying for</span><span class="pval">Replacement fridge — old one died. Needs to buy today. Urgency-driven.</span></div>
+        <div class="prow"><span class="plabel">Finds you via</span><span class="pval">Walks past the store, or son saw a leaflet. Zero digital footprint.</span></div>
+        <div class="prow"><span class="plabel">Research style</span><span class="pval">None. Asks: "sabse sasta kaun sa hai?" and waits to be guided. Represents the ~25% value segment — HCES 2023–24 shows durable spend at lower MPCE brackets remains significant.</span></div>
+        <div class="prow"><span class="plabel">Key anxiety</span><span class="pval">"I cannot afford to make a mistake. It must last 10 years."</span></div>
+        <div class="prow"><span class="plabel">EMI</span><span class="pval">Reluctant. Bajaj Finance only. EMI must be under ₹600/month. No credit card.</span></div>
+        <div class="prow"><span class="plabel">Segment basis</span><span class="pval">~25% of urban Jaipur HH (value). Small business owner / self-employed. MoSPI HCES 2023–24 urban MPCE lower quintile.</span></div>
+      </div>
+      <div class="persona-insight">
+        <div class="h">What he needs from you</div>
+        Reassurance, not features. Recommend Haier or LG 190–215L single-door. Emphasise durability and local service. Tell him the brand has been in India for 20+ years. Do NOT upsell — the moment he feels pushed, he walks out. Babulal's referrals, when earned, are among the most trusted in his community.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SEGMENT SIZING -->
+<section class="section reveal" id="segments">
+  <div class="section-eyebrow">Market sizing</div>
+  <h2 class="section-title">Segment distribution — urban Jaipur 2026</h2>
+  <p class="section-sub">Based on 9.35 lakh urban households, segmented by income profile. Segment percentages held constant from original model (Premium 8% / Upper middle 22% / Mass 45% / Value 25%) as no Jaipur-specific income distribution study contradicts this split. Validate against Rajasthan PLFS data (mospi.gov.in).</p>
+  <div class="g2-1">
+    <div class="card">
+      <div class="chart-wrap">
+        <div class="chart-title">Urban household segment breakdown (9.35L households)</div>
+        <canvas id="chartSegments" height="160"></canvas>
+      </div>
+      <div class="cite" style="margin-top:8px">Household count: Census 2011 projected at 2.1% CAGR + declining household size (HCES 2023–24 national trend). Urban split: 57% (Census 2011 52.4% + ~0.3%/yr urbanisation). Segment %: BCG CCI framework adapted for Jaipur income profile.</div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="card-label" style="color:var(--navy)">Premium · 8% · 74,800 HH</div>
+        <div style="font-size:13px;line-height:1.7;color:var(--muted)">≥2 AC, 2 TV, 1 WM, 1 fridge, 3 fans. Fast replacement cycle (5–8 yr). Brand-loyal to LG, Samsung, Voltas inverter. Not your primary target at launch.</div>
+      </div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="card-label" style="color:var(--navy)">Upper middle · 22% · 2,05,700 HH</div>
+        <div style="font-size:13px;line-height:1.7;color:var(--muted)">3 fans, fridge and TV already, increasingly buying AC and WM. Ramesh and Akash live here. Your primary revenue driver at launch.</div>
+      </div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="card-label" style="color:var(--saffron)">Mass · 45% · 4,20,750 HH</div>
+        <div style="font-size:13px;line-height:1.7;color:var(--muted)">2 fans, fridge in many homes, mostly have TV. Limited AC and WM penetration — but this is where growth is. Sunita lives here. AC/WM penetration in this segment growing 2.5–3% annually.</div>
+      </div>
+      <div class="card">
+        <div class="card-label" style="color:var(--red)">Value · 25% · 2,33,750 HH</div>
+        <div style="font-size:13px;line-height:1.7;color:var(--muted)">2 fans, no AC, limited fridge, basic TV. Babulal lives here. High loyalty once trust is earned. EMI without card is non-negotiable.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER PSYCHOLOGY -->
+<section class="section reveal" id="psych">
+  <div class="section-eyebrow">Behavioural science</div>
+  <h2 class="section-title">The psychology running every purchase decision</h2>
+  <p class="section-sub">These are not tactics — they are how human brains make decisions under uncertainty. Every store layout, pricing display, and staff script should be designed around at least one of these principles. Each is grounded in established behavioural economics research.</p>
+
+  <div class="g3" style="margin-bottom:1rem">
+    <div class="psych-card">
+      <div class="psych-title">Anchoring</div>
+      <div class="psych-body">The first price seen becomes the reference point for all subsequent judgements. Show the ₹58,000 model before the ₹38,000 model. The second feels like a bargain even if it was always the plan.</div>
+      <div class="psych-apply">→ Show premium model first in every zone. PLP: list higher-priced models at top.</div>
+      <div class="cite" style="margin-top:8px">Kahneman & Tversky, Judgement Under Uncertainty (1974) · Thaler, Mental Accounting Matters (1999)</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Social proof</div>
+      <div class="psych-body">People follow crowd behaviour when uncertain. "Ye model is season mein sabse zyada bika" eliminates decision paralysis — particularly powerful in Tier 2 where peer networks are tight.</div>
+      <div class="psych-apply">→ Bestseller badge on 1 product per category only. Staff verbal script: confirm the social proof claim.</div>
+      <div class="cite" style="margin-top:8px">Cialdini, Influence (1984) · BCG-Google 2019 confirms peer influence high in Tier 2</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Endowment effect</div>
+      <div class="psych-body">Once someone physically handles a product, they begin to feel psychological ownership. Sunita pressing the WM buttons is not demo — it is ownership creation. Touch converts.</div>
+      <div class="psych-apply">→ Design every product zone for physical interaction. Especially critical for WM and fridge.</div>
+      <div class="cite" style="margin-top:8px">Thaler, Toward a Positive Theory of Consumer Choice (1980) · Kahneman et al., Anomalies (1991)</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Mental accounting</div>
+      <div class="psych-body">₹1,780/month and ₹31,990 are psychologically processed in different mental "accounts." The monthly amount feels manageable even when the total is identical. This is why EMI-first framing works.</div>
+      <div class="psych-apply">→ Always display EMI/month as the primary price across all channels and all categories.</div>
+      <div class="cite" style="margin-top:8px">Thaler, Mental Accounting Matters (1999) · GRIN EMI study 2024 confirms for Indian CE market</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Peak-end rule</div>
+      <div class="psych-body">Memory of an experience is shaped by its most intense moment and its final moment — not the average. The billing moment and the goodbye are what Ramesh will describe to his neighbour next week.</div>
+      <div class="psych-apply">→ Fast billing (&lt;5 min). Warm, named goodbye. Day +2 WhatsApp. These are your marketing.</div>
+      <div class="cite" style="margin-top:8px">Kahneman, Fredrickson et al., When More Pain is Preferred to Less (1993)</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Choice overload</div>
+      <div class="psych-body">More options systematically reduce purchase rates. Showing 12 AC models paralyses Sunita. Three curated options (value / recommended / premium) make the decision manageable.</div>
+      <div class="psych-apply">→ Max 3 options per category in the PLP and in-store. Your job is to edit, not display everything.</div>
+      <div class="cite" style="margin-top:8px">Iyengar & Lepper, When Choice is Demotivating (2000) · Confirmed in Indian retail context</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Authority bias</div>
+      <div class="psych-body">Customers trust demonstrated expertise over salesmanship. "1.5T kaafi hai, 2T waste hoga aapke room ke liye" positions staff as trusted advisors, not commission-hunters.</div>
+      <div class="psych-apply">→ Train staff to lead with expertise, not enthusiasm. The advisor beats the salesperson every time.</div>
+      <div class="cite" style="margin-top:8px">Milgram (1963) · Cialdini (1984) · Validated in Indian high-value retail interactions</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">Loss aversion</div>
+      <div class="psych-body">People feel losses ~2× more acutely than equivalent gains. "Ye offer kal khatam hai" works because missing out hurts more than the discount feels good. Use sparingly — overuse kills trust.</div>
+      <div class="psych-apply">→ One genuine scarcity signal per visit. Festive season is the right time. Year-round use destroys credibility.</div>
+      <div class="cite" style="margin-top:8px">Kahneman & Tversky, Prospect Theory (1979)</div>
+    </div>
+    <div class="psych-card">
+      <div class="psych-title">ROBO behaviour</div>
+      <div class="psych-body">Research Online, Buy Offline. Tier 2 customers increasingly research on digital platforms but complete the purchase in-store. BCG-Google (2019) found Tier 2 digital influence grew 5× — but the store remains where money is spent.</div>
+      <div class="psych-apply">→ Your online presence (GMB, WhatsApp catalogue) exists to bring people in — not to compete with Amazon.</div>
+      <div class="cite" style="margin-top:8px">BCG-Google Digital Influence 2019 · Amoghvarta Tier 2 study 2024</div>
+    </div>
+  </div>
+</section>
+
+<!-- PURCHASE FUNNEL -->
+<section class="section reveal" id="funnel">
+  <div class="section-eyebrow">Conversion mapping</div>
+  <h2 class="section-title">The purchase funnel — where customers convert and where they drop</h2>
+  <p class="section-sub">A realistic Jaipur consumer electronics funnel. Drop-off rates are illustrative estimates based on general Tier 2 retail conversion research. Validate with your own store data after opening.</p>
+
+  <div class="g2">
+    <div>
+      <div class="funnel-item">
+        <span class="funnel-label">Aware of store</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:100%;background:var(--navy)">
+            <span class="funnel-bar-text">100% — Google, word of mouth, Instagram, walk-past</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Visits store or WhatsApp</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:72%;background:var(--navy)">
+            <span class="funnel-bar-text">~72% convert awareness to visit</span>
+            <span class="funnel-bar-pct">72%</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Engages with staff</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:60%;background:var(--teal)">
+            <span class="funnel-bar-text">~60% engage meaningfully with staff</span>
+            <span class="funnel-bar-pct">60%</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Reaches consideration</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:42%;background:var(--saffron)">
+            <span class="funnel-bar-text">~42% shortlist 2–3 products</span>
+            <span class="funnel-bar-pct">42%</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Converts to sale</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:28%;background:var(--saffron)">
+            <span class="funnel-bar-text">~28% buy on first visit</span>
+            <span class="funnel-bar-pct">28%</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Returns to buy</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:15%;background:var(--red)">
+            <span class="funnel-bar-text">+15% convert on return visit</span>
+            <span class="funnel-bar-pct">15%</span>
+          </div>
+        </div>
+      </div>
+      <div class="funnel-item">
+        <span class="funnel-label">Refers someone</span>
+        <div class="funnel-bar-outer">
+          <div class="funnel-bar-inner" style="width:10%;background:var(--teal)">
+            <span class="funnel-bar-text">~10% actively refer (if asked)</span>
+            <span class="funnel-bar-pct">10%</span>
+          </div>
+        </div>
+      </div>
+      <div class="cite" style="margin-top:8px">Funnel rates: illustrative estimates based on general Tier 2 retail conversion benchmarks and CE category research. Actual rates will vary by staff quality, season, and product mix.</div>
+    </div>
+
+    <div>
+      <div class="card" style="margin-bottom:1rem">
+        <div class="card-label" style="color:var(--red)">Where customers drop — and why</div>
+        <div class="insight-row"><div class="insight-dot" style="background:var(--red)"></div><div><strong>Awareness → Visit:</strong> GMB rating below 4.2 or no photos. Fix: collect reviews from Day 1.</div></div>
+        <div class="insight-row"><div class="insight-dot" style="background:var(--red)"></div><div><strong>Visit → Engage:</strong> Staff on phones or hovering too early. Fix: 90-second breathing room rule.</div></div>
+        <div class="insight-row"><div class="insight-dot" style="background:var(--red)"></div><div><strong>Consider → Decision:</strong> Amazon price objection without a ready answer. Fix: arm every staff member with the local service script.</div></div>
+        <div class="insight-row"><div class="insight-dot" style="background:var(--red)"></div><div><strong>Decision → Buy:</strong> Slow billing or pushy second upsell. Fix: &lt;5 min billing, one upsell only.</div></div>
+        <div class="insight-row"><div class="insight-dot" style="background:var(--red)"></div><div><strong>Buy → Refer:</strong> Not asking. Fix: Day +2 WhatsApp with review link and referral ask. Nobody asks — you will.</div></div>
+      </div>
+      <div class="card" style="background:var(--ink);border-color:var(--ink)">
+        <div style="font-size:12px;letter-spacing:.08em;color:var(--saffron);text-transform:uppercase;font-weight:500;margin-bottom:8px">The one insight that changes everything</div>
+        <div style="font-size:14px;color:#fff;line-height:1.8">Indian consumers — even in Tier 2 cities — now walk into your store with Amazon open on their phones. They already know the online price. The question they are really asking is: <em style="color:var(--saffron)">"Give me a reason to buy from you instead."</em><br><br>Your answer is: local installation, local service, EMI without a credit card, and someone who speaks Hindi and knows their name.</div>
+        <div class="cite" style="margin-top:8px;color:rgba(255,255,255,.3)">Arindam Substack 2024 · Amoghvarta 2024 · BCG-Google 2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+/* ── NAVIGATION ── */
+function scrollToSection(id, btn){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+}
+
+/* ── PRODUCT TABS ── */
+function showProd(id, btn){
+  document.querySelectorAll('.prod-tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.prod-panel').forEach(p=>p.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  const panel = document.getElementById('prod-'+id);
+  if(panel) panel.classList.add('on');
+}
+
+/* ── SCROLL REVEAL ── */
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* ── CHARTS ── */
+const NAVY='#1D3A5F',SAFFRON='#E8861A',TEAL='#1A7E6E',RED='#C94040',MID='#7F4EC9',GREEN='#2A7A2A';
+const FONT='Inter,sans-serif';
+
+if (window.Chart) {
+  Chart.defaults.font.family=FONT;
+  Chart.defaults.color='#7A7066';
+
+  /* Market value bar chart */
+  new Chart(document.getElementById('chartValue'),{
+    type:'bar',
+    data:{
+      labels:['TV (₹402 Cr)','AC (₹355 Cr)','Fridge (₹192 Cr)','WM (₹156 Cr)','Fan (₹91 Cr)'],
+      datasets:[{
+        data:[402,355,192,156,91],
+        backgroundColor:[SAFFRON,NAVY,MID,TEAL,GREEN],
+        borderRadius:6,
+        borderSkipped:false
+      }]
+    },
+    options:{
+      indexAxis:'y',
+      responsive:true,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' ₹'+ctx.raw+' Cr'}}},
+      scales:{
+        x:{grid:{color:'rgba(0,0,0,.06)'},ticks:{callback:v=>'₹'+v}},
+        y:{grid:{display:false}}
+      }
+    }
+  });
+
+  /* Radar chart */
+  new Chart(document.getElementById('chartRadar'),{
+    type:'radar',
+    data:{
+      labels:['Price / EMI','Brand trust','Demo / touch','Research online','Service anxiety','Word of mouth'],
+      datasets:[
+        {label:'AC',data:[88,78,52,72,70,55],borderColor:NAVY,backgroundColor:NAVY+'22',pointBackgroundColor:NAVY,borderWidth:2},
+        {label:'TV',data:[80,70,58,78,45,60],borderColor:SAFFRON,backgroundColor:SAFFRON+'22',pointBackgroundColor:SAFFRON,borderWidth:2},
+        {label:'WM',data:[90,72,75,45,65,72],borderColor:TEAL,backgroundColor:TEAL+'22',pointBackgroundColor:TEAL,borderWidth:2},
+        {label:'Fridge',data:[74,80,50,40,75,68],borderColor:MID,backgroundColor:MID+'22',pointBackgroundColor:MID,borderWidth:2},
+        {label:'Fan',data:[86,50,25,15,30,35],borderColor:GREEN,backgroundColor:GREEN+'22',pointBackgroundColor:GREEN,borderWidth:2},
+      ]
+    },
+    options:{
+      responsive:true,
+      plugins:{legend:{position:'bottom',labels:{boxWidth:10,padding:12,font:{size:11}}}},
+      scales:{r:{min:0,max:100,ticks:{display:false,stepSize:25},grid:{color:'rgba(0,0,0,.08)'},pointLabels:{font:{size:11}}}}
+    }
+  });
+
+  /* Segment donut */
+  new Chart(document.getElementById('chartSegments'),{
+    type:'doughnut',
+    data:{
+      labels:['Premium (8%) — 74,800 HH','Upper middle (22%) — 2,05,700 HH','Mass (45%) — 4,20,750 HH','Value (25%) — 2,33,750 HH'],
+      datasets:[{
+        data:[74800,205700,420750,233750],
+        backgroundColor:[NAVY,TEAL,SAFFRON,RED],
+        borderWidth:3,
+        borderColor:'#F7F3EE',
+        hoverOffset:6
+      }]
+    },
+    options:{
+      responsive:true,
+      cutout:'62%',
+      plugins:{
+        legend:{position:'bottom',labels:{boxWidth:10,padding:10,font:{size:11},generateLabels:chart=>{
+          const ds=chart.data.datasets[0];
+          return chart.data.labels.map((l,i)=>({text:l,fillStyle:ds.backgroundColor[i],strokeStyle:'#F7F3EE',lineWidth:2,hidden:false,index:i}));
+        }}},
+        tooltip:{callbacks:{label:ctx=>{const v=ctx.raw;return ' '+v.toLocaleString('en-IN')+' households'}}}
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
