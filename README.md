@@ -193,7 +193,11 @@ npm install
 
 # 🎬 Demo
 
-**Coming Soon**
+<div align="center">
+
+<a href="https://youtu.be/qt3GUbJhtK4" target="_blank">
+  <img src="https://img.youtube.com/vi/qt3GUbJhtK4/maxresdefault.jpg" alt="Watch Demo" width="900">
+</a>
 
 ---
 
@@ -211,7 +215,7 @@ npm install
 
 # 👩‍💻 My Contributions
 
-This project was conceptualized, researched, designed, and developed end-to-end by me.
+This project was built during my Product Management internship at Country Delight as a self-driven initiative to strengthen my product thinking and practice making end-to-end product decisions independently. From conducting user and market research to defining product strategy, designing the user experience, and developing the solution, I owned the complete product lifecycle while applying real-world product management principles.
 
 ### Product Management
 - Conducted comprehensive market research
