@@ -1,24 +1,21 @@
 <div align="center">
 
 # 🛍️ Jaipur Electronics
+
 ### AI-Powered Omnichannel Consumer Electronics Shopping Platform
 
-**Research-driven retail experience combining AI assistance, product discovery, and seamless shopping across Web & iOS.**
+**Research → Product Strategy → UX → AI → Full Stack Development**
 
-[![React](https://img.shields.io/badge/React-18+-61DAFB?style=flat-square&logo=react&logoColor=black)]()
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white)]()
-[![Express](https://img.shields.io/badge/Express.js-5+-000000?style=flat-square&logo=express&logoColor=white)]()
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white)]()
-[![Capacitor](https://img.shields.io/badge/Capacitor-iOS-119EFF?style=flat-square&logo=capacitor&logoColor=white)]()
-[![AI Assistant](https://img.shields.io/badge/AI-Powered-orange?style=flat-square)]()
+<p>
+An AI-powered consumer electronics platform built using a <strong>research-first approach</strong>, combining extensive market research, intelligent product discovery, conversational AI, and a seamless shopping experience across Web and iOS.
+</p>
 
-[Overview](#-overview) ·
-[Market Research](#-market-research--product-discovery) ·
-[Features](#-features) ·
-[Tech Stack](#-tech-stack) ·
-[Architecture](#-system-architecture) ·
-[Setup](#-installation--setup) ·
-[Live Demo](#-live-application)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Capacitor](https://img.shields.io/badge/Capacitor-119EFF?style=for-the-badge&logo=capacitor&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Powered-orange?style=for-the-badge)
 
 </div>
 
@@ -26,32 +23,69 @@
 
 # 🚀 Overview
 
-Jaipur Electronics is a modern omnichannel electronics retail platform built to digitize the experience of purchasing consumer electronics. The project combines a responsive web application, an iOS application built using Capacitor, and an AI-powered shopping assistant that helps customers discover products, compare options, and make confident purchase decisions.
+Jaipur Electronics is a research-driven omnichannel consumer electronics platform designed to modernize the purchasing experience for high-consideration electronics. The project combines a responsive web application, a native iOS application powered by Capacitor, and an AI shopping assistant that helps customers discover, compare, and purchase products confidently.
 
-Unlike a typical CRUD e-commerce project, this platform was designed using a **research-first product development process**. Before development began, extensive market research was conducted to understand customer behaviour, purchase psychology, product funnels, pricing strategies, competitors, and consumer pain points across major appliance categories.
+Unlike traditional e-commerce projects, this platform began with extensive market research before development. Customer behaviour, buying psychology, competitive benchmarking, product funnels, and retail pain points informed every product decision.
 
 ---
 
-# 🔍 Market Research & Product Discovery
+# ✨ Highlights
 
-This project began with a comprehensive product management and UX research exercise before any engineering work.
+- 🤖 AI Shopping Assistant
+- 🌐 Responsive Web Platform
+- 📱 Native iOS App (Capacitor)
+- 🛒 End-to-End Shopping Experience
+- 🔍 Intelligent Product Discovery
+- 📊 Research-Driven Product Design
+- 📈 Customer Journey Mapping
+- 🎯 Market & Competitor Analysis
 
-Research included:
+---
+
+# 🔬 Market Research & Product Discovery
+
+Before engineering began, the project included extensive product discovery covering:
 
 - Consumer electronics market analysis
-- Customer interviews & behavioural research
-- Purchase funnel analysis
 - Customer personas
-- Buying psychology
+- Purchase psychology
+- Customer journey mapping
+- Purchase funnel analysis
 - Competitor benchmarking
-- Pricing analysis
-- Product category research
-- Customer pain-point mapping
-- User journey design
-- Feature prioritisation
+- Pricing strategy research
+- Feature prioritization
+- Product strategy
+- UX research
 - AI conversation design
 
-The findings directly influenced navigation, search experience, recommendation logic, product presentation, and conversational AI design.
+These insights directly influenced navigation, search, recommendation logic, checkout flow, and the AI shopping assistant.
+
+---
+
+# 🧠 Core Features
+
+## AI Shopping Assistant
+
+- Natural language shopping
+- Product recommendations
+- Product comparison
+- Purchase guidance
+- Customer assistance
+
+## Shopping Platform
+
+- Category browsing
+- Advanced search
+- Product filtering
+- Shopping cart
+- Checkout
+- Responsive UI
+
+## Mobile Experience
+
+- Capacitor-powered iOS application
+- Shared shopping experience
+- Native deployment
 
 ---
 
@@ -59,123 +93,91 @@ The findings directly influenced navigation, search experience, recommendation l
 
 ```text
 Customer
-    │
-    ▼
-Responsive Web App / Capacitor iOS App
-    │
-    ▼
-Authentication
-    │
-    ▼
+      │
+      ▼
+Web Application / iOS Application
+      │
+      ▼
+Authentication Layer
+      │
+      ▼
 AI Shopping Assistant
-    │
-    ├── Product Search
-    ├── Recommendations
-    ├── Product Comparison
-    ├── Customer Support
-    │
-    ▼
-Node.js + Express Backend
-    │
-    ▼
-MongoDB Database
+      │
+ ┌────┼────────────┐
+ │    │            │
+ ▼    ▼            ▼
+Search Compare Recommendations
+      │
+      ▼
+Node.js + Express API
+      │
+      ▼
+MongoDB
 ```
 
 ---
 
-# ✨ Features
+# 🛠 Tech Stack
 
-### 🤖 AI Shopping Assistant
-
-- Natural language product discovery
-- Smart recommendations
-- Product comparison
-- Shopping guidance
-- Conversational assistance
-
-### 🛒 Shopping Experience
-
-- Product catalogue
-- Category browsing
-- Search & filters
-- Wishlist
-- Shopping cart
-- Checkout flow
-
-### 📱 Omnichannel
-
-- Responsive web application
-- Capacitor-powered iOS app
-- Consistent shopping experience
-
-### 📊 Product Intelligence
-
-- Rich product details
-- Product specifications
-- Comparison support
-- Category-based discovery
-
----
-
-# 🧠 Tech Stack
-
-| Layer | Technology |
-|------|------------|
+| Layer | Technologies |
+|-------|--------------|
 | Frontend | React, Vite |
 | Mobile | Capacitor iOS |
 | Backend | Node.js, Express |
 | Database | MongoDB |
-| AI | LLM-powered Shopping Assistant |
 | Styling | Tailwind CSS |
+| AI | LLM-powered Shopping Assistant |
 | Version Control | Git & GitHub |
 
 ---
 
-# 📂 Project Structure
+# 📂 Repository Structure
 
 ```text
-Vaishali-Electronics-Jaipur/
+Vaishali-Electronics-Jaipur
 │
 ├── Web Demo/
-│   ├── src/
-│   ├── public/
-│   └── package.json
-│
 ├── IOS Capacitor App/
-│   ├── ios/
-│   ├── src/
-│   └── capacitor.config
-│
-└── README.md
+├── research/
+│   ├── Market_Analysis.html
+│   ├── Product_Analysis_User_Psychology.html
+│   ├── Product_Funnels.html
+│   └── Funnel_Analysis.html
+├── README.md
+└── .gitignore
 ```
-
----
-
-# 🎯 Product Vision
-
-Create a modern retail platform that combines AI, user research, and intuitive shopping experiences to help customers discover the right electronics faster while improving engagement and conversions.
 
 ---
 
 # 🌐 Live Application
 
-## Web Application
-https://vaishali-electronics-jaipur.vercel.app
+### Web Application
 
-Repository:
-https://github.com/Ria-Chadha-05/Vaishali-Electronics-Jaipur
+> Replace with your Vercel URL
+
+### iOS Application
+
+Built using Capacitor. Local native deployment.
+
+### Research Reports
+
+Hosted on GitHub Pages.
+
+- Market Analysis
+- Consumer Psychology
+- Product Funnels
+- Funnel Playbook
 
 ---
 
-# ⚙️ Installation & Setup
+# ⚙️ Installation
 
 ```bash
 git clone https://github.com/Ria-Chadha-05/Vaishali-Electronics-Jaipur.git
-
 cd Vaishali-Electronics-Jaipur
 ```
 
-Install dependencies inside both projects.
+Install dependencies inside both applications.
 
 ```bash
 cd "Web Demo"
@@ -185,68 +187,72 @@ cd "../IOS Capacitor App"
 npm install
 ```
 
-Run each application independently.
-
----
-
-# 📸 Screenshots
-
-> Coming Soon
-
 ---
 
 # 🎬 Demo
 
-> Coming Soon
+**Coming Soon**
 
 ---
 
-# 🚀 Future Improvements
+# 🚀 Future Roadmap
 
-- Personalized recommendations
-- Voice shopping
-- AR product previews
-- Order tracking
-- Payment integrations
-- Loyalty program
+- Personalized AI recommendations
+- Voice commerce
+- AR product visualization
 - Inventory analytics
 - Admin dashboard
+- Loyalty & rewards
+- Order tracking
+- Advanced personalization
 
 ---
 
 # 👩‍💻 My Contributions
 
-This project was designed and developed end-to-end by me.
+This project was conceptualized, researched, designed, and developed end-to-end by me.
 
-My contributions extend well beyond software development and include the complete product lifecycle:
+### Product Management
 
-- Conducted comprehensive market research for Jaipur's consumer electronics market.
-- Performed customer behaviour analysis and purchase psychology research.
-- Built customer personas and mapped complete purchase funnels across multiple appliance categories.
-- Benchmarked competitors, pricing strategies, and customer experiences.
-- Identified pain points and translated research findings into product requirements.
-- Designed the overall product strategy, user journeys, information architecture, and AI shopping experience.
-- Developed the responsive web application.
-- Built the Capacitor iOS application.
-- Implemented the backend architecture and application logic.
-- Designed the AI-powered shopping assistant experience.
-- Managed the project from research and ideation through implementation.
+- Conducted comprehensive market research
+- Performed competitor benchmarking
+- Built customer personas
+- Mapped customer journeys
+- Designed purchase funnels
+- Prioritized features using research insights
 
-This repository demonstrates my ability to combine **Product Management, UX Research, AI Product Design, and Full Stack Engineering** into a single end-to-end solution.
+### UX & Product Design
+
+- Information architecture
+- User flows
+- Shopping experience
+- AI interaction design
+- Customer journey optimization
+
+### Engineering
+
+- Responsive web application
+- Capacitor iOS application
+- Backend architecture
+- Shopping experience implementation
+- AI-powered shopping assistant
+
+This project showcases my ability to combine **Product Management, Market Research, UX Design, AI Product Thinking, and Full Stack Development** into one end-to-end product.
 
 ---
 
-# 👩‍💻 Author
+# 🙌 Author
 
 **Ria Chadha**
 
-GitHub:
-https://github.com/Ria-Chadha-05
+GitHub: https://github.com/Ria-Chadha-05
+
+LinkedIn: *Add your profile*
 
 ---
 
 <div align="center">
 
-⭐ If you found this project interesting, consider giving it a star!
+⭐ If you enjoyed this project, consider giving it a star!
 
 </div>
