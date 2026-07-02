@@ -6,16 +6,13 @@
 
 **Research → Product Strategy → UX → AI → Full Stack Development**
 
-<p>
-An AI-powered consumer electronics platform built using a <strong>research-first approach</strong>, combining extensive market research, intelligent product discovery, conversational AI, and a seamless shopping experience across Web and iOS.
-</p>
+An AI-powered consumer electronics platform built using a **research-first approach**, combining extensive market research, intelligent product discovery, conversational AI, and a seamless shopping experience across **Web** and **iOS**.
 
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Capacitor](https://img.shields.io/badge/Capacitor-119EFF?style=for-the-badge&logo=capacitor&logoColor=white)
-![AI](https://img.shields.io/badge/AI-Powered-orange?style=for-the-badge)
 
 </div>
 
@@ -23,67 +20,67 @@ An AI-powered consumer electronics platform built using a <strong>research-first
 
 # 🚀 Overview
 
-Jaipur Electronics is a research-driven omnichannel consumer electronics platform designed to modernize the purchasing experience for high-consideration electronics. The project combines a responsive web application, a native iOS application powered by Capacitor, and an AI shopping assistant that helps customers discover, compare, and purchase products confidently.
+Jaipur Electronics is a research-driven omnichannel consumer electronics platform that modernizes the appliance buying experience through AI-powered shopping assistance, intelligent product discovery, and a seamless experience across web and native iOS.
 
-Unlike traditional e-commerce projects, this platform began with extensive market research before development. Customer behaviour, buying psychology, competitive benchmarking, product funnels, and retail pain points informed every product decision.
+Unlike a typical e-commerce project, the platform was designed using a **research-first methodology**. Extensive market research, customer psychology, purchase funnel analysis, competitor benchmarking, and UX research informed every product decision before development began.
 
 ---
 
 # ✨ Highlights
 
-- 🤖 AI Shopping Assistant
-- 🌐 Responsive Web Platform
-- 📱 Native iOS App (Capacitor)
-- 🛒 End-to-End Shopping Experience
-- 🔍 Intelligent Product Discovery
-- 📊 Research-Driven Product Design
-- 📈 Customer Journey Mapping
-- 🎯 Market & Competitor Analysis
+- 🤖 AI-powered Shopping Assistant
+- 🌐 Fully Responsive Web Application
+- 📱 Native iOS Application (Capacitor)
+- 📊 Research-driven Product Strategy
+- 🧠 Customer Psychology & Persona Analysis
+- 🛒 Intelligent Product Discovery
+- 📈 Purchase Funnel Optimization
+- 🎯 Competitive Benchmarking
+- 📑 Interactive Product Discovery Research
 
 ---
 
-# 🔬 Market Research & Product Discovery
+# 🔬 Product Discovery Research
 
-Before engineering began, the project included extensive product discovery covering:
+Before writing code, the product was designed through extensive research including:
 
 - Consumer electronics market analysis
 - Customer personas
-- Purchase psychology
+- User psychology
 - Customer journey mapping
 - Purchase funnel analysis
 - Competitor benchmarking
 - Pricing strategy research
-- Feature prioritization
-- Product strategy
 - UX research
+- Product strategy
 - AI conversation design
+- Feature prioritization
 
-These insights directly influenced navigation, search, recommendation logic, checkout flow, and the AI shopping assistant.
+These insights directly shaped the shopping experience, AI assistant, navigation, recommendations, and customer journey.
 
 ---
 
 # 🧠 Core Features
 
-## AI Shopping Assistant
+### AI Shopping Assistant
 
 - Natural language shopping
-- Product recommendations
+- Intelligent recommendations
 - Product comparison
-- Purchase guidance
-- Customer assistance
+- Guided purchase assistance
+- Customer support
 
-## Shopping Platform
+### Shopping Experience
 
-- Category browsing
-- Advanced search
+- Smart search
 - Product filtering
+- Category browsing
 - Shopping cart
-- Checkout
 - Responsive UI
 
-## Mobile Experience
+### Mobile Experience
 
-- Capacitor-powered iOS application
+- Native iOS application using Capacitor
 - Shared shopping experience
 - Native deployment
 
@@ -93,41 +90,40 @@ These insights directly influenced navigation, search, recommendation logic, che
 
 ```text
 Customer
-      │
-      ▼
-Web Application / iOS Application
-      │
-      ▼
-Authentication Layer
-      │
-      ▼
+    │
+    ▼
+Web App / iOS App
+    │
+    ▼
+Authentication
+    │
+    ▼
 AI Shopping Assistant
-      │
- ┌────┼────────────┐
- │    │            │
- ▼    ▼            ▼
-Search Compare Recommendations
-      │
-      ▼
-Node.js + Express API
-      │
-      ▼
+    │
+ ├── Product Search
+ ├── Product Comparison
+ ├── Recommendations
+ └── Customer Assistance
+    │
+    ▼
+Node.js + Express
+    │
+    ▼
 MongoDB
 ```
 
 ---
 
-# 🛠 Tech Stack
+# 🛠️ Tech Stack
 
 | Layer | Technologies |
-|-------|--------------|
+|--------|--------------|
 | Frontend | React, Vite |
 | Mobile | Capacitor iOS |
 | Backend | Node.js, Express |
 | Database | MongoDB |
 | Styling | Tailwind CSS |
 | AI | LLM-powered Shopping Assistant |
-| Version Control | Git & GitHub |
 
 ---
 
@@ -151,22 +147,28 @@ Vaishali-Electronics-Jaipur
 
 # 🌐 Live Application
 
-### Web Application
+## 💻 Web Application
 
-> Replace with your Vercel URL
+🔗 **https://vaishali-electronics-jaipur.vercel.app**
 
-### iOS Application
+---
 
-Built using Capacitor. Local native deployment.
+## 📱 iOS Application
 
-### Research Reports
+Native iOS application built using Capacitor.
 
-Hosted on GitHub Pages.
+> Currently available as a local development build.
 
-- Market Analysis
-- Consumer Psychology
-- Product Funnels
-- Funnel Playbook
+---
+
+## 📊 Product Discovery Research
+
+| Report | Live Link |
+|---------|-----------|
+| 📈 Market Analysis | https://ria-chadha-05.github.io/Vaishali-Electronics-Jaipur/Market_Analysis.html |
+| 🧠 Consumer Psychology | https://ria-chadha-05.github.io/Vaishali-Electronics-Jaipur/Product_Analysis_User_Psychology.html |
+| 🛒 Product Funnels | https://ria-chadha-05.github.io/Vaishali-Electronics-Jaipur/Product_Funnels.html |
+| 🎯 Funnel Playbook | https://ria-chadha-05.github.io/Vaishali-Electronics-Jaipur/Funnel_Analysis.html |
 
 ---
 
@@ -199,12 +201,11 @@ npm install
 
 - Personalized AI recommendations
 - Voice commerce
-- AR product visualization
+- AR visualization
 - Inventory analytics
-- Admin dashboard
 - Loyalty & rewards
 - Order tracking
-- Advanced personalization
+- Admin dashboard
 
 ---
 
@@ -213,46 +214,39 @@ npm install
 This project was conceptualized, researched, designed, and developed end-to-end by me.
 
 ### Product Management
-
 - Conducted comprehensive market research
-- Performed competitor benchmarking
-- Built customer personas
-- Mapped customer journeys
-- Designed purchase funnels
-- Prioritized features using research insights
+- Competitor benchmarking
+- Customer persona creation
+- Customer journey mapping
+- Purchase funnel design
+- Product strategy and feature prioritization
 
 ### UX & Product Design
-
 - Information architecture
-- User flows
-- Shopping experience
-- AI interaction design
-- Customer journey optimization
+- User flow design
+- AI conversation design
+- Shopping experience optimization
 
 ### Engineering
-
 - Responsive web application
-- Capacitor iOS application
-- Backend architecture
-- Shopping experience implementation
-- AI-powered shopping assistant
+- Native Capacitor iOS application
+- Backend development
+- AI shopping assistant integration
 
-This project showcases my ability to combine **Product Management, Market Research, UX Design, AI Product Thinking, and Full Stack Development** into one end-to-end product.
+This project demonstrates my ability to combine **Product Management, Market Research, UX Design, AI Product Thinking, and Full Stack Engineering** into a complete end-to-end product.
 
 ---
 
-# 🙌 Author
+# 👩‍💻 Author
 
 **Ria Chadha**
 
-GitHub: https://github.com/Ria-Chadha-05
-
-LinkedIn: *Add your profile*
+- GitHub: https://github.com/Ria-Chadha-05
 
 ---
 
 <div align="center">
 
-⭐ If you enjoyed this project, consider giving it a star!
+⭐ If you found this project interesting, consider giving it a star!
 
 </div>
