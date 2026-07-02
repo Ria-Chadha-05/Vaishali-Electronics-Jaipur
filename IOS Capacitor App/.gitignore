@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+www/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Capacitor
+android/.gradle/
+android/build/
+android/app/build/
+
+ios/App/build/
+ios/DerivedData/
+ios/Pods/
+
+# Xcode
+*.xcworkspace
+!ios/App/App.xcworkspace
+xcuserdata/
+*.xcuserstate
+
+# CocoaPods
+Pods/
+
+# Temporary
+tmp/
+temp/
+.cache/
+
+# Coverage
+coverage/
+
+# TypeScript
+*.tsbuildinfo
