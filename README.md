@@ -199,6 +199,8 @@ npm install
   <img src="https://img.youtube.com/vi/qt3GUbJhtK4/maxresdefault.jpg" alt="Watch Demo" width="900">
 </a>
 
+</div>
+
 ---
 
 # 🚀 Future Roadmap
